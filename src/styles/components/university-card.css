@@ -1,0 +1,70 @@
+.university-card {
+  display: block;
+  color: var(--color-text);
+  text-decoration: none;
+  padding: var(--space-4);
+  border: 1px solid var(--color-blue);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.university-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.university-info > div {
+  min-width: 0;
+}
+
+.university-logo {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  min-width: 3.5rem;
+  min-height: 2.5rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-extrabold);
+}
+
+.university-info h3 {
+  margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-heading);
+}
+
+.university-info p {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.university-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  padding: var(--space-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-heading);
+}
+
+
+.tag-blue, .university-logo { background: var(--color-blue); }
+.tag-green { background: var(--color-green); }
+
+td-university-card { display: block; }
+
+@media (hover: hover) {
+  .university-card:hover { border-color: var(--color-ink); }
+}

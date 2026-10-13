@@ -1,0 +1,59 @@
+.university-page { padding-block: var(--space-6); }
+
+.university-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  font-weight: var(--font-weight-extrabold);
+  font-size: var(--font-size-lg);
+}
+
+.university-back {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text);
+}
+.university-back::before { content: ''; position: absolute; inset: -0.625rem; }
+.university-back .material-symbols-outlined { font-size: var(--font-size-lg); }
+
+#university-content { display: flex; flex-direction: column; gap: var(--space-4); }
+.university-page h1, .university-page h2, .university-page p { margin: 0; }
+
+.university-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-blue);
+  border-radius: var(--radius-card);
+  background: var(--color-blue);
+}
+.university-hero > .material-symbols-outlined { font-size: 2.75rem; }
+.university-hero h1 { font-size: 2.5rem; font-weight: var(--font-weight-extrabold); line-height: var(--line-height-heading); }
+.university-hero h2 { font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); line-height: var(--line-height-heading); }
+.university-hero p { font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.button-green { background: var(--color-green); color: var(--color-ink); }
+.university-page button:disabled { opacity: 1; cursor: default; filter: none; }
+#view-saved { align-self: flex-start; color: var(--color-text); text-decoration: none; }
+#save-status { font-size: var(--font-size-sm); color: var(--color-text-muted); }
+
+.university-sections { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.university-sections a { color: var(--color-text); text-decoration: none; }
+.university-page section { scroll-margin-block: var(--space-6); }
+.university-overview h2, .university-detail-card h2 { font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold); line-height: var(--line-height-heading); }
+.university-overview p { margin-top: var(--space-4); font-size: var(--font-size-sm); color: var(--color-text-muted); line-height: 1.4; }
+
+.university-detail-card {
+  padding: var(--space-4);
+  border: 1px solid var(--color-blue);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+.university-detail-card p { margin-top: var(--space-2); font-size: var(--font-size-sm); }
+.university-detail-card .detail-note { font-size: var(--font-size-xs); color: var(--color-text-muted); }
+.university-detail-card .detail-muted { color: var(--color-text-muted); }
+.university-detail-card .button { margin-top: var(--space-3); }
+#university-not-found { display: flex; flex-direction: column; gap: var(--space-4); }

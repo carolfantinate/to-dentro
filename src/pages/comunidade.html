@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conheça experiências e relatos de estudantes na comunidade Tô Dentro.">
+    <title>Comunidade | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/comunidade.css">
+</head>
+<body>
+    <main id="conteudo-principal" class="page-container community-page">
+        <header class="community-header">
+            <a class="community-back" id="community-back" href="../../index.html" aria-label="Voltar">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span>
+            </a>
+            <span>Comunidade</span>
+        <a class="map-page-link" href="./mapa.html" data-map-link>Mapa</a>
+        </header>
+        <h1>Quem vive, compartilha.</h1>
+        <p class="community-intro">Experiências reais ajudam novas escolhas.</p>
+        <p class="community-context" id="community-context" hidden></p>
+
+        <div class="community-categories" role="group" aria-label="Categorias da comunidade">
+            <button class="community-category category-yellow" type="button" data-category="experiencias" aria-pressed="true">Experiências</button>
+            <button class="community-category category-blue" type="button" data-category="duvidas" aria-pressed="false">Dúvidas</button>
+            <button class="community-category category-green" type="button" data-category="oportunidades" aria-pressed="false">Oportunidades</button>
+        </div>
+
+        <section id="community-feed" class="community-feed" aria-label="Relatos da comunidade"></section>
+        <p id="community-empty" class="community-empty" role="status" hidden></p>
+
+        <section class="community-opportunities" aria-labelledby="opportunities-title">
+            <h2 id="opportunities-title">Explore além da sala de aula</h2>
+            <p>Pesquisas, projetos, monitorias e bolsas.</p>
+            <button class="button button-ink" type="button" disabled title="Disponível em breve">Explorar oportunidades</button>
+        </section>
+        <noscript>Ative o JavaScript para carregar os relatos demonstrativos.</noscript>
+    </main>
+
+    <td-bottom-nav></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../data/community.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/comunidade.js"></script>
+    <script defer src="../scripts/components/map-links.js"></script>
+</body>
+</html>
+
+

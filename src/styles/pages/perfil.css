@@ -1,0 +1,22 @@
+.profile-page { display: flex; flex-direction: column; gap: var(--space-6); padding-block: var(--space-6); }
+.profile-page h1, .profile-page h2, .profile-page h3, .profile-page p { margin: 0; }
+.profile-header { display: flex; align-items: center; gap: var(--space-3); }
+.profile-header h1, .profile-page > section > h2 { font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); line-height: var(--line-height-heading); }
+.profile-back { position: relative; display: inline-flex; color: var(--color-text); }
+.profile-back::before { content: ''; position: absolute; inset: -0.625rem; }
+.profile-back .material-symbols-outlined { font-size: var(--font-size-lg); }
+.profile-identity { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4); border: 1px solid var(--color-blue); border-radius: var(--radius-card); background: var(--color-blue); }
+.profile-avatar { display: grid; flex-shrink: 0; place-items: center; width: 3.75rem; height: 3.75rem; border-radius: 1.25rem; background: var(--color-surface); }
+.profile-avatar .material-symbols-outlined { font-size: 2rem; }
+.profile-identity h2 { font-size: var(--font-size-2xl); font-weight: var(--font-weight-extrabold); line-height: var(--line-height-heading); }
+.profile-identity p { margin-top: var(--space-2); color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.profile-choice-list { display: flex; flex-direction: column; gap: var(--space-4); margin: var(--space-6) 0 0; padding: 0; list-style: none; }
+.profile-choice { display: flex; align-items: center; gap: var(--space-3); width: 100%; min-height: 3.5rem; padding: var(--space-4); border: 1px solid var(--color-blue); border-radius: var(--radius-card); background: var(--color-surface); color: var(--color-text); font-size: var(--font-size-base); font-weight: var(--font-weight-extrabold); line-height: var(--line-height-heading); text-align: left; }
+.profile-choice .material-symbols-outlined { flex-shrink: 0; font-size: var(--font-size-xl); }
+.profile-count { margin-left: auto; }
+.profile-choice { text-decoration: none; }
+.profile-preferences-card { margin-top: var(--space-6); padding: var(--space-4); border-radius: var(--radius-card); background: var(--color-green); }
+.profile-preferences-card h3 { margin-bottom: var(--space-3); font-size: var(--font-size-base); font-weight: var(--font-weight-extrabold); }
+.profile-preferences-card p { font-size: var(--font-size-sm); line-height: 1.4; }
+.profile-preferences-card .button { margin-top: var(--space-3); }
+.profile-page button:disabled { opacity: 1; cursor: default; filter: none; }

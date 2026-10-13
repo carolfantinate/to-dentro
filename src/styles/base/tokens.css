@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+  --font-family-base: 'Nunito', system-ui, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  --line-height-heading: 1.2;
+  --line-height-body: 1.5;
+
+  /* Paleta do Figma. */
+  --color-ink: #12324B;
+  --color-blue: #DDEFFD;
+  --color-green: #CFE5B7;
+  --color-yellow: #F6EDA9;
+  --color-white: #ffffff;
+  --color-neutral-50: #FAFBF6;
+  --color-neutral-200: #e3e3dc;
+  --color-neutral-600: #536E7C;
+
+  /* Papéis de cor: componentes devem preferir estas variáveis. */
+  --color-background: var(--color-neutral-50);
+  --color-surface: var(--color-white);
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-neutral-600);
+  --color-border: var(--color-neutral-200);
+  --color-primary: var(--color-green);
+  --color-on-primary: var(--color-white);
+  --color-accent: var(--color-yellow);
+  --color-on-accent: var(--color-ink);
+  --color-focus: var(--color-primary);
+
+  /* Espaçamentos compartilhados. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --page-gutter: var(--space-6);
+
+  /* Navegação inferior mobile. */
+  --bottom-nav-height: 5rem;
+  --bottom-nav-icon-size: 1.5rem;
+  --bottom-nav-background: var(--color-surface);
+  --bottom-nav-color: var(--color-text-muted);
+  --bottom-nav-active-color: var(--color-ink);
+  --bottom-nav-border-color: var(--color-border);
+  --z-index-navigation: 100;
+
+  --radius-card: 1.5rem;
+  --radius-pill: 999px;
+  --control-height: 3rem;
+  --color-on-ink: var(--color-white);
+}

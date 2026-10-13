@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore universidades, cursos e instituições de São Paulo no Tô Dentro.">
+    <title>Buscar universidades | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/buscar-universidades.css">
+</head>
+<body>
+    <main id="conteudo-principal" class="page-container university-search-page">
+        <header class="search-header">
+            <a class="search-back" href="../../index.html" aria-label="Voltar ao início">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span>
+            </a>
+            <span>Buscar universidades</span>
+        <a class="map-page-link" href="./mapa.html" data-map-link>Mapa</a>
+        </header>
+
+        <h1>Encontre seu lugar.</h1>
+        <p class="search-intro">Explore cursos e instituições em SP.</p>
+
+        <form class="university-search-form" role="search" aria-label="Buscar universidades">
+            <label class="search-field" for="university-query">
+                <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                <span class="visually-hidden">Universidade, curso ou cidade</span>
+                <input id="university-query" name="busca" type="search" placeholder="Universidade, curso ou cidade" autocomplete="off">
+            </label>
+        </form>
+
+        <div class="search-filters" aria-label="Filtros de universidades">
+            <button class="filter-chip filter-blue" type="button" data-filter="sp" aria-pressed="true">São Paulo</button>
+            <button class="filter-chip filter-green" type="button" data-filter="public" aria-pressed="true">Públicas</button>
+            <a class="filter-chip filter-yellow" id="open-filters" href="./filtros.html">Filtros +</a>
+        </div>
+
+        <aside class="search-profile" aria-labelledby="profile-title">
+            <h2 id="profile-title">Uma escolha com a sua cara</h2>
+            <p>Use seu perfil para descobrir novas possibilidades.</p>
+        </aside>
+
+        <section class="search-results" aria-labelledby="results-count">
+            <h2 id="results-count" aria-live="polite">3 instituições encontradas</h2>
+            <label class="search-sort" for="sort-universities">Ordenar por:
+                <select id="sort-universities">
+                    <option value="relevance">relevância</option>
+                    <option value="name">nome</option>
+                </select>
+            </label>
+            <div class="university-results-list">
+                <td-university-card university-id="usp"></td-university-card>
+
+                <td-university-card university-id="unesp"></td-university-card>
+                
+                <td-university-card university-id="unicamp"></td-university-card>
+            </div>
+            <p id="search-empty" hidden>Nenhuma instituição encontrada. Tente outra busca ou ajuste os filtros.</p>
+            <p class="search-demo-note">Resultados demonstrativos.</p>
+        </section>
+    </main>
+
+<td-bottom-nav active="buscar"></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../scripts/components/university-card.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/main.js"></script>
+    <script defer src="../scripts/pages/buscar-universidades.js"></script>
+    <script defer src="../scripts/components/map-links.js"></script>
+</body>
+</html>
+
+
+
+

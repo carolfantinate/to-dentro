@@ -1,0 +1,32 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--control-height);
+  padding: var(--space-3) var(--space-4);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-heading);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button-ink {
+  background: var(--color-ink);
+  color: var(--color-on-ink);
+}
+
+.button-yellow {
+  background: var(--color-yellow);
+  color: var(--color-on-accent);
+}
+
+@media (hover: hover) {
+  .button:hover {
+    filter: brightness(0.96);
+  }
+}

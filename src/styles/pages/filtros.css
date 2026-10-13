@@ -1,0 +1,92 @@
+.preferences-page {
+  padding-block: var(--space-6);
+}
+
+.preferences-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-extrabold);
+}
+
+.preferences-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  color: var(--color-text);
+}
+
+.preferences-back::before {
+  content: '';
+  position: absolute;
+  inset: -0.625rem;
+}
+
+.preferences-back .material-symbols-outlined { font-size: var(--font-size-lg); }
+
+.preferences-page h1 {
+  margin: var(--space-4) 0;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-heading);
+}
+
+.preferences-intro {
+  margin: 0 0 var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+#preferences-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.preference-card {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding: 2.75rem var(--space-4) var(--space-4);
+  border: 1px solid var(--color-blue);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.preference-card legend {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  padding: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-heading);
+}
+
+.preference-options { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.preference-option { position: relative; cursor: pointer; }
+
+.preference-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.preference-option span {
+  display: block;
+  padding: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-background);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-heading);
+}
+
+.preference-option input:checked + span { background: var(--color-green); }
+.preference-option input:focus-visible + span { outline: 2px solid var(--color-ink); outline-offset: 3px; }
+.preferences-actions { display: flex; flex-direction: column; gap: var(--space-4); }

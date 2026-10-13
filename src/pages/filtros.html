@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtros e preferências | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/filtros.css">
+</head>
+<body>
+    <main class="page-container preferences-page" id="conteudo-principal">
+        <header class="preferences-header">
+            <a id="filters-back" class="preferences-back" href="./buscar-universidades.html" aria-label="Voltar à busca">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span>
+            </a>
+            <span>Filtros e preferências</span>
+        </header>
+        <h1>A busca do seu jeito.</h1>
+        <p class="preferences-intro">Combine o que é importante para você.</p>
+        <form id="preferences-form" action="./buscar-universidades.html" method="get">
+            <fieldset class="preference-card">
+                <legend>Região</legend>
+                <div class="preference-options">
+                    <label class="preference-option"><input type="radio" name="region" value="sp" checked><span>São Paulo</span></label>
+                    <label class="preference-option"><input type="radio" name="region" value="campinas"><span>Campinas</span></label>
+                </div>
+            </fieldset>
+            <fieldset class="preference-card">
+                <legend>Curso</legend>
+                <div class="preference-options">
+                    <label class="preference-option"><input type="radio" name="course" value="medicina"><span>Medicina</span></label>
+                    <label class="preference-option"><input type="radio" name="course" value="" checked><span>Todos os cursos</span></label>
+                </div>
+            </fieldset>
+            <fieldset class="preference-card">
+                <legend>Tipo de instituição</legend>
+                <div class="preference-options">
+                    <label class="preference-option"><input type="radio" name="type" value="publica" checked><span>Pública</span></label>
+                    <label class="preference-option"><input type="radio" name="type" value="particular"><span>Particular</span></label>
+                </div>
+            </fieldset>
+            <fieldset class="preference-card">
+                <legend>Modalidade</legend>
+                <div class="preference-options">
+                    <label class="preference-option"><input type="radio" name="mode" value="presencial"><span>Presencial</span></label>
+                    <label class="preference-option"><input type="radio" name="mode" value="ead"><span>EAD</span></label>
+                </div>
+            </fieldset>
+            <fieldset class="preference-card">
+                <legend>Período</legend>
+                <div class="preference-options">
+                    <label class="preference-option"><input type="radio" name="period" value="integral"><span>Integral</span></label>
+                    <label class="preference-option"><input type="radio" name="period" value="noturno"><span>Noturno</span></label>
+                    <label class="preference-option"><input type="radio" name="period" value="matutino"><span>Matutino</span></label>
+                </div>
+            </fieldset>
+            <fieldset class="preference-card">
+                <legend>Valor</legend>
+                <div class="preference-options">
+                    <label class="preference-option"><input type="radio" name="cost" value="gratuita"><span>Gratuita</span></label>
+                    <label class="preference-option"><input type="radio" name="cost" value="mensalidade"><span>Com mensalidade</span></label>
+                </div>
+            </fieldset>
+            <input type="hidden" name="busca" id="preserved-query">
+            <input type="hidden" name="sort" id="preserved-sort">
+            <div class="preferences-actions">
+                <button class="button button-ink" type="submit">Aplicar filtros</button>
+                <button class="button button-yellow" id="clear-filters" type="button">Limpar filtros</button>
+            </div>
+        </form>
+    </main>
+    <script defer src="../scripts/pages/filtros.js"></script>
+    <script defer src="../scripts/components/map-links.js"></script>
+</body>
+</html>
+
+
+

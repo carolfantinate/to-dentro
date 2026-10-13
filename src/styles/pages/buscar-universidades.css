@@ -1,0 +1,143 @@
+.university-search-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-block: var(--space-6);
+}
+
+.university-search-page h1,
+.university-search-page h2,
+.university-search-page h3,
+.university-search-page p {
+  margin: 0;
+}
+
+.search-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-extrabold);
+}
+
+.search-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  position: relative;
+  color: var(--color-text);
+}
+
+.search-back::before {
+  content: '';
+  position: absolute;
+  inset: -0.625rem;
+}
+
+.search-back .material-symbols-outlined {
+  font-size: var(--font-size-lg);
+}
+
+.university-search-page h1 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-heading);
+}
+
+.search-intro {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.university-search-form {
+  margin: 0;
+}
+
+.search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  min-height: 2rem;
+  padding: var(--space-2);
+  border: 0;
+  border-radius: var(--radius-pill);
+  color: var(--color-text);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-heading);
+  cursor: pointer;
+}
+
+.filter-blue { background: var(--color-blue); }
+.filter-green { background: var(--color-green); }
+.filter-yellow { background: var(--color-yellow); }
+
+.filter-chip[aria-pressed='false'] {
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.search-profile {
+  padding: var(--space-4);
+  border: 1px solid var(--color-blue);
+  border-radius: var(--radius-card);
+  background: var(--color-blue);
+}
+
+.search-profile h2 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-heading);
+}
+
+.search-profile p {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+}
+
+.search-results > h2 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-extrabold);
+}
+
+.search-sort {
+  display: flex;
+  align-items: center;
+  margin-block: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.search-sort select {
+  min-height: 1.5rem;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.university-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.university-search-page .search-demo-note {
+  margin-top: var(--space-4);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+

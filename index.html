@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Tô Dentro: conheça universidades, cursos e caminhos para ingressar no ensino superior.">
+    <!--Colocar um slogan melhor-->
+    <title>Tô Dentro</title>
+    <link rel="stylesheet" href="./src/styles/main.css">
+    <link rel="stylesheet" href="./src/styles/pages/home.css">
+</head>
+
+<body>
+    <main id="conteudo-principal" class="page-container home">
+        <header class="home-header">
+            <img class="home-logo" src="./assets/images/combination-mark.svg" alt="Tô Dentro!" width="220" height="74">
+            <h1>Olá, Ana! <span aria-hidden="true">👋</span></h1>
+            <p>Seu próximo passo começa aqui.</p>
+        </header>
+
+        <section class="vocational-card" aria-labelledby="vocational-title">
+            <div class="vocational-invitation">
+                <div>
+                    <h2 id="vocational-title">Ainda em dúvida?</h2>
+                    <p>Descubra caminhos que combinam com você.</p>
+                </div>
+                <img class="vocational-mascot" src="./assets/images/camaleão.png" alt="" width="76" height="76">
+            </div>
+            <button class="button button-ink" type="button" data-upcoming="Teste vocacional">Fazer meu teste</button>
+        </section>
+
+        <form class="home-search" role="search" aria-label="Buscar universidades">
+            <label class="search-field" for="university-search">
+                <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                <span class="visually-hidden">Busque universidades ou cursos</span>
+                <input id="university-search" name="busca" type="search" placeholder="Busque universidades, cursos..." autocomplete="off">
+            </label>
+        </form>
+
+        <nav class="home-shortcuts" aria-label="Explore o Tô Dentro">
+            <a class="shortcut shortcut-blue" href="./src/pages/buscar-universidades.html">
+                <span class="material-symbols-outlined" aria-hidden="true">account_balance</span>
+                <span>Universidades</span>
+            </a>
+            <button class="shortcut shortcut-green" type="button" data-upcoming="Teste vocacional">
+                <span class="material-symbols-outlined" aria-hidden="true">explore</span>
+                <span>Teste vocacional</span>
+            </button>
+            <a class="shortcut shortcut-blue" href="./src/pages/mapa.html" data-map-link>
+                <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+                <span>Mapa</span>
+            </a>
+            <a class="shortcut shortcut-yellow" href="./src/pages/calendario.html?from=../../index.html">
+                <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
+                <span>Calendário</span>
+            </a>
+        </nav>
+
+        <section id="universidades" class="home-recommendations" aria-labelledby="recommendations-title">
+            <h2 id="recommendations-title">Para você</h2>
+            <p class="recommendations-subtitle">Explore instituições de São Paulo</p>
+            <td-university-card university-id="usp"></td-university-card>
+            <p class="search-empty" role="status" hidden>Nenhuma instituição encontrada nesta seleção.</p>
+        </section>
+
+        <a class="button button-yellow community-button" href="./src/pages/comunidade.html">Conhecer a comunidade</a>
+    </main>
+
+    <dialog class="upcoming-dialog" aria-labelledby="upcoming-title">
+        <h2 id="upcoming-title"></h2>
+        <p>Esta seção estará disponível em breve.</p>
+        <form method="dialog"><button class="button button-ink" type="submit">Voltar ao início</button></form>
+    </dialog>
+
+    <td-bottom-nav active="inicio"></td-bottom-nav>
+
+    <script defer src="./src/data/universities.js"></script>
+    <script defer src="./src/scripts/components/university-card.js"></script>
+    <script defer src="./src/scripts/components/bottom-nav.js"></script>
+    <script defer src="./src/scripts/main.js"></script>
+    <script defer src="./src/scripts/pages/home.js"></script>
+    <script defer src="./src/scripts/components/map-links.js"></script>
+</body>
+
+</html>
+
+
+
+
+

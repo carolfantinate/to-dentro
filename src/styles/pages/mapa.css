@@ -1,0 +1,18 @@
+.map-page { display: flex; flex-direction: column; gap: var(--space-4); padding-block: var(--space-6); }
+.map-page h1, .map-page h2, .map-page p { margin: 0; }
+.map-header { display: flex; align-items: center; gap: var(--space-3); }
+.map-header h1 { font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold); }
+.map-header > a { display: inline-flex; position: relative; color: var(--color-text); }
+.map-header > a::before { content: ''; position: absolute; inset: -0.625rem; }
+.map-header .material-symbols-outlined { font-size: var(--font-size-lg); }
+.map-actions { display: flex; gap: var(--space-2); }
+.map-chip { display: inline-flex; align-items: center; min-height: 2rem; padding: var(--space-2); border: 0; border-radius: var(--radius-pill); color: var(--color-text); font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-decoration: none; cursor: pointer; }
+.chip-green { background: var(--color-green); }
+.chip-yellow { background: var(--color-yellow); }
+.university-map { height: 19rem; width: 100%; border-radius: var(--radius-card); background: var(--color-blue); isolation: isolate; }
+.university-map .leaflet-tooltip { font-family: var(--font-family-base); color: var(--color-text); font-weight: var(--font-weight-extrabold); border-radius: var(--radius-pill); }
+.university-map .leaflet-popup-content { font-family: var(--font-family-base); }
+.map-status, .map-note { color: var(--color-text-muted); font-size: var(--font-size-xs); }
+.map-page h2 { font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold); }
+.map-page .map-intro { margin-block: var(--space-4); color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.map-universities { display: flex; flex-direction: column; gap: var(--space-4); }

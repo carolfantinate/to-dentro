@@ -1,0 +1,7 @@
+/* Mobile first: base fluida, sem largura fixa de aparelho. */
+.page-container {
+  width: 100%;
+  padding-inline: var(--page-gutter);
+}
+
+/* Adicionar media queries com min-width quando adaptarmos para desktop. */

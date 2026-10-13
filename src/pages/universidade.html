@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universidade | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/universidade.css">
+</head>
+<body>
+    <main id="conteudo-principal" class="page-container university-page">
+        <header class="university-header">
+            <a class="university-back" id="university-back" href="./buscar-universidades.html" aria-label="Voltar">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span>
+            </a>
+            <span>Universidade</span>
+        </header>
+
+        <div id="university-content" hidden>
+            <section class="university-hero" aria-labelledby="university-acronym">
+                <span class="material-symbols-outlined" aria-hidden="true">account_balance</span>
+                <h1 id="university-acronym"></h1>
+                <h2 id="university-name"></h2>
+                <p id="university-location"></p>
+            </section>
+
+            <button class="button button-green" id="save-university" type="button" aria-pressed="false">♡ Salvar universidade</button>
+            <p id="save-status" role="status" hidden></p>
+            <a id="view-saved" class="tag tag-blue" href="./salvos.html">Ver universidades salvas</a>
+
+            <nav class="university-sections" aria-label="Seções da universidade">
+                <a class="tag tag-blue" href="#visao-geral">Visão geral</a>
+                <a class="tag tag-blue" href="#cursos">Cursos</a>
+                <a class="tag tag-blue" href="#ingresso">Ingresso</a>
+            </nav>
+
+            <section id="visao-geral" class="university-overview">
+                <h2>Conheça a universidade</h2>
+                <p id="university-description"></p>
+            </section>
+
+            <section id="cursos" class="university-detail-card">
+                <h2>Cursos em destaque</h2>
+                <ul id="university-courses" class="university-tags"></ul>
+            </section>
+
+            <section id="ingresso" class="university-detail-card">
+                <h2>Como entrar?</h2>
+                <p id="university-admission"></p>
+                <p class="detail-note">Consulte requisitos e editais no portal oficial.</p>
+                <a class="button button-yellow" id="university-calendar" href="./calendario.html">Ver prazos no calendário</a>
+            </section>
+
+            <section class="university-detail-card">
+                <h2>Notas de corte</h2>
+                <p class="detail-muted">Compare por curso, campus e modalidade.</p>
+                <p class="detail-note">A consultar • Sem notas oficiais neste exemplo.</p>
+            </section>
+
+            <a class="button button-green" href="./mapa.html" data-map-link>Ver localização</a>
+            <a class="button button-yellow" id="university-community" href="./comunidade.html">Experiências de estudantes</a>
+        </div>
+
+        <section id="university-not-found" hidden>
+            <h1>Universidade não encontrada</h1>
+            <p>Volte à busca e escolha uma das instituições disponíveis.</p>
+            <a class="button button-yellow" href="./buscar-universidades.html">Buscar universidades</a>
+        </section>
+        <noscript>Ative o JavaScript para carregar as informações da universidade.</noscript>
+    </main>
+
+    <td-bottom-nav active="buscar"></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../scripts/services/saved-items.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/universidade.js"></script>
+    <script defer src="../scripts/components/map-links.js"></script>
+</body>
+</html>
+
+
+
