@@ -16,3 +16,11 @@
 .map-page h2 { font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold); }
 .map-page .map-intro { margin-block: var(--space-4); color: var(--color-text-muted); font-size: var(--font-size-sm); }
 .map-universities { display: flex; flex-direction: column; gap: var(--space-4); }
+.map-page .map-heading h2 { font-size: var(--font-size-2xl); line-height: var(--line-height-heading); }
+.map-page .map-heading .map-intro { margin-block: var(--space-2) 0; }
+.map-search-label { font-size: var(--font-size-sm); font-weight: var(--font-weight-extrabold); margin-bottom: calc(-1 * var(--space-2)); }
+.map-campus-card { display: block; padding: var(--space-4); border: 1px solid var(--color-blue); border-radius: 1.125rem; background: var(--color-surface); color: var(--color-text); text-decoration: none; }
+.map-campus-card h3 { margin: 0; font-size: var(--font-size-lg); line-height: var(--line-height-heading); font-weight: var(--font-weight-extrabold); }
+.map-campus-card p { margin-top: var(--space-2); font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.map-campus-card .button { margin-top: var(--space-3); border-radius: 1rem; justify-content: flex-start; text-align: left; }
+@media (hover: hover) { .map-campus-card:hover { border-color: var(--color-ink); } }

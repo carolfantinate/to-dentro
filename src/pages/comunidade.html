@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/pages/comunidade.css">
 </head>
+
 <body>
     <main id="conteudo-principal" class="page-container community-page">
         <header class="community-header">
@@ -15,26 +17,64 @@
                 <span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span>
             </a>
             <span>Comunidade</span>
-        <a class="map-page-link" href="./mapa.html" data-map-link>Mapa</a>
         </header>
-        <h1>Quem vive, compartilha.</h1>
+        <h1 id="community-title">Quem vive, compartilha.</h1>
         <p class="community-intro">Experiências reais ajudam novas escolhas.</p>
         <p class="community-context" id="community-context" hidden></p>
 
         <div class="community-categories" role="group" aria-label="Categorias da comunidade">
-            <button class="community-category category-yellow" type="button" data-category="experiencias" aria-pressed="true">Experiências</button>
-            <button class="community-category category-blue" type="button" data-category="duvidas" aria-pressed="false">Dúvidas</button>
-            <button class="community-category category-green" type="button" data-category="oportunidades" aria-pressed="false">Oportunidades</button>
+            <button class="community-category category-blue" type="button" data-category="experiencias"
+                aria-pressed="true">Experiências</button>
+            <button class="community-category category-blue" type="button" data-category="duvidas"
+                aria-pressed="false">Dúvidas</button>
         </div>
 
+        <form id="community-search" role="search" aria-label="Buscar na comunidade">
+            <label class="community-search-label" for="community-query">Buscar</label>
+            <div class="search-field"><input id="community-query" name="busca" type="search"
+                    placeholder="Universidade, curso ou assunto" autocomplete="off"></div>
+        </form>
+
+        <button class="button community-share" id="community-share" type="button">Compartilhar minha
+            experiência</button>
+
+        <div class="question-filters" id="question-filters" role="group" aria-label="Filtros de dúvidas" hidden>
+            <button class="question-filter" id="questions-all" type="button" aria-pressed="true">Todas</button>
+
+            <label class="select-chevron"><span class="visually-hidden">Universidade</span><select
+                    id="questions-university">
+                    <option value="">Universidade</option>
+                </select>
+            </label>
+
+            <button class="question-filter" id="questions-admission" type="button"
+                aria-pressed="false">Ingresso</button>
+            <label class="select-chevron">
+                <span class="visually-hidden">Tema</span>
+                <select id="questions-topic">
+                    <option value="">Tema</option>
+                    <option value="pesquisa">Pesquisa</option>
+                    <option value="permanencia">Permanência</option>
+                    <option value="vida-academica">Vida acadêmica</option>
+                </select>
+            </label>
+        </div>
+
+        <label class="community-sort" for="community-sort">Ordenar por:
+            <select id="community-sort">
+                <option value="recentes">Mais recentes</option>
+                <option value="antigos">Mais antigos</option>
+            </select>
+        </label>
+        
         <section id="community-feed" class="community-feed" aria-label="Relatos da comunidade"></section>
         <p id="community-empty" class="community-empty" role="status" hidden></p>
 
-        <section class="community-opportunities" aria-labelledby="opportunities-title">
-            <h2 id="opportunities-title">Explore além da sala de aula</h2>
-            <p>Pesquisas, projetos, monitorias e bolsas.</p>
-            <button class="button button-ink" type="button" disabled title="Disponível em breve">Explorar oportunidades</button>
-        </section>
+        <aside class="community-notice" aria-labelledby="community-notice-title">
+            <h2 id="community-notice-title">Conteúdo da comunidade</h2>
+            <p id="community-notice-text">Relatos são pessoais e não são conteúdos oficiais. Consulte fontes oficiais
+                para editais e regras.</p>
+        </aside>
         <noscript>Ative o JavaScript para carregar os relatos demonstrativos.</noscript>
     </main>
 
@@ -44,7 +84,7 @@
     <script defer src="../scripts/components/bottom-nav.js"></script>
     <script defer src="../scripts/pages/comunidade.js"></script>
     <script defer src="../scripts/components/map-links.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
 </body>
+
 </html>
-
-

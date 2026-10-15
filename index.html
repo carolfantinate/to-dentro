@@ -56,16 +56,27 @@
                 <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
                 <span>Calendário</span>
             </a>
+            <a class="shortcut shortcut-blue" href="./src/pages/oportunidades.html">
+                <span class="material-symbols-outlined" aria-hidden="true">star</span>
+                <span>Oportunidades</span>
+            </a>
+            <button class="shortcut shortcut-green" type="button" data-upcoming="Programas sociais">
+                <span class="material-symbols-outlined" aria-hidden="true">import_contacts</span>
+                <span>Programas sociais</span>
+            </button>
         </nav>
 
         <section id="universidades" class="home-recommendations" aria-labelledby="recommendations-title">
             <h2 id="recommendations-title">Para você</h2>
-            <p class="recommendations-subtitle">Explore instituições de São Paulo</p>
-            <td-university-card university-id="usp"></td-university-card>
+            <td-university-card university-id="usp" variant="featured"></td-university-card>
             <p class="search-empty" role="status" hidden>Nenhuma instituição encontrada nesta seleção.</p>
         </section>
 
-        <a class="button button-yellow community-button" href="./src/pages/comunidade.html">Conhecer a comunidade</a>
+        <section class="home-next-step" aria-labelledby="next-step-title">
+            <h2 id="next-step-title">Seu próximo passo</h2>
+            <p>Troque experiências, tire dúvidas e conecte-se com outros estudantes.</p>
+            <a class="button button-yellow community-button" href="./src/pages/comunidade.html">Conhecer a comunidade</a>
+        </section>
     </main>
 
     <dialog class="upcoming-dialog" aria-labelledby="upcoming-title">
@@ -82,6 +93,7 @@
     <script defer src="./src/scripts/main.js"></script>
     <script defer src="./src/scripts/pages/home.js"></script>
     <script defer src="./src/scripts/components/map-links.js"></script>
+    <script defer src="./src/scripts/components/external-links.js"></script>
 </body>
 
 </html>

@@ -12,17 +12,16 @@
     list.replaceChildren();
     if (category === 'universidades') {
       for (const id of window.ToDentroSaved.getUniversities()) {
-        const card = document.createElement('td-university-card'); card.setAttribute('university-id', id); list.append(card);
+        const card = document.createElement('td-university-card'); card.setAttribute('university-id', id); card.setAttribute('variant', 'saved'); list.append(card);
       }
     }
     empty.hidden = list.children.length > 0;
     empty.textContent = category === 'universidades' ? 'Nenhuma universidade salva. Explore instituições para começar.'
-      : category === 'cursos' ? 'Você ainda não tem cursos salvos. Essa função estará disponível em breve.'
-      : 'Você ainda não tem datas salvas. Explore os prazos no calendário.';
-    explore.href = category === 'datas' ? './calendario.html?from=./salvos.html?categoria=datas' : './buscar-universidades.html';
-    explore.textContent = category === 'datas' ? 'Explorar calendário' : 'Explorar mais instituições';
+      : 'Você ainda não tem cursos salvos. Essa função estará disponível em breve.';
+    explore.href = './buscar-universidades.html';
+    explore.textContent = 'Explorar mais instituições';
     for (const button of categories) button.setAttribute('aria-pressed', String(button.dataset.category === category));
   }
   for (const button of categories) button.addEventListener('click', () => render(button.dataset.category));
-  render(['universidades', 'cursos', 'datas'].includes(params.get('categoria')) ? params.get('categoria') : 'universidades');
+  render(['universidades', 'cursos'].includes(params.get('categoria')) ? params.get('categoria') : 'universidades');
 })();

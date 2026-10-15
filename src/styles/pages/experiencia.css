@@ -1,0 +1,17 @@
+.experience-detail-page { padding-block: var(--space-6); }
+.experience-detail-header { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-6); font-size: var(--font-size-sm); font-weight: var(--font-weight-extrabold); }
+.experience-detail-header a { display: inline-flex; align-items: center; justify-content: center; min-width: 2.75rem; min-height: 2.75rem; margin-left: -0.75rem; color: var(--color-text); }
+.experience-detail-header .material-symbols-outlined { font-size: var(--font-size-lg); }
+.experience-content { display: flex; flex-direction: column; gap: var(--space-4); }
+.experience-content h1 { margin: 0; font-size: var(--font-size-2xl); line-height: var(--line-height-heading); font-weight: var(--font-weight-extrabold); overflow-wrap: anywhere; }
+.experience-author { margin: 0; color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.experience-badges { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.experience-badges > span { padding: var(--space-2) var(--space-3); border-radius: 0.75rem; background: var(--color-blue); font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); }
+.experience-story { padding: var(--space-4); border: 1px solid var(--color-blue); border-radius: 1.125rem; background: var(--color-surface); }
+.experience-story h2 { margin: 0 0 var(--space-3); font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold); }
+#experience-text { white-space: pre-wrap; overflow-wrap: anywhere; color: var(--color-text-muted); font-size: var(--font-size-sm); line-height: 1.6; }
+.experience-detail-page .button { border-radius: 1rem; justify-content: flex-start; text-align: left; }
+.experience-share { background: var(--color-green); color: var(--color-text); }
+.experience-detail-notice { padding: var(--space-2) var(--space-3); border-left: 3px solid #B45252; }
+.experience-detail-notice h2 { margin: 0; color: #984343; font-size: var(--font-size-sm); font-weight: var(--font-weight-bold); }
+.experience-detail-notice p { margin: var(--space-1) 0 0; color: var(--color-text-muted); font-size: var(--font-size-xs); }

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compartilhar experiência | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/compartilhar-experiencia.css">
+</head>
+
+<body>
+    <main class="page-container experience-page" id="conteudo-principal">
+        <header class="experience-header">
+            <a id="experience-back" href="./comunidade.html" aria-label="Voltar à comunidade">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span>
+            </a><span>Compartilhar experiência</span>
+        </header>
+
+        <h1>Conte sua experiência</h1>
+        <p class="experience-intro">Seu relato pode ajudar outras pessoas.</p>
+        <form id="experience-form">
+            <label for="experience-university">
+                Universidade
+                <span aria-hidden="true">*</span>
+            </label>
+            <div class="select-chevron">
+                <select id="experience-university" name="university" required>
+                    <option value="">Selecione a universidade</option>
+                </select>
+            </div>
+
+            <label for="experience-course">Curso
+                <span aria-hidden="true">*</span>
+            </label>
+            <div class="select-chevron">
+                <select id="experience-course" name="course" required>
+                    <option value="">Selecione o curso</option>
+                </select>
+            </div>
+
+            <label for="experience-role">Vínculo</label>
+            <div class="select-chevron">
+                <select id="experience-role" name="role">
+                    <option value="">Selecione seu vínculo</option>
+                    <option value="Estudante">Estudante</option>
+                    <option value="Egresso">Egresso</option>
+                    <option value="Professor">Professor</option>
+                    <option value="Funcionário">Funcionário</option>
+                    <option value="Outro">Outro</option>
+                </select>
+            </div>
+
+            <div id="experience-other-role-group" hidden>
+                <label for="experience-other-role">Qual vínculo?</label>
+                <input id="experience-other-role" name="otherRole" placeholder="Conte seu vínculo com a universidade"
+                    maxlength="80" disabled>
+            </div>
+
+            <fieldset class="experience-period">
+                <legend>Quando esteve na universidade?</legend>
+                <div class="experience-year-fields">
+                    <label for="experience-start">Ano de início
+                        <input id="experience-start" name="startYear" type="number" min="1900" step="1"
+                            placeholder="2024" inputmode="numeric">
+                    </label>
+                    <label for="experience-end">Ano de término
+                        <input id="experience-end" name="endYear" type="number" min="1900" step="1" placeholder="2026"
+                            inputmode="numeric">
+                    </label>
+                </div>
+
+                <label class="experience-current" for="experience-current">
+                    <input id="experience-current" name="ongoing" type="checkbox">
+                    <span>Até hoje — ainda estou na universidade</span>
+                </label>
+
+            </fieldset>
+
+            <label for="experience-title">Título <span aria-hidden="true">*</span></label>
+
+            <input id="experience-title" name="title" placeholder="Meu primeiro contato com a pesquisa" maxlength="150"
+                required>
+
+            <label for="experience-text">Sua experiência <span aria-hidden="true">*</span></label>
+
+            <textarea id="experience-text" name="text"
+                placeholder="Conte o que viveu, o que aprendeu e dicas que gostaria de ter recebido..." rows="4"
+                maxlength="10000" required></textarea>
+
+            <aside class="experience-notice" aria-labelledby="experience-notice-title">
+                <h2 id="experience-notice-title">Um relato pessoal</h2>
+                <p>Diferencie experiência de regra oficial. Não exponha outras pessoas sem consentimento.</p>
+            </aside>
+            
+            <p class="experience-local-note">Seu relato ficará salvo neste navegador.</p>
+            <p id="experience-status" role="status"></p>
+            <button class="button button-ink" type="submit">Publicar experiência</button>
+            <a class="button experience-cancel" id="experience-cancel" href="./comunidade.html">Cancelar</a>
+        </form>
+        <noscript>Ative o JavaScript para compartilhar sua experiência.</noscript>
+    </main>
+    <td-bottom-nav></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../data/courses.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/compartilhar-experiencia.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
+</body>
+
+</html>

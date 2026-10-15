@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,19 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/pages/mapa.css">
 </head>
+
 <body>
     <main class="page-container map-page" id="conteudo-principal">
         <header class="map-header">
-            <a id="map-back" href="../../index.html" aria-label="Voltar"><span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <a id="map-back" href="../../index.html" aria-label="Voltar"><span class="material-symbols-outlined"
+                    aria-hidden="true">arrow_back_ios_new</span></a>
             <h1>Mapa de universidades</h1>
         </header>
+        <section class="map-heading" aria-labelledby="map-region-title">
+            <h2 id="map-region-title">Explore a região</h2>
+            <p class="map-intro">Selecione uma universidade para saber mais.</p>
+        </section>
+        <label class="map-search-label" for="map-query">Localização</label>
         <form id="map-search" role="search">
             <label class="search-field" for="map-query">
                 <span class="material-symbols-outlined" aria-hidden="true">search</span>
@@ -21,26 +29,32 @@
                 <input id="map-query" type="search" placeholder="Busque uma cidade em SP" autocomplete="off">
             </label>
         </form>
+
         <div class="map-actions">
             <button id="near-me" class="map-chip chip-green" type="button">Perto de mim</button>
             <a id="map-filter" class="map-chip chip-yellow" href="./filtros.html">Filtrar</a>
         </div>
-        <div id="university-map" class="university-map" role="region" aria-label="Mapa interativo das universidades"></div>
+
+        <div id="university-map" class="university-map" role="region" aria-label="Mapa interativo das universidades">
+        </div>
         <p id="map-status" class="map-status" role="status">Carregando mapa…</p>
-        <p class="map-note">Localizações aproximadas • Campus de referência e reitoria</p>
-        <section aria-labelledby="map-region-title">
-            <h2 id="map-region-title">Explore a região</h2>
-            <p class="map-intro">Selecione uma instituição para saber mais</p>
+        <p class="map-note">Localizações aproximadas dos campi e unidades.</p>
+
+        <section aria-label="Universidades e campi na região">
             <div id="map-universities" class="map-universities"></div>
             <p id="map-empty" hidden>Nenhuma instituição encontrada. Ajuste a cidade ou os filtros.</p>
         </section>
+
         <noscript>Ative o JavaScript para usar o mapa interativo.</noscript>
     </main>
     <td-bottom-nav active="buscar"></td-bottom-nav>
     <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script defer src="../data/universities.js"></script>
-    <script defer src="../scripts/components/university-card.js"></script>
+    <script defer src="../data/campuses.js"></script>
     <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../data/courses.js"></script>
     <script defer src="../scripts/pages/mapa.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
 </body>
+
 </html>

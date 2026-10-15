@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar dúvida | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/compartilhar-experiencia.css">
+</head>
+
+<body>
+    <main class="page-container experience-page" id="conteudo-principal">
+        <header class="experience-header"><a id="question-back" href="./comunidade.html?categoria=duvidas"
+                aria-label="Voltar às dúvidas">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span>
+            </a><span>Criar dúvida</span>
+        </header>
+
+        <h1>Qual é a sua dúvida?</h1>
+        <p class="experience-intro">A comunidade pode ajudar você.</p>
+        <form id="experience-form">
+            <label for="question-title">Título
+                <span aria-hidden="true">*</span>
+            </label>
+
+            <input id="question-title" name="title" placeholder="Como começo uma iniciação científica?" maxlength="150"
+                required>
+
+            <label for="question-text">Sua dúvida
+                <span aria-hidden="true">* </span>
+            </label>
+
+            <textarea id="question-text" name="text" placeholder="Conte o contexto e o que você gostaria de saber..."
+                rows="3" maxlength="10000" required></textarea>
+
+            <label for="question-university">Universidade (opcional)</label>
+            <div class="select-chevron">
+                <select id="question-university" name="university">
+                    <option value="">Nenhuma</option>
+                </select>
+            </div>
+
+            <label for="question-course">Curso (opcional)</label>
+            <div class="select-chevron">
+                <select id="question-course" name="course">
+                    <option value="">Nenhum</option>
+                </select>
+            </div>
+
+            <label for="question-topic">Tema (opcional)</label>
+            <div class="select-chevron"><select id="question-topic" name="topic">
+                    <option value="">Sem tema</option>
+                    <option value="ingresso">Ingresso</option>
+                    <option value="pesquisa">Pesquisa</option>
+                    <option value="permanencia">Permanência</option>
+                    <option value="vida-academica">Vida acadêmica</option>
+                </select>
+            </div>
+            
+            <aside class="experience-notice" aria-labelledby="question-notice-title">
+                <h2 id="question-notice-title">Antes de publicar</h2>
+                <p>Não inclua documentos, telefone ou dados pessoais. Busque respostas existentes e indique fontes
+                    quando possível.</p>
+            </aside>
+            <p class="experience-local-note">Sua dúvida ficará salva neste navegador.</p>
+            <p class="experience-local-note" id="question-status" role="status"></p>
+            <button class="button button-ink" type="submit">Publicar dúvida</button>
+            <a class="button experience-cancel" id="question-cancel"
+                href="./comunidade.html?categoria=duvidas">Cancelar</a>
+        </form>
+        <noscript>Ative o JavaScript para publicar sua dúvida.</noscript>
+    </main>
+    <td-bottom-nav></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../data/courses.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/criar-duvida.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
+</body>
+
+</html>

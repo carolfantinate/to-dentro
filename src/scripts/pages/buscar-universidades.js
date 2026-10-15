@@ -9,12 +9,17 @@
   const regionChip = document.querySelector('[data-filter="sp"]');
   const typeChip = document.querySelector('[data-filter="public"]');
   const filtersLink = document.querySelector('#open-filters');
+
   const filters = {
-    region: params.get('region') ?? 'sp', type: params.get('type') ?? 'publica',
-    course: params.get('course') || '', mode: params.get('mode') || '',
-    period: params.get('period') || '', cost: params.get('cost') || '',
+    city: params.has('city') ? params.getAll('city').join(',') : params.has('region') ? (params.get('region') === 'sp' ? 'sao-paulo' : params.get('region')) : 'sao-paulo',
+    type: params.has('type') ? params.getAll('type').join(',') : 'publica',
+    course: params.get('course') || '', mode: params.getAll('mode').join(','),
+    area: params.get('area') || '',
+    admission: params.getAll('admission').join(','),
   };
+
   const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
   function updateResults() {
     const terms = normalize(query.value).split(/\s+/).filter(Boolean);
     const ordered = sort.value === 'name' ? [...cards].sort((a,b) => a.dataset.name.localeCompare(b.dataset.name,'pt-BR')) : cards;
@@ -22,23 +27,20 @@
     for (const card of ordered) {
       const data = card.dataset;
       card.hidden = !terms.every(term => normalize(data.search).includes(term))
-        || (filters.region === 'sp' && data.state !== 'SP')
-        || (filters.region === 'campinas' && data.city !== 'Campinas')
-        || (filters.type === 'publica' && data.public !== 'true')
-        || (filters.type === 'particular' && data.public !== 'false')
+        || (filters.city && !filters.city.split(',').includes(normalize(data.city).replace(/\s+/g, '-')))
+        || (filters.type && !filters.type.split(',').includes(data.public === 'true' ? 'publica' : 'particular'))
         || (filters.course && !(data.courses || '').split(',').includes(filters.course))
-        || (filters.mode && data.mode !== filters.mode)
-        || (filters.period && !(data.period || '').split(',').includes(filters.period))
-        || (filters.cost === 'gratuita' && data.free !== 'true')
-        || (filters.cost === 'mensalidade' && data.free !== 'false');
+        || (filters.area && !window.ToDentroCourseCatalog.courses.some(course => course.area === filters.area && (data.courses || '').split(',').includes(course.value)))
+        || (filters.mode && !filters.mode.split(',').includes(data.mode))
+        || (filters.admission && !filters.admission.split(',').some(method => (data.admission || '').split(',').includes(method)));
       if (!card.hidden) matches += 1;
       list.append(card);
     }
     count.textContent = matches === 1 ? '1 instituição encontrada' : `${matches} instituições encontradas`;
     document.querySelector('#search-empty').hidden = matches > 0;
-    regionChip.textContent = filters.region === 'campinas' ? 'Campinas' : 'São Paulo';
-    regionChip.setAttribute('aria-pressed', String(Boolean(filters.region)));
-    typeChip.textContent = filters.type === 'particular' ? 'Particulares' : 'Públicas';
+    regionChip.textContent = filters.city ? filters.city.split(',').map(city => city === 'campinas' ? 'Campinas' : 'São Paulo').join(' e ') : 'Cidade';
+    regionChip.setAttribute('aria-pressed', String(Boolean(filters.city)));
+    typeChip.textContent = filters.type.includes(',') ? 'Públicas e particulares' : filters.type === 'particular' ? 'Particulares' : filters.type ? 'Públicas' : 'Tipo de instituição';
     typeChip.setAttribute('aria-pressed', String(Boolean(filters.type)));
     const state = new URLSearchParams({...filters, busca: query.value, sort: sort.value});
     filtersLink.href = `./filtros.html?${state}`;
@@ -50,12 +52,13 @@
       link.href = destination.href;
     }
   }
+  
   query.value = params.get('busca') || '';
   sort.value = params.get('sort') === 'name' ? 'name' : 'relevance';
   query.addEventListener('input', updateResults);
   sort.addEventListener('change', updateResults);
   document.querySelector('.university-search-form').addEventListener('submit', event => {event.preventDefault(); updateResults();});
-  regionChip.addEventListener('click', () => {filters.region = filters.region ? '' : 'sp'; updateResults();});
+  regionChip.addEventListener('click', () => {filters.city = filters.city ? '' : 'sao-paulo'; updateResults();});
   typeChip.addEventListener('click', () => {filters.type = filters.type ? '' : 'publica'; updateResults();});
   updateResults();
 })();

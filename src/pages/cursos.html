@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/cursos.css">
+</head>
+
+<body>
+    <main class="page-container courses-page" id="conteudo-principal">
+        <header class="courses-header">
+            <a id="courses-back" href="./buscar-universidades.html" aria-label="Voltar à universidade">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span>
+            </a>
+            <span>Cursos</span>
+        </header>
+        <div class="courses-content" id="courses-content" hidden>
+            <h1>Explore cursos</h1>
+            <p class="courses-context" id="courses-context"></p>
+
+            <form id="courses-search" role="search" aria-label="Buscar cursos desta universidade">
+                <label class="courses-search-label" for="course-query">Buscar curso</label>
+                <div class="search-field"><input id="course-query" name="busca" type="search"
+                        placeholder="Nome ou área de interesse" autocomplete="off"></div>
+            </form>
+
+            <div class="course-areas" id="course-areas" role="group" aria-label="Filtrar cursos por área"></div>
+
+            <section class="course-results" aria-label="Cursos da universidade">
+                <p class="visually-hidden" id="courses-count" role="status"></p>
+                <div class="course-list" id="course-list"></div>
+                <p class="courses-empty" id="courses-empty" hidden>Nenhum curso encontrado. Tente outra busca ou
+                    selecione outra área.</p>
+            </section>
+        </div>
+        
+        <section id="courses-not-found" hidden>
+            <h1>Universidade não encontrada</h1><a class="button button-yellow"
+                href="./buscar-universidades.html">Buscar universidades</a>
+        </section>
+        <noscript>Ative o JavaScript para explorar os cursos.</noscript>
+    </main>
+    <td-bottom-nav active="buscar"></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../data/courses.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/cursos.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
+</body>
+
+</html>

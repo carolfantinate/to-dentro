@@ -1,0 +1,123 @@
+.dates-page {
+    padding-block: var(--space-6);
+}
+
+.dates-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-extrabold);
+}
+
+.dates-header a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    margin-left: -0.75rem;
+    color: var(--color-text);
+}
+
+.dates-header .material-symbols-outlined {
+    font-size: var(--font-size-lg);
+}
+
+.dates-page h1 {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+    line-height: var(--line-height-heading);
+    font-weight: var(--font-weight-extrabold);
+}
+
+.dates-intro {
+    margin: var(--space-3) 0 var(--space-6);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+#explore-dates-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.dates-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.dates-group legend {
+    padding: 0 0 var(--space-3);
+    font-weight: var(--font-weight-extrabold);
+    font-size: var(--font-size-base);
+}
+
+.dates-group label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-extrabold);
+}
+
+.dates-group p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.dates-group select {
+    min-width: 0;
+    min-height: var(--control-height);
+    padding: var(--space-3) 2.5rem var(--space-3) var(--space-4);
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: var(--font-size-sm);
+}
+
+.dates-notice {
+    padding: var(--space-4);
+    border-radius: 1.125rem;
+    background: var(--color-blue);
+}
+
+.dates-notice h2,
+.dates-results h2 {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-extrabold);
+}
+
+.dates-notice p,
+.dates-results p {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.dates-page .button {
+    border-radius: 1rem;
+}
+
+#dates-status {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+#dates-status:empty {
+    display: none;
+}
+
+.dates-results {
+    margin-top: var(--space-6);
+    padding-block: var(--space-4);
+}

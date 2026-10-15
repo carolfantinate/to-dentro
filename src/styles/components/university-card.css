@@ -14,7 +14,7 @@
   gap: var(--space-3);
 }
 
-.university-info > div {
+.university-info>div {
   min-width: 0;
 }
 
@@ -60,11 +60,38 @@
 }
 
 
-.tag-blue, .university-logo { background: var(--color-blue); }
-.tag-green { background: var(--color-green); }
+.tag-blue,
+.university-logo {
+  background: var(--color-blue);
+}
 
-td-university-card { display: block; }
+.tag-green {
+  background: var(--color-green);
+}
+
+td-university-card {
+  display: block;
+}
+
+.university-card-featured {
+  border-radius: 1.125rem;
+}
+
+.university-card-featured .university-featured-description {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  margin-top: var(--space-1);
+}
+
+.university-card-featured .button {
+  margin-top: var(--space-2);
+  border-radius: 1rem;
+  justify-content: flex-start;
+  text-align: left;
+}
 
 @media (hover: hover) {
-  .university-card:hover { border-color: var(--color-ink); }
+  .university-card:hover {
+    border-color: var(--color-ink);
+  }
 }

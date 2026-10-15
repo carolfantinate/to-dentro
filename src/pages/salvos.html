@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,33 +8,44 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/pages/salvos.css">
 </head>
+
 <body>
     <main id="conteudo-principal" class="page-container saved-page">
         <header class="saved-header">
-            <a id="saved-back" href="../../index.html" aria-label="Voltar"><span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <a id="saved-back" href="../../index.html" aria-label="Voltar"><span class="material-symbols-outlined"
+                    aria-hidden="true">arrow_back_ios_new</span></a>
             <span>Minhas escolhas</span>
         </header>
         <h1>Seu futuro em construção.</h1>
+
         <section class="saved-message" aria-labelledby="saved-message-title">
             <h2 id="saved-message-title">Suas escolhas, sempre por perto.</h2>
             <p>Você pode retomar suas escolhas aqui.</p>
         </section>
+
         <div class="saved-categories" role="group" aria-label="Tipos de itens salvos">
-            <button class="saved-category category-blue" type="button" data-category="universidades" aria-pressed="true">Universidades</button>
-            <button class="saved-category category-blue" type="button" data-category="cursos" aria-pressed="false">Cursos</button>
-            <button class="saved-category category-yellow" type="button" data-category="datas" aria-pressed="false">Datas</button>
+            <button class="saved-category category-blue" type="button" data-category="universidades"
+                aria-pressed="true">Universidades</button>
+            <button class="saved-category category-blue" type="button" data-category="cursos"
+                aria-pressed="false">Cursos</button>
         </div>
+
         <section id="saved-list" class="saved-list" aria-label="Itens salvos"></section>
         <p id="saved-empty" role="status" hidden></p>
-        <a class="button button-ink" id="saved-explore" href="./buscar-universidades.html">Explorar mais instituições</a>
-        <p class="saved-demo-note">Seleção inicial demonstrativa • Escolhas guardadas neste navegador</p>
+        <a class="button button-ink" id="saved-explore" href="./buscar-universidades.html">Explorar mais
+            instituições</a>
+
         <noscript>Ative o JavaScript para visualizar suas escolhas.</noscript>
     </main>
+
     <td-bottom-nav active="salvos"></td-bottom-nav>
+
     <script defer src="../data/universities.js"></script>
     <script defer src="../scripts/services/saved-items.js"></script>
     <script defer src="../scripts/components/university-card.js"></script>
     <script defer src="../scripts/components/bottom-nav.js"></script>
     <script defer src="../scripts/pages/salvos.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
 </body>
+
 </html>

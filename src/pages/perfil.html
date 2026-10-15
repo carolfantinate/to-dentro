@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +8,83 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/pages/perfil.css">
 </head>
+
 <body>
     <main class="page-container profile-page" id="conteudo-principal">
         <header class="profile-header">
-            <a class="profile-back" href="../../index.html" aria-label="Voltar ao início"><span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <a class="profile-back" href="../../index.html" aria-label="Voltar ao início"><span
+                    class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
             <h1>Meu perfil</h1>
         </header>
 
         <section class="profile-identity" aria-labelledby="profile-name">
             <span class="profile-avatar" aria-hidden="true"><span class="material-symbols-outlined">person</span></span>
-            <div><h2 id="profile-name">Ana Luiza</h2><p>Seu futuro, suas escolhas.</p></div>
+            <div>
+                <h2 id="profile-name">Ana Luiza</h2>
+                <p>Seu futuro, suas escolhas.</p>
+            </div>
         </section>
 
         <section class="profile-choices" aria-labelledby="choices-title">
             <h2 id="choices-title">Minhas escolhas</h2>
-            <!-- Contagens ilustrativas do protótipo, sem conta ou banco de dados. -->
             <ul class="profile-choice-list">
-                <li><a class="profile-choice" href="./salvos.html?from=perfil"><span class="material-symbols-outlined" aria-hidden="true">account_balance</span><span>Universidades salvas</span><span class="profile-count">5<span class="visually-hidden"> universidades</span></span></a></li>
-                <li><a class="profile-choice" href="./salvos.html?categoria=cursos&amp;from=perfil"><span class="material-symbols-outlined" aria-hidden="true">bookmark</span><span>Cursos salvos</span><span class="profile-count">8<span class="visually-hidden"> cursos</span></span></a></li>
-                <li><button class="profile-choice" type="button" disabled title="Disponível em breve"><span class="material-symbols-outlined" aria-hidden="true">explore</span><span>Oportunidades salvas</span><span class="profile-count">3<span class="visually-hidden"> oportunidades</span></span></button></li>
-                <li><a class="profile-choice" href="./calendario.html?from=./perfil.html"><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span><span>Datas no calendário</span><span class="profile-count">4<span class="visually-hidden"> datas</span></span></a></li>
+                <li><a class="profile-choice" href="./salvos.html?from=perfil">
+                        <span class="material-symbols-outlined" aria-hidden="true">account_balance</span>
+                        <span>Universidades salvas</span>
+                        <span class="profile-count">5<span class="visually-hidden">
+                                universidades</span>
+                        </span>
+                    </a>
+                </li>
+
+                <li><a class="profile-choice" href="./salvos.html?categoria=cursos&amp;from=perfil">
+                        <span class="material-symbols-outlined" aria-hidden="true">bookmark</span>
+                        <span>Cursos salvos</span>
+                        <span class="profile-count">8
+                            <span class="visually-hidden">cursos</span>
+                        </span>
+                    </a>
+                </li>
+
+                <li><button class="profile-choice" type="button" disabled title="Disponível em breve">
+                        <span class="material-symbols-outlined" aria-hidden="true">explore</span>
+                        <span>Oportunidades salvas</span>
+                        <span class="profile-count">3
+                            <span class="visually-hidden">oportunidades</span>
+                        </span>
+                    </button>
+                </li>
+
+                <li><a class="profile-choice" href="./calendario.html?from=./perfil.html">
+                        <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
+                        <span>Datas no calendário</span>
+                        <span class="profile-count">4
+                            <span class="visually-hidden">datas</span>
+                        </span>
+                    </a>
+                </li>
             </ul>
         </section>
 
         <section class="profile-preferences" aria-labelledby="preferences-title">
-            <h2 id="preferences-title">Seu perfil de busca</h2>
+            <div class="profile-preferences-header">
+                <h2 id="preferences-title">Seu perfil de busca</h2>
+                <a id="edit-preferences" class="profile-edit-preferences" href="./filtros.html?return=perfil"
+                    aria-label="Editar preferências" title="Editar preferências">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m16 3 5 5M3 21l5-1L21 7a2.1 2.1 0 0 0-5-5L3 15Z" />
+                    </svg>
+                </a>
+            </div>
+
             <div class="profile-preferences-card">
-                <h3>Região: <span id="profile-region">São Paulo • SP</span></h3>
+                <p>Cidades: <span id="profile-city">São Paulo</span></p>
+                <p>Tipo de instituição: <span id="profile-type">Pública</span></p>
+                <p>Modalidades: <span id="profile-mode">Presencial</span></p>
+                <p>Formas de ingresso: <span id="profile-admission">Todas</span></p>
+                <p>Área: <span id="profile-area">Todas as áreas</span></p>
                 <p>Curso: <span id="profile-course">Medicina</span></p>
-                <p>Modalidade: <span id="profile-mode">Presencial</span></p>
-                <p>Período: <span id="profile-period">Integral</span></p>
-                <a id="edit-preferences" class="button button-ink" href="./filtros.html?return=perfil">Editar preferências</a>
             </div>
         </section>
 
@@ -47,8 +94,9 @@
     <script defer src="../data/universities.js"></script>
     <script defer src="../scripts/services/saved-items.js"></script>
     <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../data/courses.js"></script>
     <script defer src="../scripts/pages/perfil.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
 </body>
+
 </html>
-
-

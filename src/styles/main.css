@@ -6,6 +6,7 @@
 @import url('./components/bottom-nav.css');
 @import url('./components/buttons.css');
 @import url('./components/search-field.css');
+@import url('./components/select.css');
 @import url('./components/university-card.css');
 
 /* Importar estilos de componentes e páginas conforme forem implementados. */

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dúvida da comunidade | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/comunidade.css">
+    <link rel="stylesheet" href="../styles/pages/duvida.css">
+</head>
+
+<body>
+    <main class="page-container community-page" id="conteudo-principal">
+        <header class="community-header"><a class="community-back" id="discussion-back"
+                href="./comunidade.html?categoria=duvidas" aria-label="Voltar às dúvidas"><span
+                    class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <span>Dúvida da
+                comunidade</span>
+        </header>
+
+        <div class="discussion-content" id="discussion-content" hidden>
+            <h1 id="discussion-title"></h1>
+            <p class="community-intro" id="discussion-context"></p>
+            <article class="community-post">
+                <header class="post-author" id="discussion-author"></header>
+                <p class="discussion-text" id="discussion-text"></p>
+            </article>
+
+            <button class="button button-ink" id="discussion-answer" type="button">Responder à dúvida</button>
+            <section aria-labelledby="discussion-replies-title">
+                <h2 id="discussion-replies-title">Respostas da comunidade</h2>
+                <div class="community-feed discussion-replies" id="discussion-replies"></div>
+                <p class="community-intro" id="discussion-empty" hidden>Ainda não há respostas. Compartilhe o que você
+                    sabe.</p>
+            </section>
+
+            <a class="button discussion-create" id="discussion-create" href="./criar-duvida.html">Criar outra dúvida</a>
+            <aside class="community-notice" aria-labelledby="discussion-notice-title">
+                <h2 id="discussion-notice-title">Uma comunidade acolhedora</h2>
+                <p>Respeite outras pessoas e indique suas fontes. As respostas não substituem as informações oficiais.
+                </p>
+            </aside>
+        </div>
+
+        <section id="discussion-not-found" hidden>
+            <h1>Dúvida não encontrada</h1><a class="button button-yellow"
+                href="./comunidade.html?categoria=duvidas">Voltar à comunidade</a>
+        </section>
+        <noscript>Ative o JavaScript para abrir a discussão.</noscript>
+    </main>
+
+    <dialog class="community-dialog" id="answer-dialog" aria-labelledby="answer-title">
+        <form id="answer-form">
+            <h2 id="answer-title">Compartilhe uma resposta</h2>
+            <p class="answer-question" id="answer-question"></p>
+
+            <label for="answer-text">Sua resposta
+                <span aria-hidden="true">*</span>
+            </label>
+            <textarea id="answer-text" placeholder="Explique de forma clara e acolhedora..." rows="5" maxlength="10000"
+                required></textarea>
+
+            <label for="answer-source">Fonte ou link (opcional)</label>
+            <input id="answer-source" type="url" placeholder="https://..." maxlength="2000">
+
+            <aside class="community-notice" aria-labelledby="answer-notice-title">
+                <h3 id="answer-notice-title">Informação responsável</h3>
+                <p>Se algo depende do edital ou da instituição, indique isso. Evite prometer vagas, bolsas ou
+                    resultados.</p>
+            </aside>
+
+            <p id="answer-status" role="status"></p>
+            <button class="button button-ink" type="submit">Publicar resposta</button>
+            <button class="button answer-back" id="answer-cancel" type="button">Voltar à discussão</button>
+        </form>
+    </dialog>
+    <td-bottom-nav></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../data/community.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/duvida.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
+</body>
+
+</html>

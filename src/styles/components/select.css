@@ -1,0 +1,23 @@
+.select-chevron {
+    position: relative;
+    display: block;
+}
+
+.select-chevron::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: solid var(--color-text-muted);
+    border-width: 0 1.5px 1.5px 0;
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+}
+
+.select-chevron select {
+    appearance: none;
+    width: 100%;
+    padding-right: 2.5rem;
+}

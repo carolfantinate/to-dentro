@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/pages/universidade.css">
 </head>
+
 <body>
     <main id="conteudo-principal" class="page-container university-page">
         <header class="university-header">
@@ -14,52 +16,62 @@
                 <span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span>
             </a>
             <span>Universidade</span>
+            <button class="university-save" id="save-university" type="button" aria-label="Salvar universidade"
+                aria-pressed="false" hidden>
+                <span class="material-symbols-outlined" aria-hidden="true">favorite</span>
+            </button>
         </header>
 
         <div id="university-content" hidden>
-            <section class="university-hero" aria-labelledby="university-acronym">
-                <span class="material-symbols-outlined" aria-hidden="true">account_balance</span>
-                <h1 id="university-acronym"></h1>
-                <h2 id="university-name"></h2>
+            <section class="university-hero" aria-labelledby="university-name">
+                <h1 id="university-name"></h1>
                 <p id="university-location"></p>
             </section>
 
-            <button class="button button-green" id="save-university" type="button" aria-pressed="false">♡ Salvar universidade</button>
-            <p id="save-status" role="status" hidden></p>
-            <a id="view-saved" class="tag tag-blue" href="./salvos.html">Ver universidades salvas</a>
+            <figure class="university-gallery" aria-label="Imagens da universidade">
+                <div id="university-gallery-track" class="university-gallery-track"></div>
+                <figcaption id="university-photo-credit"></figcaption>
+            </figure>
 
             <nav class="university-sections" aria-label="Seções da universidade">
-                <a class="tag tag-blue" href="#visao-geral">Visão geral</a>
-                <a class="tag tag-blue" href="#cursos">Cursos</a>
-                <a class="tag tag-blue" href="#ingresso">Ingresso</a>
+                <a class="university-shortcut tag-blue" id="university-courses-link" href="./cursos.html">Cursos</a>
+                <button class="university-shortcut tag-green" type="button" data-detail="cutoffs-dialog">Notas de
+                    corte</button>
+                <a class="university-shortcut tag-blue" id="university-opportunities-link"
+                    href="./oportunidades.html">Oportunidades</a>
+                <a class="university-shortcut shortcut-calendar" id="university-calendar"
+                    href="./calendario.html">Calendário</a>
             </nav>
 
-            <section id="visao-geral" class="university-overview">
-                <h2>Conheça a universidade</h2>
-                <p id="university-description"></p>
-            </section>
-
-            <section id="cursos" class="university-detail-card">
-                <h2>Cursos em destaque</h2>
-                <ul id="university-courses" class="university-tags"></ul>
-            </section>
-
-            <section id="ingresso" class="university-detail-card">
-                <h2>Como entrar?</h2>
-                <p id="university-admission"></p>
-                <p class="detail-note">Consulte requisitos e editais no portal oficial.</p>
-                <a class="button button-yellow" id="university-calendar" href="./calendario.html">Ver prazos no calendário</a>
-            </section>
-
-            <section class="university-detail-card">
-                <h2>Notas de corte</h2>
-                <p class="detail-muted">Compare por curso, campus e modalidade.</p>
-                <p class="detail-note">A consultar • Sem notas oficiais neste exemplo.</p>
+            <section id="ingresso" class="university-admission-section" aria-labelledby="admission-title">
+                <h2 id="admission-title">Formas de ingresso</h2>
+                <div class="university-detail-card">
+                    <h3 id="university-admission"></h3>
+                    <p class="detail-muted">Confira a edição e o edital aplicável ao curso.</p>
+                    <a class="button button-yellow" id="university-admission-link">Entender formas de ingresso</a>
+                </div>
             </section>
 
             <a class="button button-green" href="./mapa.html" data-map-link>Ver localização</a>
-            <a class="button button-yellow" id="university-community" href="./comunidade.html">Experiências de estudantes</a>
+            <a class="button button-yellow" id="university-community" href="./comunidade.html">Experiências do
+                estudante</a>
+            <section class="university-more" aria-labelledby="more-title">
+                <h2 id="more-title">Saiba mais</h2>
+                <nav class="university-official-links" aria-label="Links oficiais">
+                    <a id="university-official-site" target="_blank">Site oficial <span aria-hidden="true">🔗</span></a>
+                    <a id="university-selection-site" target="_blank">Processos seletivos e editais <span
+                            aria-hidden="true">🔗</span></a>
+                </nav>
+            </section>
         </div>
+        <p id="save-status" class="visually-hidden" role="status"></p>
+
+        <dialog class="university-dialog" id="cutoffs-dialog" aria-labelledby="cutoffs-title">
+            <h2 id="cutoffs-title">Notas de corte</h2>
+            <p>Compare por curso, campus e modalidade.</p>
+            <p class="detail-note">A consultar • Sem notas oficiais neste exemplo.</p>
+            <form method="dialog"><button class="button button-yellow">Fechar</button></form>
+        </dialog>
 
         <section id="university-not-found" hidden>
             <h1>Universidade não encontrada</h1>
@@ -75,8 +87,7 @@
     <script defer src="../scripts/components/bottom-nav.js"></script>
     <script defer src="../scripts/pages/universidade.js"></script>
     <script defer src="../scripts/components/map-links.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
 </body>
+
 </html>
-
-
-

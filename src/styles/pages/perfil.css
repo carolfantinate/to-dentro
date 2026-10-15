@@ -19,4 +19,10 @@
 .profile-preferences-card h3 { margin-bottom: var(--space-3); font-size: var(--font-size-base); font-weight: var(--font-weight-extrabold); }
 .profile-preferences-card p { font-size: var(--font-size-sm); line-height: 1.4; }
 .profile-preferences-card .button { margin-top: var(--space-3); }
+.profile-preferences-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.profile-preferences-header h2 { font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); line-height: var(--line-height-heading); }
+.profile-edit-preferences { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; min-width: 2.75rem; min-height: 2.75rem; border-radius: 0.75rem; color: var(--color-ink); }
+.profile-edit-preferences:hover { background: var(--color-blue); }
+.profile-preferences-card p + p { margin-top: var(--space-3); }
+.profile-preferences-card span { font-weight: var(--font-weight-bold); }
 .profile-page button:disabled { opacity: 1; cursor: default; filter: none; }

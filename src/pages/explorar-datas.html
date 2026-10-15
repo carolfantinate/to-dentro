@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorar datas | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/explorar-datas.css">
+</head>
+
+<body>
+    <main class="page-container dates-page" id="conteudo-principal">
+        <header class="dates-header">
+            <a id="dates-back" href="./calendario.html" aria-label="Voltar ao calendário"><span
+                    class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <span>Explorar datas</span>
+        </header>
+        <h1>Quais datas você quer ver?</h1>
+        <p class="dates-intro">Escolha uma universidade, exame ou programa de ingresso.</p>
+        <form id="explore-dates-form">
+            <fieldset class="dates-group">
+                <legend>Universidades e exames</legend>
+                <label for="dates-university">Universidade</label>
+                <div class="select-chevron">
+                    <select id="dates-university" name="universidade">
+                        <option value="">Escolha uma universidade</option>
+                    </select>
+                </div>
+
+                <label for="dates-exam">Exame</label>
+                <div class="select-chevron">
+                    <select id="dates-exam" name="exame">
+                        <option value="">Escolha um exame</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset class="dates-group">
+                <legend>Programas de ingresso e inclusão</legend>
+                <label class="visually-hidden" for="dates-program">Programa de ingresso</label>
+                <div class="select-chevron">
+                    <select id="dates-program" name="programa">
+                        <option value="">Escolha um programa</option>
+                        <option value="sisu">Sisu</option>
+                        <option value="prouni">ProUni</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <aside class="dates-notice" aria-labelledby="dates-notice-title">
+                <h2 id="dates-notice-title">Você decide o que salvar</h2>
+                <p>Ver datas não adiciona eventos automaticamente ao seu calendário.</p>
+            </aside>
+
+            <p id="dates-status" role="status"></p>
+            <button class="button button-ink" type="submit">Ver datas</button>
+        </form>
+
+        <section class="dates-results" id="dates-results" aria-labelledby="dates-results-title" hidden>
+            <h2 id="dates-results-title" tabindex="-1"></h2>
+            <p>Nenhuma data cadastrada para esta seleção por enquanto.</p>
+        </section>
+
+        <noscript>Ative o JavaScript para escolher e explorar datas.</noscript>
+    </main>
+    <td-bottom-nav></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/explorar-datas.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
+</body>
+
+</html>

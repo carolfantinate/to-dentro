@@ -1,0 +1,103 @@
+.reminder-page {
+    padding-block: var(--space-6);
+}
+
+.reminder-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-extrabold);
+}
+
+.reminder-header a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    margin-left: -0.75rem;
+    color: var(--color-text);
+}
+
+.reminder-header .material-symbols-outlined {
+    font-size: var(--font-size-lg);
+}
+
+.reminder-page h1 {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-extrabold);
+    line-height: var(--line-height-heading);
+}
+
+.reminder-intro {
+    margin: var(--space-3) 0 var(--space-6);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+#reminder-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+#reminder-form label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-extrabold);
+}
+
+#reminder-form input,
+#reminder-form select,
+#reminder-form textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    min-height: var(--control-height);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: var(--font-size-sm);
+}
+
+#reminder-form .select-chevron select {
+    padding-right: 2.5rem;
+}
+
+#reminder-form textarea {
+    resize: vertical;
+}
+
+#reminder-form .button {
+    border-radius: 1rem;
+}
+
+.button-cancel {
+    background: var(--color-blue);
+    color: var(--color-text);
+}
+
+.reminder-delete {
+    align-self: center;
+    padding: var(--space-2);
+    border: 0;
+    color: var(--color-text);
+    background: transparent;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#reminder-status {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+#reminder-status:empty {
+    display: none;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiência | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/experiencia.css">
+</head>
+
+<body>
+    <main class="page-container experience-detail-page" id="conteudo-principal">
+        <header class="experience-detail-header">
+            <a id="experience-back" href="./comunidade.html" aria-label="Voltar à comunidade">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span>
+            </a><span>Experiência</span>
+        </header>
+
+        <article id="experience-content" class="experience-content" hidden>
+            <h1 id="experience-title"></h1>
+            <p class="experience-author" id="experience-author"></p>
+            <div class="experience-badges" aria-label="Vínculo com a universidade"><span id="experience-role"></span>
+                <span id="experience-period" hidden></span>
+            </div>
+
+            <section class="experience-story" aria-labelledby="experience-story-title">
+                <h2 id="experience-story-title">Minha experiência</h2>
+                <div id="experience-text"></div>
+            </section>
+
+            <a class="button button-ink" id="experience-more" href="./comunidade.html">Ver mais experiências</a>
+            <a class="button experience-share" id="experience-share" href="./compartilhar-experiencia.html">Compartilhar
+                minha experiência</a>
+
+            <aside class="experience-detail-notice" aria-labelledby="experience-notice-title">
+                <h2 id="experience-notice-title">Cada trajetória é diferente</h2>
+                <p>O relato não substitui as regras da instituição ou do programa.</p>
+            </aside>
+        </article>
+        
+        <section id="experience-not-found" hidden>
+            <h1>Experiência não encontrada</h1>
+            <p>Este relato não está disponível neste navegador.</p><a class="button button-yellow"
+                href="./comunidade.html">Voltar à comunidade</a>
+        </section>
+        <noscript>Ative o JavaScript para ler a experiência.</noscript>
+    </main>
+    <td-bottom-nav></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../data/community.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/experiencia.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
+</body>
+
+</html>

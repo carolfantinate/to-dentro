@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datas | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/explorar-datas.css">
+    <link rel="stylesheet" href="../styles/pages/datas.css">
+</head>
+
+<body>
+    <main class="page-container dates-page" id="conteudo-principal">
+        <header class="dates-header"><a id="admission-back" href="./explorar-datas.html"
+                aria-label="Voltar a explorar datas"><span class="material-symbols-outlined"
+                    aria-hidden="true">arrow_back_ios_new</span></a>
+            <span id="admission-header">Datas</span>
+        </header>
+
+        <h1 id="admission-title">Datas</h1>
+        <p class="dates-intro" id="admission-context"></p>
+        <p class="admission-note" id="admission-note"></p>
+        <div class="admission-dates-list" id="admission-dates-list"></div>
+        <p id="admission-empty" hidden>Nenhuma data cadastrada para esta seleção por enquanto.</p>
+        <p id="admission-status" role="status"></p>
+        <a class="admission-source" id="admission-source" target="_blank" rel="noopener noreferrer" hidden>Conferir
+            edital e calendário <span aria-hidden="true">🔗</span><span class="visually-hidden"> (abre em outra
+                aba)</span></a>
+        <a class="button button-yellow" id="admission-calendar" href="./calendario.html" hidden>Ver no meu
+            calendário</a>
+            
+        <noscript>Ative o JavaScript para consultar e adicionar datas.</noscript>
+    </main>
+    <td-bottom-nav></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../data/admission-dates.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/datas.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
+</body>
+
+</html>

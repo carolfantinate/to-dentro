@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oportunidades | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/oportunidades.css">
+</head>
+
+<body>
+    <main class="page-container opportunities-page" id="conteudo-principal">
+        <header class="opportunities-header">
+            <a id="opportunities-back" href="../../index.html" aria-label="Voltar"><span
+                    class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <span>Oportunidades</span>
+        </header>
+        <h1>Vá além do vestibular.</h1>
+        <p class="opportunities-intro">Descubra projetos, pesquisas e apoio ao ingresso.</p>
+
+        <form id="opportunities-search" role="search" aria-label="Buscar por universidade">
+            <label for="opportunities-university">Universidade</label>
+            <div class="search-field">
+                <input id="opportunities-university" type="search" name="universidade"
+                    placeholder="Todas as universidades" list="opportunities-universities" autocomplete="off">
+                <datalist id="opportunities-universities"></datalist>
+            </div>
+        </form>
+
+        <div class="opportunity-filters" role="group" aria-label="Filtrar oportunidades">
+            <button type="button" data-category="" aria-pressed="true">Todas</button>
+            <button type="button" data-category="pesquisa" aria-pressed="false">Pesquisa</button>
+            <button type="button" data-category="monitoria" aria-pressed="false">Monitoria</button>
+            <button type="button" data-category="bolsas" aria-pressed="false">Bolsas</button>
+            <button type="button" data-category="extensao" aria-pressed="false">Extensão</button>
+        </div>
+
+        <section aria-label="Oportunidades disponíveis">
+            <p id="opportunities-count" class="visually-hidden" role="status"></p>
+            <div id="opportunity-list" class="opportunity-list"></div>
+            <p id="opportunities-empty" hidden>Nenhuma universidade encontrada. Tente outro nome, sigla ou cidade.</p>
+        </section>
+
+        <button class="button button-inclusion" type="button" id="opportunities-inclusion">Programas de ingresso e
+            inclusão</button>
+
+        <noscript>Ative o JavaScript para explorar as oportunidades.</noscript>
+    </main>
+
+    <dialog class="opportunity-dialog" id="opportunity-dialog" aria-labelledby="opportunity-title">
+        <h2 id="opportunity-title"></h2>
+        <p id="opportunity-description"></p>
+        <p id="opportunity-context"></p>
+        <div id="opportunity-sites" class="opportunity-sites"></div>
+        <form method="dialog"><button class="button button-yellow">Voltar às oportunidades</button></form>
+    </dialog>
+    
+    <td-bottom-nav active="inicio"></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../data/opportunities.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/oportunidades.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
+</body>
+
+</html>

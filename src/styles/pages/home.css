@@ -1,8 +1,39 @@
 .home {
+  --radius-card: 1.125rem;
+  --radius-button: 1rem;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
   padding-block: var(--space-6);
+}
+
+.home .button {
+  border-radius: var(--radius-button);
+  justify-content: flex-start;
+  text-align: left;
+  margin-top: var(--space-2);
+}
+
+.home-recommendations > td-university-card {
+  margin-top: var(--space-4);
+}
+
+.home-next-step {
+  padding: var(--space-4);
+  border: 1px solid var(--color-blue);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.home-next-step h2 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-extrabold);
+}
+
+.home-next-step p {
+  margin-block: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
 }
 
 .home h1,

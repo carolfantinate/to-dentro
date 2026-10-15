@@ -1,0 +1,10 @@
+.admission-dates-list { display: flex; flex-direction: column; gap: var(--space-4); }
+.admission-date-card { padding: var(--space-4); border: 1px solid var(--color-blue); border-radius: 1.125rem; background: var(--color-surface); }
+.admission-date-card h2 { margin: 0; font-size: var(--font-size-base); font-weight: var(--font-weight-extrabold); }
+.admission-date-card p { margin: var(--space-2) 0; font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.admission-date-card .button { margin-top: var(--space-2); justify-content: flex-start; text-align: left; }
+.admission-date-card .button:disabled { background: var(--color-green); color: var(--color-text); cursor: default; }
+.admission-note { margin: 0 0 var(--space-4); font-size: var(--font-size-xs); color: var(--color-text-muted); }
+.admission-source { display: inline-block; margin-block: var(--space-4); font-size: var(--font-size-sm); font-weight: var(--font-weight-extrabold); color: var(--color-text); text-decoration: none; }
+.admission-source:hover { text-decoration: underline; }
+#admission-status { font-size: var(--font-size-sm); color: var(--color-text-muted); }

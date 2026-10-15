@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,39 +8,71 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/pages/calendario.css">
 </head>
+
 <body>
     <main id="conteudo-principal" class="page-container calendar-page">
         <header class="calendar-header">
-            <a id="calendar-back" href="../../index.html" aria-label="Voltar"><span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <a id="calendar-back" href="../../index.html" aria-label="Voltar"><span class="material-symbols-outlined"
+                    aria-hidden="true">arrow_back_ios_new</span></a>
             <span>Meu calendário</span>
         </header>
         <h1>Cada prazo, no seu tempo.</h1>
         <p class="calendar-intro">Organize inscrições, provas e resultados.</p>
         <section class="calendar-month" aria-label="Calendário mensal">
             <div class="calendar-month-header">
-                <button id="previous-month" type="button" aria-label="Mês anterior"><span class="material-symbols-outlined" aria-hidden="true">chevron_left</span></button>
+                <button id="previous-month" type="button" aria-label="Mês anterior">
+                    <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>
+                </button>
                 <h2 id="calendar-month-title" aria-live="polite">Outubro 2026</h2>
-                <button id="next-month" type="button" aria-label="Próximo mês"><span class="material-symbols-outlined" aria-hidden="true">chevron_right</span></button>
+                <button id="next-month" type="button" aria-label="Próximo mês">
+                    <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+                </button>
             </div>
-            <div class="calendar-weekdays" aria-hidden="true"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+            <div class="calendar-weekdays" aria-hidden="true">
+                <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
+            </div>
             <div id="calendar-days" class="calendar-days" role="group" aria-label="Dias do mês"></div>
         </section>
         <div class="calendar-filters" role="group" aria-label="Categorias de prazos">
             <button class="calendar-filter" type="button" data-category="todos" aria-pressed="true">Todos</button>
-            <button class="calendar-filter" type="button" data-category="vestibular" aria-pressed="false">Vestibular</button>
-            <button class="calendar-filter" type="button" data-category="ingresso" aria-pressed="false">Ingresso</button>
+
+            <label class="calendar-university-filter select-chevron">
+                <span class="visually-hidden">Filtrar por
+                    universidade</span>
+                <select id="calendar-university">
+                    <option value="">Universidades</option>
+                </select>
+            </label>
+
+            <button class="calendar-filter" type="button" data-category="lembretes" aria-pressed="false">Meus
+                lembretes</button>
         </div>
+
+        <section class="calendar-discover" aria-labelledby="calendar-discover-title">
+            <h2 id="calendar-discover-title">Explore datas</h2>
+            <p>Encontre datas de universidades, processos seletivos e programas de ingresso.</p>
+            <a class="button button-yellow" id="explore-dates" href="./explorar-datas.html">Explorar datas</a>
+        </section>
+
         <section class="calendar-agenda" aria-labelledby="calendar-agenda-title">
             <h2 id="calendar-agenda-title">Próximos passos</h2>
-            <p class="calendar-demo">Agenda demonstrativa</p>
+            <p class="calendar-demo">Datas de exemplo e seus lembretes pessoais.</p>
             <div id="calendar-events" class="calendar-events"></div>
-            <p id="calendar-empty" role="status" hidden>Nenhum prazo demonstrativo nesta seleção.</p>
+            <p id="calendar-empty" role="status" hidden>Nenhuma data nesta seleção.</p>
         </section>
+
+        <p id="reminder-status" role="status"></p>
+        <button class="calendar-add" id="add-reminder" type="button" aria-label="Criar meu lembrete"
+            title="Criar meu lembrete"><span aria-hidden="true">+</span></button>
         <noscript>Ative o JavaScript para navegar pelo calendário.</noscript>
     </main>
+    
     <td-bottom-nav></td-bottom-nav>
     <script defer src="../data/calendar.js"></script>
+    <script defer src="../data/universities.js"></script>
     <script defer src="../scripts/components/bottom-nav.js"></script>
     <script defer src="../scripts/pages/calendario.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
 </body>
+
 </html>

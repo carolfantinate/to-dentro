@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/cursos.css">
+</head>
+
+<body>
+    <main class="page-container courses-page" id="conteudo-principal">
+        <header class="courses-header">
+            <a id="course-back" href="./buscar-universidades.html" aria-label="Voltar aos cursos"><span
+                    class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <span>Curso</span>
+        </header>
+        <div class="courses-content" id="course-content" hidden>
+            <h1 id="course-name"></h1>
+            <p class="courses-context" id="course-university"></p>
+
+            <section class="course-card" aria-labelledby="course-about-title">
+                <h2 id="course-about-title">Sobre o curso</h2>
+                <p id="course-metadata"></p>
+                <p>Conheça a formação, a grade curricular e as possibilidades de atuação no catálogo da universidade.
+                </p>
+                <a class="button button-yellow" target="_blank" id="course-official">Acessar site da universidade</a>
+            </section>
+        </div>
+
+        <section id="course-not-found" hidden>
+            <h1>Curso não encontrado</h1><a class="button button-yellow" href="./buscar-universidades.html">Buscar
+                universidades</a>
+        </section>
+        
+        <noscript>Ative o JavaScript para carregar o curso.</noscript>
+    </main>
+    <td-bottom-nav active="buscar"></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../data/courses.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/curso.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
+</body>
+
+</html>

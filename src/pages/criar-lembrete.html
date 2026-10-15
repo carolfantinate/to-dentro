@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar lembrete | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/criar-lembrete.css">
+</head>
+
+<body>
+    <main class="page-container reminder-page" id="conteudo-principal">
+        <header class="reminder-header">
+            <a id="reminder-back" href="./calendario.html" aria-label="Voltar ao calendário"><span
+                    class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <span id="reminder-heading">Criar lembrete</span>
+        </header>
+
+        <h1>Seu lembrete, do seu jeito</h1>
+        <p class="reminder-intro">Organize o que é importante para você.</p>
+        <form id="reminder-form">
+            <label for="reminder-title">Título
+                <span aria-hidden="true">*</span>
+            </label>
+
+            <input id="reminder-title" name="title" placeholder="Revisar opções de ingresso" required maxlength="100"
+                autocomplete="off">
+
+            <label for="reminder-date">Data
+                <span aria-hidden="true">*</span>
+            </label>
+            <input id="reminder-date" name="date" type="date" required>
+
+            <label for="reminder-category">Categoria</label>
+            <div class="select-chevron">
+                <select id="reminder-category" name="category">
+                    <option value="pessoal">Pessoal</option>
+                    <option value="estudo">Estudo</option>
+                    <option value="inscricao">Inscrição</option>
+                    <option value="prova">Prova</option>
+                </select>
+            </div>
+
+            <label for="reminder-university">Universidade (opcional)</label>
+            <div class="select-chevron">
+                <select id="reminder-university" name="university">
+                    <option value="">Nenhuma</option>
+                </select>
+            </div>
+
+            <label for="reminder-time">Horário (opcional)</label>
+            <input id="reminder-time" name="time" type="time">
+
+            <label for="reminder-description">Anotações</label>
+            <textarea id="reminder-description" name="description" placeholder="Comparar cursos e verificar os editais"
+                maxlength="500" rows="2"></textarea>
+
+            <p id="reminder-status" role="status"></p>
+            <button class="button button-ink" type="submit">Salvar lembrete</button>
+
+            <a class="button button-cancel" id="cancel-reminder" href="./calendario.html">Cancelar</a>
+            <button class="reminder-delete" type="button" id="delete-reminder" hidden>Excluir lembrete</button>
+        </form>
+        <noscript>Ative o JavaScript para salvar seu lembrete.</noscript>
+    </main>
+    <td-bottom-nav></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/criar-lembrete.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
+</body>
+
+</html>

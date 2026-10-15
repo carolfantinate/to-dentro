@@ -4,9 +4,17 @@
   const query = document.querySelector('#map-query');
   const list = document.querySelector('#map-universities');
   const status = document.querySelector('#map-status');
-  const universities = window.ToDentroUniversities;
-  const selected = universities.find(item => item.id === params.get('universidade'));
+  const campuses = window.ToDentroCampuses.map(campus => ({
+    ...window.ToDentroUniversities.find(university => university.id === campus.universityId),
+    ...campus,
+  }));
+  const selected = campuses.find(item => params.get('campus') ? item.id === params.get('campus') : item.universityId === params.get('universidade'));
   const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+  const selections = name => params.getAll(name).flatMap(value => value.split(',')).filter(Boolean);
+  const cities = params.has('city') ? selections('city') : params.get('region') ? [params.get('region') === 'sp' ? 'sao-paulo' : params.get('region')] : [];
+  const types = selections('type');
+  const admissions = selections('admission');
+  const modes = selections('mode');
   const from = params.get('from');
   if (from) {
     const url = new URL(from, location.href);
@@ -29,25 +37,35 @@
   function render() {
     filterState.set('cidade', query.value);
     document.querySelector('#map-filter').href = `./filtros.html?${filterState}`;
-    const visible = universities.filter(item => normalize(item.city).includes(normalize(query.value))
-      && (params.get('region') !== 'campinas' || item.city === 'Campinas')
-      && (params.get('type') !== 'publica' || item.public)
-      && (params.get('type') !== 'particular' || !item.public)
-      && (!params.get('mode') || item.mode === params.get('mode'))
+    const visible = campuses.filter(item => normalize(item.city).includes(normalize(query.value))
+      && (!cities.length || cities.includes(normalize(item.city).replace(/\s+/g, '-')))
+      && (!types.length || types.includes(item.public ? 'publica' : 'particular'))
+      && (!modes.length || modes.includes(item.mode))
+      && (!params.get('area') || window.ToDentroCourseCatalog.courses.some(course => course.area === params.get('area') && item.courses.some(name => normalize(name) === course.value)))
       && (!params.get('course') || item.courses.some(course => normalize(course) === params.get('course')))
-      && (!params.get('period') || item.periods.includes(params.get('period')))
-      && (params.get('cost') !== 'mensalidade' || !item.free));
+      && (!admissions.length || admissions.some(method => (item.admissionMethods || []).includes(method))));
     list.replaceChildren();
     if (markers) markers.clearLayers();
-    for (const university of visible) {
-      const card = document.createElement('td-university-card'); card.setAttribute('university-id', university.id); list.append(card);
+    for (const campus of visible) {
+      const card = document.createElement('a'); card.className = 'map-campus-card';
+      const destination = new URL('./universidade.html', location.href);
+      destination.searchParams.set('id', campus.universityId);
+      destination.searchParams.set('campus', campus.id);
+      const origin = new URLSearchParams(params); origin.set('cidade', query.value);
+      destination.searchParams.set('from', `${location.pathname}?${origin}`);
+      card.href = destination.href;
+      card.setAttribute('aria-label', `Ver universidade: ${campus.acronym} · ${campus.name}`);
+      const heading = document.createElement('h3'); heading.textContent = `${campus.acronym} · ${campus.name}`;
+      const description = document.createElement('p'); description.textContent = `${campus.city} · ${campus.public ? 'Pública' : 'Privada'}`;
+      const action = document.createElement('span'); action.className = 'button button-yellow'; action.textContent = 'Ver universidade';
+      card.append(heading, description, action); list.append(card);
       if (map) {
         const popup = document.createElement('div');
-        const title = document.createElement('strong'); title.textContent = university.name;
-        const note = document.createElement('p'); note.textContent = university.mapLabel;
-        const link = document.createElement('a'); link.href = card.querySelector('a').href; link.textContent = 'Conhecer universidade';
+        const title = document.createElement('strong'); title.textContent = `${campus.acronym} · ${campus.name}`;
+        const note = document.createElement('p'); note.textContent = `${campus.city} · Localização aproximada`;
+        const link = document.createElement('a'); link.href = card.href; link.textContent = 'Ver universidade';
         popup.append(title, note, link);
-        L.marker(university.coordinates).bindTooltip(university.acronym, { permanent: true, direction: 'top' }).bindPopup(popup).addTo(markers);
+        L.marker(campus.coordinates).bindTooltip(`${campus.acronym} · ${campus.name}`, { permanent: true, direction: 'top' }).bindPopup(popup).addTo(markers);
       }
     }
     document.querySelector('#map-empty').hidden = visible.length > 0;
