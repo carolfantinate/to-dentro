@@ -1,0 +1,53 @@
+.course-page { max-width: 46rem; padding-block: 1rem 2rem; }
+.course-page h1, .course-page h2, .course-page p { margin: 0; }
+.course-header { display:flex; align-items:center; gap: .75rem; margin-bottom: 1.4rem; font-weight:800; }
+.course-header a, .course-header button { display:grid; place-items:center; min-width:2.75rem; min-height:2.75rem; color:var(--color-text); }
+.course-header a { margin-left:-.75rem; }
+.course-header button { margin-left:auto; margin-right:-.5rem; border:0; background:transparent; cursor:pointer; }
+.course-header button[aria-pressed="true"] { color:#b53e58; }
+.course-header button[aria-pressed="true"] span { font-variation-settings:'FILL' 1; }
+.course-page h1 { font-size:1.5rem; line-height:1.25; font-weight:800; }
+.course-page h2 { font-size:1.25rem; line-height:1.35; font-weight:800; }
+.course-page p, .course-page small { color:var(--color-text-muted); font-size:.875rem; line-height:1.5; }
+.course-page .course-context { margin-top:.5rem; margin-bottom:1.25rem; }
+.course-panel { background:var(--color-surface); border:1px solid #dfE8eb; border-radius:1.25rem; padding:1rem; }
+.course-intro { padding:1rem; }
+.course-heading { display:flex; align-items:center; gap:.875rem; }
+.course-heading h2 { font-size:1.125rem; }
+.course-intro p { margin-top:1rem; }
+.course-icon { display:grid; place-items:center; flex-shrink:0; width:2.75rem; height:2.75rem; border-radius:.875rem; }
+.course-page svg { width:1.6rem; height:1.6rem; display:block; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+.blue { background:var(--color-blue); }
+.green { background:var(--color-green); }
+.yellow { background:var(--color-yellow); }
+.course-section { margin-top:1.5rem; }
+.course-section > h2 { margin-bottom:.875rem; }
+.course-overview, .course-subjects { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.875rem; }
+.course-overview article { border-radius:1.125rem; padding:1rem .875rem; min-height:9rem; }
+.course-overview h3 { margin:.875rem 0 .5rem; font-size:1rem; }
+.course-overview p { font-size:.8125rem; }
+.course-subjects article { display:flex; align-items:center; gap:.625rem; padding:.75rem; min-height:4.25rem; border-radius:1rem; }
+.course-subjects .course-icon, .course-careers .course-icon, .course-campuses .course-icon { width:2.25rem; height:2.25rem; border-radius:.75rem; }
+.course-subjects strong, .course-careers strong { font-size:.8125rem; }
+.course-careers, .course-campuses { display:grid; gap:.75rem; }
+.course-careers article { display:flex; align-items:center; gap:.875rem; padding:.75rem; }
+.course-page .course-section-description { margin-bottom:1.5rem; font-size:.8125rem; }
+.course-campus-heading { display:flex; gap:.875rem; align-items:center; }
+.course-campus-heading h3 { margin:0; font-size:1rem; }
+.course-campus-heading small { display:block; margin-top:.25rem; font-size:.75rem; }
+.course-campuses p { margin-top:.5rem; font-size:.75rem; }
+.course-campuses a { display:inline-block; margin-top:.25rem; font-weight:800; font-size:.75rem; color:var(--color-text); text-decoration:none; }
+.course-campus-note { margin-top:1.25rem; border-left:2px solid #f15a4d; padding:.5rem .75rem; }
+.course-campus-note strong { color:#d84a3d; font-size:.8125rem; font-weight:600; }
+.course-campus-note p { margin-top:.375rem; font-size:.75rem; }
+.course-cutoff { margin-top:1.25rem; padding:1rem; border-radius:1.25rem; }
+.course-cutoff p { margin-top:.75rem; }
+.course-cutoff a { color:var(--color-text); font-size:.875rem; font-weight:800; text-decoration:none; }
+.course-official { display:flex; gap:.875rem; align-items:center; color:var(--color-text); text-decoration:none; }
+.course-official strong { font-size:1rem; }
+.course-official small { display:block; margin-top:.375rem; font-size:.75rem; }
+.course-official > span:last-child { margin-left:auto; align-self:flex-start; }
+.course-status:empty { display:none; }
+.course-status { margin-top:1rem !important; }
+.course-page a:focus-visible, .course-page button:focus-visible { outline:3px solid var(--color-ink); outline-offset:4px; }
+@media (max-width:420px) { .course-page { padding-inline:1.25rem; } }
