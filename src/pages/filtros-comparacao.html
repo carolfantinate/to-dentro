@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filtros da comparação | Tô Dentro</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/pages/filtros-comparacao.css">
+</head>
+
+<body>
+  <main class="page-container comparison-page" id="conteudo-principal">
+    <header><a id="comparison-back" href="./buscar-nota-de-corte.html" aria-label="Voltar"><span
+          class="material-symbols-outlined" aria-hidden="true">chevron_left</span></a><span>Filtros da comparação</span>
+    </header>
+    <h1>Monte sua comparação.</h1>
+    <p class="comparison-subtitle">Escolha as opções em um só lugar.</p>
+
+    <section class="comparison-intro">
+      <div><span class="comparison-icon blue" aria-hidden="true">⇄</span>
+        <h2>Uma comparação do seu jeito</h2>
+      </div>
+      <p>Escolha um curso, pelo menos duas universidades e o contexto das notas.</p>
+    </section>
+
+    <form id="comparison-form">
+      <label for="comparison-course">Curso</label>
+      <span class="select-chevron">
+        <select id="comparison-course" name="curso" required></select>
+      </span>
+
+      <fieldset>
+        <legend>Contexto da comparação</legend>
+        <div class="comparison-grid">
+          <div>
+            <label for="comparison-process">Processo seletivo</label>
+            <span class="select-chevron">
+              <select id="comparison-process" name="processo">
+                <option value="enem">Enem</option>
+                <option value="vestibular">Vestibular próprio</option>
+              </select>
+            </span>
+          </div>
+
+          <div>
+            <label for="comparison-year">Edição</label>
+            <span class="select-chevron">
+              <select id="comparison-year" name="edicao">
+                <option>2026</option>
+                <option>2025</option>
+                <option>2024</option>
+              </select>
+            </span>
+          </div>
+
+          <div>
+            <label for="comparison-category">Concorrência</label>
+            <span class="select-chevron">
+              <select id="comparison-category" name="modalidade">
+                <option>Ampla concorrência</option>
+                <option>Escola pública</option>
+                <option>Pretos, pardos e indígenas</option>
+              </select>
+            </span>
+          </div>
+          <div>
+            <label for="comparison-shift">Turno</label>
+            <span class="select-chevron"><select id="comparison-shift" name="turno">
+                <option>Integral</option>
+                <option>Matutino</option>
+                <option>Vespertino</option>
+                <option>Noturno</option>
+              </select>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+
+      <section class="comparison-institutions" aria-labelledby="institutions-title">
+        <h2 id="institutions-title">Universidades e campi</h2>
+        <p>Selecione pelo menos duas instituições.</p>
+        <p class="comparison-scope">Universidades do estado de São Paulo.</p>
+        <label class="visually-hidden" for="comparison-search">Buscar universidade de São Paulo</label>
+        <div class="comparison-search">
+          <span class="material-symbols-outlined" aria-hidden="true">search</span>
+          <input id="comparison-search" type="search" placeholder="Buscar universidade" autocomplete="off"
+            aria-controls="comparison-options">
+        </div>
+        <div id="comparison-options" class="comparison-options" hidden></div>
+        <p id="comparison-count" class="comparison-count" role="status"></p>
+        <div id="comparison-selected" class="comparison-selected"></div>
+        <button id="comparison-add" class="comparison-add" type="button">＋ Adicionar universidade</button>
+      </section>
+
+      <aside>
+        <strong>Compare informações equivalentes</strong>
+        <p>Processo, edição, modalidade e escala das notas precisam ser compatíveis entre as opções.</p>
+      </aside>
+
+      <p id="comparison-validation" class="comparison-validation" role="status"></p>
+      
+      <button id="comparison-submit" class="comparison-submit" type="submit">
+        <span aria-hidden="true">⇄</span>
+        <span id="comparison-submit-label">Comparar universidades</span>
+      </button>
+
+      <button class="comparison-clear" type="reset">Limpar filtros</button>
+    </form>
+
+  </main>
+  <td-bottom-nav active="buscar"></td-bottom-nav>
+  <script defer src="../data/universities.js"></script>
+  <script defer src="../data/courses.js"></script>
+  <script defer src="../data/comparisons.js"></script>
+  <script defer src="../scripts/components/bottom-nav.js"></script>
+  <script defer src="../scripts/pages/filtros-comparacao.js"></script>
+</body>
+
+</html>

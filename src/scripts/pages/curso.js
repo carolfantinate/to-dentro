@@ -70,7 +70,7 @@
   }
   document.querySelector('#course-official').href = official;
   document.querySelector('#course-official-title').textContent = `Conheça o curso na ${university.acronym}`;
-  document.querySelector('#course-cutoff-link').href = { usp:'https://www.fuvest.br/vestibular-da-usp/', unesp:'https://vestibular.unesp.br/', unicamp:'https://www.comvest.unicamp.br/' }[university.id];
+  document.querySelector('#course-cutoff-link').href = `./buscar-nota-de-corte.html?${new URLSearchParams({ universidade: university.id, curso: course.value })}`;
   for (const element of document.querySelectorAll('[data-icon]')) element.innerHTML = icon(element.dataset.icon);
   const save = document.querySelector('#course-save');
   const key = 'to-dentro-saved-courses';

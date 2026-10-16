@@ -18,7 +18,8 @@
       courses: [
         'Medicina',
         'Direito',
-        'Engenharia'
+        'Engenharia',
+        'Ciência da Computação'
       ],
       description,
       admission: 'Fuvest · ENEM-USP · Provão Paulista'

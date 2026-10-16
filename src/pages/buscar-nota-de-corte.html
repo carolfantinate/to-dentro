@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar nota de corte | Tô Dentro</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/pages/buscar-nota-de-corte.css">
+</head>
+
+<body>
+  <main class="page-container cutoff-page" id="conteudo-principal">
+    <header>
+      <a id="cutoff-back" href="./buscar-universidades.html" aria-label="Voltar">
+        <span class="material-symbols-outlined" aria-hidden="true">chevron_left
+        </span>
+      </a>
+      <span>Buscar nota de corte</span>
+    </header>
+
+    <h1>Encontre sua referência.</h1>
+    <p class="intro">Um curso, uma universidade e o contexto certo.</p>
+    <section class="cutoff-intro">
+      <div><span class="intro-icon material-symbols-outlined" aria-hidden="true">filter_list</span>
+        <h2>A nota que você procura</h2>
+      </div>
+      <p>Escolha o curso e a universidade. Depois,<br> defina os filtros da seleção.</p>
+    </section>
+
+    <form id="cutoff-form">
+      <fieldset>
+        <legend>Curso e universidade</legend>
+        <label for="cutoff-course">Curso</label>
+        <span class="select-chevron">
+          <select id="cutoff-course" name="curso" required>
+          </select>
+        </span>
+
+        <label for="cutoff-university">Universidade</label>
+        <span class="select-chevron">
+          <select id="cutoff-university" name="universidade" required>
+          </select>
+        </span>
+
+        <label for="cutoff-campus">Campus</label>
+        <span class="select-chevron">
+          <select id="cutoff-campus" name="campus" required>
+          </select>
+        </span>
+      </fieldset>
+
+      <fieldset>
+        <legend>Contexto da nota</legend>
+        <div class="context-grid">
+          <div>
+            <label for="cutoff-process">Processo seletivo</label>
+            <span class="select-chevron">
+              <select id="cutoff-process" name="processo" required>
+              </select>
+            </span>
+          </div>
+
+          <div>
+            <label for="cutoff-year">Edição</label>
+            <span class="select-chevron">
+              <select id="cutoff-year" name="edicao">
+                <option>2026</option>
+                <option>2025</option>
+                <option>2024</option>
+              </select>
+            </span>
+          </div>
+
+          <div>
+            <label for="cutoff-category">Modalidade</label>
+            <span class="select-chevron">
+              <select id="cutoff-category" name="modalidade">
+                <option>Ampla concorrência</option>
+                <option>Escola pública</option>
+                <option>Pretos, pardos e indígenas</option>
+              </select>
+            </span>
+          </div>
+
+          <div>
+            <label for="cutoff-shift">Turno</label>
+            <span class="select-chevron">
+              <select id="cutoff-shift" name="turno">
+                <option>Integral</option>
+                <option>Matutino</option>
+                <option>Vespertino</option>
+                <option>Noturno</option>
+              </select>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+
+      <aside>
+        <strong>Cada nota tem um contexto</strong>
+        <p>Curso, campus, processo, edição e modalidade identificam a referência que será consultada.</p>
+      </aside>
+
+      <button class="consult-button" type="submit">
+        <span class="material-symbols-outlined" aria-hidden="true">search</span>
+        Consultar nota de corte</button>
+      <button class="clear-button" type="reset">Limpar filtros</button>
+    </form>
+
+
+
+  </main>
+
+  <script defer src="../data/universities.js"></script>
+  <script defer src="../data/courses.js"></script>
+  <script defer src="../scripts/pages/buscar-nota-de-corte.js"></script>
+</body>
+
+</html>

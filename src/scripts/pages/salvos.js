@@ -32,13 +32,30 @@
         card.append(title, context, link); list.append(card);
       }
     }
+    if (category === 'comparacoes') {
+      let saved = [];
+      try { const value = JSON.parse(localStorage.getItem('to-dentro-saved-comparisons') || '[]'); if (Array.isArray(value)) saved = value; } catch { /* Armazenamento indisponível. */ }
+      for (const value of saved) {
+        if (typeof value !== 'string') continue;
+        const state = new URLSearchParams(value);
+        const course = window.ToDentroCourseCatalog.courses.find(item => item.value === state.get('curso'));
+        const selection = window.ToDentroComparison.readSelection(state);
+        if (!course || selection.length < 2) continue;
+        const card = document.createElement('article'); card.className = 'course-card';
+        const title = document.createElement('h2'); title.textContent = course.name;
+        const summary = document.createElement('p'); summary.textContent = `${selection.map(item => item.university.acronym).join(' · ')} · ${state.get('edicao')} · Exemplo demonstrativo`;
+        const link = document.createElement('a'); link.className = 'button button-yellow'; link.textContent = 'Ver comparação'; link.href = `./comparacao-notas.html?${state}`;
+        card.append(title, summary, link); list.append(card);
+      }
+    }
     empty.hidden = list.children.length > 0;
     empty.textContent = category === 'universidades' ? 'Nenhuma universidade salva. Explore instituições para começar.'
       : 'Você ainda não tem cursos salvos. Toque no coração na página de um curso para guardar sua escolha.';
-    explore.href = './buscar-universidades.html';
-    explore.textContent = 'Explorar mais instituições';
+    if (category === 'comparacoes') empty.textContent = 'Você ainda não tem comparações salvas.';
+    explore.href = category === 'comparacoes' ? './filtros-comparacao.html' : './buscar-universidades.html';
+    explore.textContent = category === 'comparacoes' ? 'Montar comparação' : 'Explorar mais instituições';
     for (const button of categories) button.setAttribute('aria-pressed', String(button.dataset.category === category));
   }
   for (const button of categories) button.addEventListener('click', () => render(button.dataset.category));
-  render(['universidades', 'cursos'].includes(params.get('categoria')) ? params.get('categoria') : 'universidades');
+  render(['universidades', 'cursos', 'comparacoes'].includes(params.get('categoria')) ? params.get('categoria') : 'universidades');
 })();

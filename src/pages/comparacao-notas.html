@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparar notas | Tô Dentro</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/pages/comparacao-notas.css">
+</head>
+
+<body>
+  <main class="page-container comparison-result-page" id="conteudo-principal">
+    <header><a id="results-back" href="./filtros-comparacao.html" aria-label="Voltar aos filtros"><span
+          class="material-symbols-outlined" aria-hidden="true">chevron_left</span></a><span>Comparar notas</span>
+    </header>
+
+    <h1>Compare seus caminhos.</h1>
+    <p id="results-subtitle" class="results-subtitle"></p>
+    <div id="results-content" hidden>
+      <section class="context-card">
+        <div class="context-heading"><span class="result-icon blue" aria-hidden="true">⇄</span>
+          <h2>Mesmo contexto, lado a lado</h2>
+        </div><strong id="results-process"></strong>
+        <p id="results-context"></p>
+      </section>
+      <aside>
+        <strong>Comparação ilustrativa</strong>
+        <p>As notas, a edição e as ofertas abaixo são fictícias. Servem apenas para demonstrar a interface.</p>
+      </aside>
+
+      <section aria-labelledby="chart-title">
+        <h2 id="chart-title">Notas lado a lado</h2>
+        <div class="chart-card">
+          <p>Escala de 0 a 1.000 pontos</p>
+          <div class="chart" role="img" id="results-chart">
+            <div class="chart-axis" aria-hidden="true"><span>1000</span><span>500</span><span>0</span></div>
+            <div class="chart-plot" id="results-bars" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="result-metrics">
+        <div class="blue"><strong id="results-count"></strong>
+          <p>Opções comparadas</p>
+        </div>
+        <div class="green"><strong id="results-range"></strong>
+          <p>Pontos entre extremos</p>
+        </div>
+      </div>
+
+      <section aria-labelledby="options-title">
+        <h2 id="options-title">Conheça cada opção</h2>
+        <div id="results-options" class="results-options"></div>
+      </section>
+      <a class="add-university blue" id="results-add" href="./filtros-comparacao.html">＋ Adicionar universidade</a>
+
+      <aside>
+        <strong>Nota de corte não mede qualidade</strong>
+        <p>Compare também o curso, o campus e suas preferências. Critérios e escalas precisam ser compatíveis.</p>
+      </aside>
+
+      <button id="results-save" class="save-comparison" type="button" aria-pressed="false">
+        <span aria-hidden="true">☑</span>
+        <span id="results-save-label">Salvar comparação</span>
+      </button>
+
+      <p id="results-status" role="status"></p>
+      <a id="results-edit" class="edit-filters" href="./filtros-comparacao.html">Alterar curso ou filtros →</a>
+    </div>
+
+    <section id="results-empty" hidden>
+      <p>Escolha um curso e pelo menos duas universidades de São Paulo para comparar.</p><a class="edit-filters"
+        href="./filtros-comparacao.html">Escolher opções →</a>
+    </section>
+  </main>
+  
+  <td-bottom-nav active="buscar"></td-bottom-nav>
+  <script defer src="../data/universities.js"></script>
+  <script defer src="../data/courses.js"></script>
+  <script defer src="../data/comparisons.js"></script>
+  <script defer src="../scripts/components/bottom-nav.js"></script>
+  <script defer src="../scripts/pages/comparacao-notas.js"></script>
+</body>
+
+</html>
