@@ -1,0 +1,50 @@
+.result-page { max-width: 440px; margin-inline: auto; padding: 22px 20px 24px; }
+.result-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; font-weight: 800; }
+.result-header a { display: inline-flex; align-items: center; justify-content: center; min-height: 32px; color: var(--color-text-muted); text-decoration: none; }
+.result-header .material-symbols-outlined { font-size: 20px; }
+.result-page h1 { font-size: 24px; line-height: 1.3; margin: 0 0 10px; font-weight: 800; }
+.result-page h2 { font-size: 21px; line-height: 1.35; margin: 0; font-weight: 800; }
+.result-intro, .result-courses > p { color: var(--color-text-muted); font-size: 13px; margin: 0; }
+.result-profile { display: flex; align-items: center; gap: 16px; margin-top: 18px; padding: 16px 14px; min-height: 119px; background: var(--color-surface); border: 1px solid var(--color-blue); border-radius: 21px; }
+.result-profile img { flex-shrink: 0; width: 66px; height: 80px; object-fit: contain; }
+.result-profile p { color: var(--color-text-muted); font-size: 12px; margin: 8px 0 0; }
+.result-profile .profile-label { text-transform: uppercase; font-size: 10px; font-weight: 700; margin: 0 0 8px; }
+.result-profile h2 { font-size: 20px; }
+.interest-map { margin-top: 19px; }
+.radar-card { margin: 13px 0 0; padding: 12px 0 17px; border: 1px solid var(--color-blue); border-radius: 21px; background: var(--color-surface); }
+.interest-radar { width: 100%; height: auto; }
+.radar-grid { stroke: #dce8e9; stroke-width: 1; fill: none; }
+.radar-area { fill: #b7ddf2; fill-opacity: .7; stroke: var(--color-ink); stroke-width: 2; stroke-linejoin: round; }
+.radar-dots { fill: var(--color-ink); stroke: var(--color-ink); stroke-width: 1; }
+.radar-highlight { fill: var(--color-green); }
+.radar-labels { fill: var(--color-text); font-family: var(--font-family-base); font-size: 11px; font-weight: 700; }
+.radar-card figcaption { margin-inline: 24px; color: var(--color-text-muted); font-size: 12px; }
+.result-strengths, .result-course-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.result-strengths { margin-top: 20px; }
+.result-strengths article { padding: 14px; border-radius: 19px; }
+.strength-green, .symbol-green { background: var(--color-green); }
+.strength-blue, .symbol-blue { background: var(--color-blue); }
+.symbol-yellow { background: var(--color-yellow); }
+.result-strengths .material-symbols-outlined { font-size: 29px; }
+.result-page h3 { font-size: 16px; font-weight: 800; line-height: 1.4; margin: 9px 0; }
+.result-strengths p { font-size: 12px; color: var(--color-text-muted); margin: 0 0 3px; line-height: 1.45; }
+.result-courses { margin-top: 36px; }
+.result-courses > p { margin-block: 12px 16px; }
+.result-course-grid article { display: flex; flex-direction: column; align-items: flex-start; padding: 13px; min-height: 169px; border: 1px solid var(--color-blue); border-radius: 19px; background: var(--color-surface); }
+.course-symbol { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 14px; font-size: 27px; }
+.result-course-grid h3 { margin-bottom: 6px; }
+.result-course-grid p { margin: 0 0 8px; font-size: 11px; color: var(--color-text-muted); }
+.result-course-grid a { margin-top: auto; padding-block: 4px 0; color: var(--color-text); text-decoration: none; font-size: 12px; font-weight: 800; }
+.result-course-grid a:hover, .result-all-courses:hover, .result-restart:hover { text-decoration: underline; }
+.result-explore { display: flex; align-items: center; gap: 16px; margin-top: 16px; padding: 12px 18px; border-radius: 19px; background: var(--color-blue); }
+.result-explore > .material-symbols-outlined { font-size: 28px; }
+.result-explore h3 { font-size: 14px; margin: 0 0 3px; }
+.result-explore p { margin: 0; color: var(--color-text-muted); font-size: 12px; }
+.result-note { border-left: 2px solid #ef5156; padding: 7px 11px; margin-block: 20px; }
+.result-note p { margin: 0; font-size: 12px; color: var(--color-text-muted); line-height: 1.45; }
+.result-note p:first-child { color: #d52e24; margin-bottom: 5px; font-size: 13px; }
+.result-save { min-height: 50px; border-radius: 16px; }
+.result-all-courses { display: block; padding-block: 12px; text-align: center; color: var(--color-text); font-size: 14px; font-weight: 800; text-decoration: none; }
+.result-restart { display: inline-flex; align-items: center; gap: 5px; margin-top: 6px; min-height: 32px; color: var(--color-text-muted); font-size: 13px; text-decoration: none; }
+.result-status { font-size: 12px; color: var(--color-text-muted); margin-bottom: 0; }
+@media (max-width: 359px) { .result-page { padding-inline: 16px; } .result-profile { gap: 10px; } .result-profile h2 { font-size: 18px; } .result-page h1 { font-size: 22px; } }

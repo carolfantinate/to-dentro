@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perguntas do teste vocacional | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/quiz-vocacional.css">
+</head>
+<body>
+    <main class="page-container quiz-page" id="conteudo-principal">
+        <header class="quiz-header">
+            <a href="./teste-vocacional.html" aria-label="Voltar à apresentação do teste"><span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <span>Teste vocacional</span>
+        </header>
+
+        <h1>Vamos descobrir juntos?</h1>
+        <p class="quiz-intro">Um passo de cada vez, no seu ritmo.</p>
+
+        <section class="quiz-guidance" aria-labelledby="guidance-title">
+            <span class="material-symbols-outlined" aria-hidden="true">explore</span>
+            <div><h2 id="guidance-title">Escolha o que combina com você</h2><p>Selecione uma opção para continuar.</p></div>
+        </section>
+
+        <div class="quiz-progress" role="progressbar" aria-label="Progresso do teste" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" aria-valuetext="Primeira pergunta de seis, ainda não respondida"><span></span></div>
+
+        <form id="quiz-form">
+            <fieldset aria-describedby="question-description quiz-error">
+                <legend class="visually-hidden">Quais atividades chamam sua atenção?</legend>
+                <div class="quiz-question">
+                    <h2>Quais atividades chamam sua atenção?</h2>
+                    <p id="question-description">Selecione as opções com que você mais se identifica.</p>
+                </div>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="checkbox" name="atividades" value="resolver-problemas"><span>Resolver problemas</span></label>
+                    <label class="quiz-option"><input type="checkbox" name="atividades" value="trabalhar-com-pessoas"><span>Trabalhar com pessoas</span></label>
+                    <label class="quiz-option"><input type="checkbox" name="atividades" value="criar-planejar-organizar"><span>Criar, planejar e organizar</span></label>
+                    <label class="quiz-option"><input type="checkbox" name="atividades" value="explorar-natureza"><span>Explorar a natureza</span></label>
+                    <label class="quiz-option"><input type="checkbox" name="atividades" value="produzir-inovar"><span>Produzir coisas e inovar</span></label>
+                    <label class="quiz-option"><input type="checkbox" name="atividades" value="outra"><span>Outra atividade</span></label>
+                </div>
+            </fieldset>
+            <p class="quiz-error" id="quiz-error" role="alert" hidden>Selecione pelo menos uma opção para continuar.</p>
+            <div class="quiz-actions">
+                <a class="button quiz-back" href="./teste-vocacional.html">Voltar</a>
+                <button class="button button-ink" type="submit">Próxima pergunta</button>
+            </div>
+        </form>
+        <p class="quiz-footnote">Você pode voltar e revisar sua escolha.</p>
+        <noscript><p>Ative o JavaScript para continuar o teste.</p></noscript>
+    </main>
+
+    <dialog class="quiz-dialog" aria-labelledby="next-question-title">
+        <h2 id="next-question-title">Primeira etapa respondida</h2>
+        <p>As próximas perguntas estarão disponíveis em breve. Você pode revisar suas escolhas nesta tela.</p>
+        <a class="button button-ink" href="./resultado-vocacional.html">Ver resultado demonstrativo</a>
+        <form method="dialog"><button class="button button-ink" type="submit">Revisar escolhas</button></form>
+    </dialog>
+    <script defer src="../scripts/pages/quiz-vocacional.js"></script>
+</body>
+</html>

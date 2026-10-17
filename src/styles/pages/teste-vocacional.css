@@ -1,0 +1,46 @@
+.vocational-page {
+  max-width: 440px;
+  margin-inline: auto;
+  padding: 24px 18px 36px;
+}
+
+.vocational-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; font-weight: 700; }
+.vocational-header a { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 32px; color: var(--color-text-muted); text-decoration: none; }
+.vocational-header .material-symbols-outlined { font-size: 18px; }
+.vocational-page h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.3; font-weight: 800; }
+.vocational-intro { margin: 0 0 20px; color: var(--color-text-muted); font-size: 14px; }
+.vocational-page h2 { margin: 0; font-size: 21px; line-height: 1.35; font-weight: 800; }
+.interest-intro { padding: 18px 16px 22px; border: 1px solid var(--color-blue); border-radius: 22px; background: var(--color-surface); }
+.interest-heading { display: flex; align-items: flex-start; gap: 10px; }
+.interest-heading img { object-fit: contain; flex-shrink: 0; }
+.interest-heading h2 { padding-top: 4px; font-size: 19px; }
+.interest-intro p { margin: 8px 0 0; color: var(--color-text-muted); font-size: 14px; line-height: 1.5; }
+.discovery-section, .how-section { margin-top: 22px; }
+.discovery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+.discovery-card { padding: 16px; border-radius: 20px; min-height: 166px; }
+.discovery-blue { background: var(--color-blue); }
+.discovery-green { background: var(--color-green); }
+.discovery-yellow { background: var(--color-yellow); }
+.discovery-card .material-symbols-outlined { font-size: 29px; }
+.discovery-card h3 { margin: 10px 0 9px; font-size: 16px; font-weight: 800; }
+.discovery-card p { margin: 0; color: var(--color-text-muted); font-size: 13px; line-height: 1.45; }
+.vocational-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 0; margin: 14px 0 0; list-style: none; }
+.vocational-steps li { padding: 16px 12px; border: 1px solid var(--color-blue); border-radius: 18px; background: var(--color-surface); }
+.vocational-steps .material-symbols-outlined { font-size: 28px; }
+.vocational-steps h3 { font-size: 13px; margin: 10px 0 16px; font-weight: 800; }
+.vocational-steps p { margin: 0; font-size: 12px; color: var(--color-text-muted); }
+.vocational-note { margin: 20px 0; padding: 6px 12px; border-left: 2px solid #f56861; }
+.vocational-note p { margin: 0; font-size: 12px; color: var(--color-text-muted); }
+.vocational-note p:first-child { color: #db5149; font-size: 14px; margin-bottom: 4px; }
+.vocational-start { justify-content: flex-start; gap: 5px; min-height: 54px; border-radius: 18px; }
+.vocational-dialog { width: min(90%, 400px); margin: auto; padding: 24px; border: 1px solid var(--color-blue); border-radius: 22px; color: var(--color-text); background: var(--color-background); }
+.vocational-dialog::backdrop { background: rgb(18 50 75 / 35%); }
+.vocational-dialog h2 { font-size: 21px; }
+.vocational-dialog p { margin-block: 16px 24px; color: var(--color-text-muted); }
+@media (max-width: 359px) {
+  .vocational-page { padding-inline: 16px; }
+  .vocational-page h1 { font-size: 24px; }
+  .discovery-card { padding: 14px; }
+  .vocational-steps li { padding-inline: 9px; }
+  .vocational-steps h3 { font-size: 12px; }
+}

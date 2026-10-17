@@ -36,6 +36,10 @@ As pastas reservadas contêm `.gitkeep` para serem preservadas quando o projeto 
 
 ## Abrir o projeto
 
+O resultado visual está em `src/pages/resultado-vocacional.html`, com radar SVG acessível, perfil e cursos ilustrativos. O aviso após a primeira pergunta oferece acesso a esse exemplo enquanto as próximas perguntas são elaboradas. O resultado é fixo e não usa as respostas atuais. Salvar mapa grava o perfil demonstrativo em `localStorage` neste navegador; Refazer teste limpa a resposta da sessão e volta à primeira pergunta. Os cursos levam à busca de instituições filtrada por curso, usando o catálogo demonstrativo existente.
+
+A abertura do teste vocacional está em `src/pages/teste-vocacional.html`, acessível pelos dois atalhos da home. O botão Começar teste abre `src/pages/quiz-vocacional.html`, com a primeira pergunta da referência, seleção múltipla, validação e progresso. As escolhas ficam em `sessionStorage` durante a sessão da aba, inclusive ao voltar à apresentação. As próximas perguntas e o resultado ainda não estão implementados; avançar com uma seleção abre um aviso temporário.
+
 Abra `index.html` no navegador. Para desenvolver, também é possível usar o Live Server do VS Code e abrir a página pelo servidor local. Nunito e Material Symbols são carregadas pelo Google Fonts e precisam de conexão à internet.
 
 ## Convenções
