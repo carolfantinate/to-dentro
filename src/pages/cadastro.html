@@ -1,42 +1,353 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar conta | Tô Dentro</title>
+    <title>Criar conta · Etapa 1 de 6 | Tô Dentro</title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/pages/login.css">
+    <link rel="stylesheet" href="../styles/pages/cadastro.css">
     <script defer src="../scripts/services/auth.js"></script>
 </head>
+
 <body>
-    <main class="login-page" id="conteudo-principal">
-        <img class="login-logo" src="../../assets/images/combination-mark.svg" alt="Tô Dentro!" width="170" height="57">
-        <header class="login-header">
-            <h1>Seu próximo passo começa aqui.</h1>
-            <p>Crie sua conta para construir seu futuro com a gente.</p>
-        </header>
-        <section class="login-fields" aria-label="Dados para criar conta">
-            <div class="login-field">
-                <label for="signup-name">Nome</label>
-                <input id="signup-name" type="text" autocomplete="name" placeholder="Como podemos te chamar?">
-            </div>
-            <div class="login-field">
-                <label for="signup-email">E-mail</label>
-                <input id="signup-email" type="email" autocomplete="email" placeholder="seunome@exemplo.com">
-            </div>
-            <div class="login-field">
-                <label for="signup-password">Senha</label>
-                <input id="signup-password" type="password" autocomplete="new-password" placeholder="Crie sua senha">
-            </div>
-            <button class="login-action login-enter" type="button" aria-disabled="true">Criar conta</button>
-        </section>
-        <div class="login-signup">
-            <p>Já tem uma conta?</p>
-            <a class="login-action login-create" href="./login.html" data-account-link>Entrar</a>
+    <main class="login-page signup-page" id="conteudo-principal">
+        <div class="signup-top">
+            <img class="login-logo" src="../../assets/images/combination-mark.svg" alt="Tô Dentro!" width="170"
+                height="57">
+            <span class="signup-step">Etapa 1 de 6</span>
         </div>
-        <a class="login-explore" href="../../index.html">Explorar sem entrar</a>
+        <div class="signup-progress" role="progressbar" aria-label="Etapas do cadastro" aria-valuemin="1"
+            aria-valuemax="6" aria-valuenow="1" aria-valuetext="Etapa 1 de 6: dados de acesso">
+            <span class="is-current"></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <form id="signup-access-form" data-signup-step="1" aria-labelledby="signup-access-title" novalidate>
+            <header class="login-header">
+                <h1 id="signup-access-title" tabindex="-1">Vamos começar?</h1>
+                <p>Primeiro, seus dados de acesso.</p>
+            </header>
+            <section class="login-fields" aria-label="Dados para criar conta">
+                <div class="login-field">
+                    <label for="signup-name">Nome</label>
+                    <input id="signup-name" name="name" type="text" autocomplete="name" placeholder="Ana Luiza"
+                        required>
+                </div>
+                <div class="login-field">
+                    <label for="signup-email">E-mail</label>
+                    <input id="signup-email" name="email" type="email" autocomplete="email"
+                        placeholder="ana@exemplo.com" required>
+                </div>
+                <div class="login-field">
+                    <label for="signup-password">Senha</label>
+                    <div class="login-password">
+                        <input id="signup-password" name="password" type="password" autocomplete="new-password"
+                            placeholder="••••••••" required>
+                        <button class="login-eye" type="button" aria-label="Mostrar senha"
+                            aria-controls="signup-password" aria-pressed="false" data-toggle-password>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.4" aria-hidden="true">
+                                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="login-field">
+                    <label for="signup-confirm-password">Confirmar senha</label>
+                    <div class="login-password">
+                        <input id="signup-confirm-password" name="password-confirmation" type="password"
+                            autocomplete="new-password" placeholder="••••••••" required>
+                        <button class="login-eye" type="button" aria-label="Mostrar confirmação de senha"
+                            aria-controls="signup-confirm-password" aria-pressed="false" data-toggle-password>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.4" aria-hidden="true">
+                                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <aside class="signup-preferences" aria-labelledby="signup-preferences-title">
+                <svg width="34" height="40" viewBox="0 0 34 40" fill="none" stroke="currentColor" stroke-width="1.6"
+                    stroke-linecap="round" aria-hidden="true">
+                    <circle cx="17" cy="10" r="6" />
+                    <path d="M4 35v-5a13 13 0 0 1 26 0v5" />
+                </svg>
+                <div>
+                    <h2 id="signup-preferences-title">Depois, conhecemos suas preferências.</h2>
+                    <p>As próximas perguntas são opcionais.</p>
+                </div>
+            </aside>
+            <button class="login-action login-enter signup-continue" type="submit" data-signup-next>Continuar <span
+                    aria-hidden="true">→</span></button>
+            <p class="signup-login">Já tem uma conta? <a href="./login.html" data-account-link>Entrar</a></p>
+        </form>
+
+        <section data-signup-step="2" aria-labelledby="signup-institution-title" hidden>
+            <header class="login-header">
+                <h1 id="signup-institution-title" tabindex="-1">Que tipo de instituição?</h1>
+                <p>Escolha o que faz sentido para você hoje.</p>
+            </header>
+            <span class="signup-optional">Preferências opcionais</span>
+            <fieldset class="signup-options">
+                <legend class="visually-hidden">Tipo de instituição de sua preferência (opcional)</legend>
+                <label class="signup-option">
+                    <input type="radio" name="institution-type" value="publica" checked>
+                    <span class="signup-option-icon institution-public" aria-hidden="true">
+                        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m3 8 9-5 9 5H3Zm1 12h16M7 11v6m5-6v6m5-6v6" />
+                        </svg>
+                    </span>
+                    <span class="signup-option-copy"><strong>Pública</strong><span>Universidades e institutos
+                            públicos.</span></span>
+                    <span class="signup-radio" aria-hidden="true"></span>
+                </label>
+                <label class="signup-option">
+                    <input type="radio" name="institution-type" value="privada">
+                    <span class="signup-option-icon institution-private" aria-hidden="true">
+                        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 4h7l2 2 2-2h7v16h-7l-2 1-2-1H3V4Zm9 2v15" />
+                        </svg>
+                    </span>
+                    <span class="signup-option-copy"><strong>Privada</strong><span>Instituições
+                            particulares.</span></span>
+                    <span class="signup-radio" aria-hidden="true"></span>
+                </label>
+                <label class="signup-option">
+                    <input type="radio" name="institution-type" value="todas">
+                    <span class="signup-option-icon institution-all" aria-hidden="true">
+                        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <rect x="3" y="3" width="6" height="6" rx="1.5" />
+                            <rect x="15" y="3" width="6" height="6" rx="1.5" />
+                            <rect x="3" y="15" width="6" height="6" rx="1.5" />
+                            <rect x="15" y="15" width="6" height="6" rx="1.5" />
+                        </svg>
+                    </span>
+                    <span class="signup-option-copy"><strong>Todas</strong><span>Quero explorar as duas
+                            opções.</span></span>
+                    <span class="signup-radio" aria-hidden="true"></span>
+                </label>
+            </fieldset>
+            <button class="login-action login-enter signup-continue signup-option-continue" type="button"
+                data-signup-next="3">Continuar <span aria-hidden="true">→</span></button>
+            <div class="signup-secondary-actions">
+                <button type="button" data-signup-skip>Pular esta pergunta</button>
+                <button class="signup-muted" type="button" data-signup-skip-all>Pular tudo e seguir cadastro <span
+                        aria-hidden="true">→</span></button>
+                <button class="signup-muted" type="button" data-signup-back><span aria-hidden="true">←</span>
+                    Voltar</button>
+            </div>
+        </section>
+        <section data-signup-step="3" aria-labelledby="signup-city-title" hidden>
+            <header class="login-header">
+                <h1 id="signup-city-title" tabindex="-1">Onde você quer estudar?</h1>
+                <p>Você pode escolher mais de uma cidade.</p>
+            </header>
+            <span class="signup-optional">Preferências opcionais</span>
+            <div class="login-field signup-city-search">
+                <label for="signup-city-search">Buscar cidade ou estado</label>
+                <input id="signup-city-search" type="search" placeholder="Digite para encontrar uma cidade"
+                    autocomplete="off" aria-controls="signup-city-options">
+            </div>
+            <fieldset class="signup-city-fieldset">
+                <legend>Sugestões de cidades</legend>
+                <div class="signup-options" id="signup-city-options"></div>
+            </fieldset>
+            <p id="signup-city-empty" class="signup-city-empty" role="status" hidden>Nenhuma cidade encontrada nas
+                sugestões. Tente outro nome ou estado.</p>
+            <button class="signup-no-city" type="button" aria-pressed="false">Sem preferência de cidade</button>
+            <button class="login-action login-enter signup-continue signup-option-continue" type="button"
+                data-signup-next="4">Continuar <span aria-hidden="true">→</span></button>
+            <div class="signup-secondary-actions">
+                <button type="button" data-signup-skip>Pular esta pergunta</button>
+                <button class="signup-muted" type="button" data-signup-skip-all>Pular tudo e seguir cadastro <span
+                        aria-hidden="true">→</span></button>
+                <button class="signup-muted" type="button" data-signup-back="2"><span aria-hidden="true">←</span>
+                    Voltar</button>
+            </div>
+        </section>
+        <section data-signup-step="4" aria-labelledby="signup-mode-title" hidden>
+            <header class="login-header">
+                <h1 id="signup-mode-title" tabindex="-1">Como prefere estudar?</h1>
+                <p>Escolha uma ou mais modalidades, se quiser.</p>
+            </header>
+            <span class="signup-optional">Preferências opcionais</span>
+            <fieldset class="signup-options">
+                <legend class="visually-hidden">Modalidades de estudo (opcional)</legend>
+                <label class="signup-option signup-mode-option" data-mode-color="blue">
+                    <input type="checkbox" name="study-mode" value="presencial" checked>
+                    <span class="signup-option-icon" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="m3 8 9-5 9 5H3Zm1 12h16M7 11v6m5-6v6m5-6v6" />
+                        </svg></span>
+                    <span class="signup-option-copy"><strong>Presencial</strong><span>Aulas e atividades no
+                            campus.</span></span>
+                    <span class="signup-checkbox" aria-hidden="true"></span>
+                </label>
+                <label class="signup-option signup-mode-option" data-mode-color="green">
+                    <input type="checkbox" name="study-mode" value="ead">
+                    <span class="signup-option-icon" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="13" rx="1.5" />
+                            <path d="M12 16v5m-4 0h8" />
+                        </svg></span>
+                    <span class="signup-option-copy"><strong>A distância</strong><span>Atividades no formato
+                            EAD.</span></span>
+                    <span class="signup-checkbox" aria-hidden="true"></span>
+                </label>
+                <label class="signup-option signup-mode-option" data-mode-color="yellow">
+                    <input type="checkbox" name="study-mode" value="hibrida">
+                    <span class="signup-option-icon" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="2" y="3" width="15" height="12" rx="1.5" />
+                            <path d="M9 15v5m-4 0h7" />
+                            <rect x="16" y="9" width="6" height="12" rx="1.5" />
+                        </svg></span>
+                    <span class="signup-option-copy"><strong>Híbrida</strong><span>Combinação de formatos.</span></span>
+                    <span class="signup-checkbox" aria-hidden="true"></span>
+                </label>
+            </fieldset>
+            <fieldset class="signup-shifts">
+                <legend>E o turno?</legend>
+                <div class="signup-shift-options">
+                    <label class="signup-shift"><input type="checkbox" name="study-shift"
+                            value="manha"><span>Manhã</span></label>
+                    <label class="signup-shift"><input type="checkbox" name="study-shift"
+                            value="tarde"><span>Tarde</span></label>
+                    <label class="signup-shift"><input type="checkbox" name="study-shift"
+                            value="noite"><span>Noite</span></label>
+                    <label class="signup-shift"><input type="checkbox" name="study-shift" value="integral"
+                            checked><span>Integral</span></label>
+                    <label class="signup-shift"><input type="checkbox" name="study-shift"
+                            value="sem-preferencia"><span>Sem preferência</span></label>
+                </div>
+            </fieldset>
+            <button class="login-action login-enter signup-continue signup-option-continue" type="button"
+                data-signup-next="5">Continuar <span aria-hidden="true">→</span></button>
+            <div class="signup-secondary-actions">
+                <button type="button" data-signup-skip>Pular esta pergunta</button>
+                <button class="signup-muted" type="button" data-signup-skip-all>Pular tudo e seguir cadastro <span
+                        aria-hidden="true">→</span></button>
+                <button class="signup-muted" type="button" data-signup-back="3"><span aria-hidden="true">←</span>
+                    Voltar</button>
+            </div>
+        </section>
+        <section data-signup-step="5" aria-labelledby="signup-courses-title" hidden>
+            <header class="login-header">
+                <h1 id="signup-courses-title" tabindex="-1">Quais cursos te interessam?</h1>
+                <p>Escolha quantos quiser ou descubra depois.</p>
+            </header>
+            <span class="signup-optional">Preferências opcionais</span>
+            <div class="login-field signup-city-search">
+                <label for="signup-course-search">Buscar curso</label>
+                <input id="signup-course-search" type="search" placeholder="Nome do curso ou área de interesse"
+                    autocomplete="off" aria-controls="signup-course-options">
+            </div>
+            <div class="signup-course-areas" id="signup-course-areas" role="group" aria-label="Categorias de cursos">
+            </div>
+            <fieldset class="signup-course-fieldset">
+                <legend class="visually-hidden">Cursos de interesse (opcional)</legend>
+                <div class="signup-options" id="signup-course-options" role="region"
+                    aria-label="Cursos de interesse, lista com rolagem" tabindex="0"></div>
+            </fieldset>
+            <p id="signup-course-empty" class="signup-city-empty" role="status" hidden>Nenhum curso encontrado. Tente
+                outra busca ou categoria.</p>
+            <button class="signup-no-city signup-discover-courses" type="button" aria-pressed="false">Ainda estou
+                descobrindo</button>
+            <button class="login-action login-enter signup-continue signup-option-continue" type="button"
+                data-signup-next="6">Revisar meu cadastro <span aria-hidden="true">→</span></button>
+            <div class="signup-secondary-actions">
+                <button type="button" data-signup-skip>Pular esta pergunta</button>
+                <button class="signup-muted" type="button" data-signup-skip-all>Pular tudo e revisar cadastro <span
+                        aria-hidden="true">→</span></button>
+                <button class="signup-muted" type="button" data-signup-back="4"><span aria-hidden="true">←</span>
+                    Voltar</button>
+            </div>
+        </section>
+        <section data-signup-step="6" aria-labelledby="signup-review-title" hidden>
+            <header class="login-header">
+                <h1 id="signup-review-title" tabindex="-1">Seu perfil, do seu jeito.</h1>
+                <p>Revise suas escolhas antes de criar a conta.</p>
+            </header>
+            <article class="signup-review-card signup-review-account">
+                <span class="signup-review-icon material-symbols-outlined" aria-hidden="true">person</span>
+                <div class="signup-review-copy">
+                    <h2>Seus dados</h2>
+                    <p id="signup-review-name"></p>
+                    <p class="signup-review-email" id="signup-review-email"></p>
+                </div>
+                <button type="button" data-signup-edit="1" aria-label="Editar seus dados">Editar</button>
+            </article>
+            <h2 class="signup-review-heading">Suas preferências</h2>
+            <div class="signup-review-preferences">
+                <article class="signup-review-card">
+                    <span class="signup-review-icon review-blue material-symbols-outlined"
+                        aria-hidden="true">account_balance</span>
+                    <div class="signup-review-copy">
+                        <h3>Instituição</h3>
+                        <p id="signup-review-institution"></p>
+                    </div>
+                    <button type="button" data-signup-edit="2" aria-label="Editar instituição">Editar</button>
+                </article>
+                <article class="signup-review-card">
+                    <span class="signup-review-icon review-green material-symbols-outlined"
+                        aria-hidden="true">location_on</span>
+                    <div class="signup-review-copy">
+                        <h3>Cidades</h3>
+                        <p id="signup-review-cities"></p>
+                    </div>
+                    <button type="button" data-signup-edit="3" aria-label="Editar cidades">Editar</button>
+                </article>
+                <article class="signup-review-card">
+                    <span class="signup-review-icon review-yellow material-symbols-outlined"
+                        aria-hidden="true">schedule</span>
+                    <div class="signup-review-copy">
+                        <h3>Modalidade e turno</h3>
+                        <p id="signup-review-study"></p>
+                    </div>
+                    <button type="button" data-signup-edit="4" aria-label="Editar modalidade e turno">Editar</button>
+                </article>
+                <article class="signup-review-card">
+                    <span class="signup-review-icon review-blue material-symbols-outlined"
+                        aria-hidden="true">menu_book</span>
+                    <div class="signup-review-copy">
+                        <h3>Cursos</h3>
+                        <p id="signup-review-courses"></p>
+                    </div>
+                    <button type="button" data-signup-edit="5" aria-label="Editar cursos">Editar</button>
+                </article>
+            </div>
+            <p class="signup-review-hint">Se pular as perguntas, seu perfil fica sem restrições.</p>
+            <aside class="signup-review-note">
+                <h3>Suas escolhas podem mudar</h3>
+                <p>Você poderá editar ou completar suas preferências no perfil quando quiser.</p>
+            </aside>
+            <form id="signup-create-form" novalidate>
+                <label class="signup-terms"><input id="signup-terms" type="checkbox" required><span>Li e aceito os
+                        Termos de uso e a Política de privacidade.</span></label>
+                <button class="login-action login-enter signup-continue signup-option-continue" type="submit"
+                    data-signup-create>Criar minha conta</button>
+            </form>
+            <div class="signup-secondary-actions">
+                <button class="signup-muted" type="button" id="signup-clear-preferences">Limpar preferências</button>
+                <button type="button" data-signup-back="5"><span aria-hidden="true">←</span> Voltar e revisar</button>
+            </div>
+        </section>
+        <button class="signup-return-review" type="button" hidden>Voltar à revisão <span
+                aria-hidden="true">→</span></button>
         <p class="account-notice" role="status" hidden></p>
     </main>
     <script defer src="../scripts/pages/conta.js"></script>
+    <script defer src="../data/courses.js"></script>
+    <script defer src="../scripts/pages/cadastro.js"></script>
 </body>
+
 </html>

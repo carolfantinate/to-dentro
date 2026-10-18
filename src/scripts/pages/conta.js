@@ -1,9 +1,9 @@
 (() => {
   'use strict';
   const status = document.querySelector('.account-notice');
-  for (const button of document.querySelectorAll('.login-enter, .login-forgot')) {
+  for (const button of document.querySelectorAll('.login-enter:not([data-signup-next]):not([data-signup-create]), .login-forgot')) {
     button.addEventListener('click', () => {
-      status.textContent = 'Esta tela é uma prévia. O acesso por conta estará disponível em breve. Por enquanto, você pode explorar sem entrar.';
+      status.textContent = button.dataset.previewMessage || 'Esta tela é uma prévia. O acesso por conta estará disponível em breve. Por enquanto, você pode explorar sem entrar.';
       status.hidden = false;
     });
   }
