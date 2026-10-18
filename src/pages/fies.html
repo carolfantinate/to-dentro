@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Fies | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/guia-programa.css">
+    <script defer src="../scripts/services/auth.js"></script>
+</head>
+<body>
+    <main class="program-guide" id="conteudo-principal">
+        <header class="guide-header">
+            <a href="./programas-sociais.html" aria-label="Voltar para ingresso e inclusão"><span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <span>Fies</span>
+        </header>
+        <h1>Entenda o financiamento.</h1>
+        <p class="guide-intro">Instituições privadas · Crédito estudantil</p>
+        <section class="guide-definition" aria-labelledby="fies-definition-title">
+            <div class="guide-definition-heading">
+                <span class="guide-icon guide-blue material-symbols-outlined" aria-hidden="true">payments</span>
+                <h2 id="fies-definition-title">O que é o Fies?</h2>
+            </div>
+            <p>Financiamento para cursos em instituições privadas participantes. Não é bolsa.</p>
+        </section>
+
+        <section class="guide-eligibility" aria-labelledby="fies-eligibility-title">
+            <h2 id="fies-eligibility-title">Quem pode participar?</h2>
+            <div class="guide-criteria">
+                <article class="guide-criterion guide-blue">
+                    <span class="material-symbols-outlined" aria-hidden="true">menu_book</span>
+                    <h3>Enem</h3><p>Média a partir de 450 pontos.</p>
+                </article>
+                <article class="guide-criterion guide-green">
+                    <span class="material-symbols-outlined" aria-hidden="true">description</span>
+                    <h3>Redação &gt; 0</h3><p>Nota superior a zero.</p>
+                </article>
+                <article class="guide-criterion guide-yellow">
+                    <span class="material-symbols-outlined" aria-hidden="true">payments</span>
+                    <h3>Renda familiar</h3><p>Até 3 salários mínimos por pessoa.<sup><a href="#fies-income-note" aria-label="Confira a observação sobre renda">*</a></sup></p>
+                </article>
+                <article class="guide-criterion guide-blue">
+                    <span class="material-symbols-outlined" aria-hidden="true">check_box</span>
+                    <h3>Regras da seleção</h3><p>Confira os demais critérios do edital.</p>
+                </article>
+            </div>
+        </section>
+        <aside class="guide-notice" aria-labelledby="fies-notice-title">
+            <h2 id="fies-notice-title">Confira todos os critérios</h2>
+            <p>A elegibilidade depende do conjunto de regras e da edição vigente.</p>
+            <p id="fies-income-note">* Renda familiar bruta mensal por pessoa. Confira os requisitos específicos e as regras do Fies Social no edital.</p>
+        </aside>
+
+        <section class="guide-eligibility" aria-labelledby="fies-contract-title">
+            <h2 id="fies-contract-title">Antes de contratar</h2>
+            <div class="guide-criteria">
+                <article class="guide-criterion guide-blue">
+                    <span class="material-symbols-outlined" aria-hidden="true">account_balance</span>
+                    <h3>O que financia?</h3><p>Veja o percentual e os encargos cobertos.</p>
+                </article>
+                <article class="guide-criterion guide-yellow">
+                    <span class="material-symbols-outlined" aria-hidden="true">payments</span>
+                    <h3>O que você paga?</h3><p>Confira valores, prazos e obrigações.</p>
+                </article>
+            </div>
+        </section>
+        <section class="guide-process" aria-labelledby="fies-process-title">
+            <h2 id="fies-process-title">Como funciona</h2>
+            <ol class="guide-steps">
+                <li><span class="guide-number guide-blue" aria-hidden="true">1</span><div><h3>Inscrição e seleção</h3><p>Acesse o processo oficial.</p></div></li>
+                <li><span class="guide-number guide-green" aria-hidden="true">2</span><div><h3>Validação dos dados</h3><p>Confira documentos e informações.</p></div></li>
+                <li><span class="guide-number guide-yellow" aria-hidden="true">3</span><div><h3>Contratação</h3><p>Leia todas as condições do contrato.</p></div></li>
+            </ol>
+        </section>
+        <a class="guide-official" href="https://www.gov.br/pt-br/servicos/obter-financiamento-do-fies" target="_blank" rel="noopener noreferrer" aria-label="Site oficial do Fies, abre em nova aba">
+            <span><strong>Site oficial do Fies</strong><span>Ministério da Educação · gov.br</span></span>
+            <span class="material-symbols-outlined" aria-hidden="true">north_east</span>
+        </a>
+    </main>
+    <td-bottom-nav active="inicio"></td-bottom-nav>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
+</body>
+</html>

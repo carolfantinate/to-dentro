@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inclusão e permanência | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/guia-programa.css">
+    <script defer src="../scripts/services/auth.js"></script>
+</head>
+<body>
+    <main class="program-guide inclusion-guide" id="conteudo-principal">
+        <header class="guide-header">
+            <a href="./programas-sociais.html" aria-label="Voltar para ingresso e inclusão"><span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <span>Inclusão e permanência</span>
+        </header>
+        <h1>Apoios para sua jornada.</h1>
+        <p class="guide-intro">Conheça possibilidades e critérios</p>
+        <section class="guide-definition" aria-labelledby="inclusion-definition-title">
+            <div class="guide-definition-heading">
+                <span class="guide-icon guide-blue material-symbols-outlined" aria-hidden="true">favorite</span>
+                <h2 id="inclusion-definition-title">Ingresso e permanência</h2>
+            </div>
+            <p>Políticas e programas apoiam o acesso e a continuidade nos estudos.</p>
+        </section>
+
+        <section class="guide-eligibility" aria-labelledby="inclusion-types-title">
+            <h2 id="inclusion-types-title">Que tipos de apoio existem?</h2>
+            <div class="guide-criteria">
+                <article class="guide-criterion guide-blue">
+                    <span class="material-symbols-outlined" aria-hidden="true">person</span>
+                    <h3>Reserva de vagas</h3><p>Modalidades de concorrência previstas.</p>
+                </article>
+                <article class="guide-criterion guide-green">
+                    <span class="material-symbols-outlined" aria-hidden="true">payments</span>
+                    <h3>Isenção de taxa</h3><p>Pedido de dispensa da taxa de inscrição.</p>
+                </article>
+                <article class="guide-criterion guide-yellow">
+                    <span class="material-symbols-outlined" aria-hidden="true">favorite</span>
+                    <h3>Permanência</h3><p>Auxílios e programas de apoio aos estudos.</p>
+                </article>
+                <article class="guide-criterion guide-blue">
+                    <span class="material-symbols-outlined" aria-hidden="true">description</span>
+                    <h3>Documentação</h3><p>Comprovação dos critérios de cada programa.</p>
+                </article>
+            </div>
+        </section>
+        <section class="guide-university-support" aria-labelledby="inclusion-university-title">
+            <h2 id="inclusion-university-title">Encontre apoios por universidade</h2>
+            <p>Escolha uma instituição para conhecer seus programas de inclusão.</p>
+            <form id="inclusion-university-form">
+                <label for="inclusion-university">Universidade</label>
+                <div class="guide-university-select">
+                    <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                    <select id="inclusion-university" name="universidade" required>
+                        <option value="" disabled selected>Selecione uma universidade</option>
+                    </select>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </div>
+                <button class="button button-ink" type="submit">Ver apoios da universidade</button>
+            </form>
+            <noscript>Ative o JavaScript para selecionar uma universidade e consultar seus apoios.</noscript>
+        </section>
+        <aside class="guide-notice" aria-labelledby="inclusion-notice-title">
+            <h2 id="inclusion-notice-title">Cada programa tem regras próprias</h2>
+            <p>Os critérios dependem da política e do edital. As informações acima organizam o guia; não garantem elegibilidade.</p>
+        </aside>
+        <a class="guide-official" href="https://www.gov.br/mec/pt-br" target="_blank" rel="noopener noreferrer" aria-label="Site oficial do MEC, abre em nova aba">
+            <span><strong>Site oficial do MEC</strong><span>Ministério da Educação · gov.br</span></span>
+            <span class="material-symbols-outlined" aria-hidden="true">north_east</span>
+        </a>
+    </main>
+    <td-bottom-nav active="inicio"></td-bottom-nav>
+    <script defer src="../data/universities.js"></script>
+    <script defer src="../scripts/components/bottom-nav.js"></script>
+    <script defer src="../scripts/pages/inclusao-permanencia.js"></script>
+    <script defer src="../scripts/components/external-links.js"></script>
+</body>
+</html>

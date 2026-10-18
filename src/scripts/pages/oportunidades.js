@@ -54,9 +54,5 @@
   query.addEventListener('input', render);
   document.querySelector('#opportunities-search').addEventListener('submit', event => { event.preventDefault(); render(); });
   for (const button of document.querySelectorAll('[data-category]')) button.addEventListener('click', () => { category = button.dataset.category; render(); });
-  document.querySelector('#opportunities-inclusion').addEventListener('click', () => showDetails({
-    title: 'Programas de ingresso e inclusão',
-    detail: 'Explore as formas de ingresso e as iniciativas de inclusão da universidade. Consulte as regras de participação, a documentação necessária e os editais de cada programa nos canais institucionais.',
-  }));
   render();
 })();
