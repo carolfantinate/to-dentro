@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  if (window.ToDentroAuth.isRestrictedPage()) return;
   const params = new URLSearchParams(location.search);
   document.querySelector('a[href="./salvos.html?from=perfil"] .profile-count').textContent = window.ToDentroSaved.getUniversities().length;
   document.querySelector('a[href="./salvos.html?categoria=cursos&from=perfil"] .profile-count').textContent = '0';

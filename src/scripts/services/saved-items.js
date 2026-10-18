@@ -2,8 +2,9 @@
   'use strict';
   const key = 'to-dentro-saved-universities';
   // Seleção inicial demonstrativa do protótipo.
-  let memory = ['usp', 'unicamp'];
+  let memory = [];
   function getUniversities() {
+    if (!window.ToDentroAuth.isAuthenticated()) return [];
     try {
       const raw = localStorage.getItem(key);
       if (raw !== null) {
@@ -14,6 +15,7 @@
     return [...new Set(memory)];
   }
   function toggleUniversity(id) {
+    if (!window.ToDentroAuth.requireLogin('Entre para salvar universidades.')) return null;
     if (!window.ToDentroUniversities.some(item => item.id === id)) return null;
     const ids = getUniversities();
     const saved = !ids.includes(id);

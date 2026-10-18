@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  if (window.ToDentroAuth.isRestrictedPage()) return;
   const key = 'to-dentro-interest-map';
   const button = document.querySelector('#save-interest-map');
   const status = document.querySelector('#result-status');

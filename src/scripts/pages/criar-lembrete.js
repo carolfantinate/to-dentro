@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  if (window.ToDentroAuth.isRestrictedPage()) return;
   const params = new URLSearchParams(location.search);
   const key = 'to-dentro-reminders';
   const back = new URL('./calendario.html', location.href);

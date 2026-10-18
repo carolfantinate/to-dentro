@@ -77,8 +77,9 @@
   const id = `${university.id}:${course.value}`;
   let saved = [];
   try { const value = JSON.parse(localStorage.getItem(key) || '[]'); if (Array.isArray(value)) saved = value.filter(item => typeof item === 'string'); } catch { /* Armazenamento indisponível. */ }
-  function updateSave() { const active = saved.includes(id); save.setAttribute('aria-pressed', String(active)); save.setAttribute('aria-label', active ? 'Remover curso dos salvos' : 'Salvar curso'); }
+  function updateSave() { const active = window.ToDentroAuth.isAuthenticated() && saved.includes(id); save.setAttribute('aria-pressed', String(active)); save.setAttribute('aria-label', active ? 'Remover curso dos salvos' : 'Salvar curso'); }
   save.addEventListener('click', () => {
+    if (!window.ToDentroAuth.requireLogin('Entre para salvar este curso.')) return;
     saved = saved.includes(id) ? saved.filter(item => item !== id) : [...saved, id];
     let persisted = true;
     try { localStorage.setItem(key, JSON.stringify(saved)); } catch { persisted = false; }

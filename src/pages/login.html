@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/login.css">
+    <script defer src="../scripts/services/auth.js"></script>
+</head>
+
+<body>
+    <main class="login-page" id="conteudo-principal">
+        <img class="login-logo" src="../../assets/images/combination-mark.svg" alt="Tô Dentro!" width="170" height="57">
+
+        <header class="login-header">
+            <h1>Que bom te ver por aqui!</h1>
+            <p>Entre para continuar construindo seu futuro.</p>
+        </header>
+
+        <section class="login-fields" aria-label="Dados de acesso">
+            <div class="login-field">
+                <label for="login-email">E-mail</label>
+                <input id="login-email" type="email" autocomplete="email" placeholder="seunome@exemplo.com">
+            </div>
+
+            <div class="login-field">
+                <label for="login-password">Senha</label>
+                <div class="login-password">
+                    <input id="login-password" type="password" autocomplete="current-password" placeholder="••••••••">
+                    <button class="login-eye" type="button" aria-label="Mostrar senha" aria-disabled="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.4" aria-hidden="true">
+                            <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <button class="login-text-button login-forgot" type="button" aria-disabled="true">Esqueci minha
+                senha</button>
+            <button class="login-action login-enter" type="button" aria-disabled="true">Entrar</button>
+        </section>
+
+        <div class="login-signup">
+            <p>Ainda não tem uma conta?</p>
+            <a class="login-action login-create" href="./cadastro.html" data-account-link>Criar conta</a>
+        </div>
+
+        <a class="login-explore" href="../../index.html">Explorar sem entrar</a>
+        <p class="account-notice" role="status" hidden></p>
+    </main>
+    <script defer src="../scripts/pages/conta.js"></script>
+</body>
+
+</html>

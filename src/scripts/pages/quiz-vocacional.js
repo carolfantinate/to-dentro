@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  if (window.ToDentroAuth.isRestrictedPage()) return;
 
   const storageKey = 'to-dentro-quiz-atividades';
   if (new URLSearchParams(location.search).get('reiniciar') === '1') {

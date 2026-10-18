@@ -54,8 +54,9 @@
     try { const value = JSON.parse(localStorage.getItem(storageKey) || '[]'); return Array.isArray(value) ? value.filter(item => typeof item === 'string') : []; } catch { return []; }
   }
   let saved = readSaved();
-  function updateSave() { const exists = saved.includes(identity); save.setAttribute('aria-pressed', String(exists)); set('results-save-label', exists ? 'Comparação salva' : 'Salvar comparação'); }
+  function updateSave() { const exists = window.ToDentroAuth.isAuthenticated() && saved.includes(identity); save.setAttribute('aria-pressed', String(exists)); set('results-save-label', exists ? 'Comparação salva' : 'Salvar comparação'); }
   save.addEventListener('click', () => {
+    if (!window.ToDentroAuth.requireLogin('Entre para salvar esta comparação.')) return;
     saved = readSaved();
     if (saved.includes(identity)) { set('results-status', 'Esta comparação já está salva neste navegador.'); updateSave(); return; }
     try { localStorage.setItem(storageKey, JSON.stringify([...saved, identity])); saved.push(identity); updateSave(); set('results-status', 'Comparação salva! Acesse pela aba Salvos.'); }

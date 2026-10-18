@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  if (window.ToDentroAuth.isRestrictedPage()) return;
   const params = new URLSearchParams(location.search);
   const university = document.querySelector('#experience-university');
   const course = document.querySelector('#experience-course');

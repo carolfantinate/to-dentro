@@ -130,6 +130,7 @@
   sort.addEventListener('change', () => render(selectedCategory));
   document.querySelector('#community-search').addEventListener('submit', event => { event.preventDefault(); render(selectedCategory); });
   document.querySelector('#community-share').addEventListener('click', () => {
+    if (!window.ToDentroAuth.requireLogin('Entre para publicar na comunidade.')) return;
     if (selectedCategory === 'duvidas') {
       const destination = new URL('./criar-duvida.html', location.href);
       if (questionUniversity.value) destination.searchParams.set('universidade', questionUniversity.value);

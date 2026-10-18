@@ -81,6 +81,7 @@
   }
   saveButton.addEventListener('click', () => {
     const result = window.ToDentroSaved.toggleUniversity(university.id);
+    if (!result) return;
     updateSaved();
     const status = document.querySelector('#save-status');
     status.classList.toggle('visually-hidden', result.persisted);

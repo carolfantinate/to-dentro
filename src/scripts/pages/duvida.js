@@ -70,11 +70,13 @@
   const dialog = document.querySelector('#answer-dialog');
   const text = document.querySelector('#answer-text'); const source = document.querySelector('#answer-source');
   document.querySelector('#answer-question').textContent = post.title;
-  document.querySelector('#discussion-answer').addEventListener('click', () => dialog.showModal());
+  document.querySelector('#discussion-answer').addEventListener('click', () => { if (window.ToDentroAuth.requireLogin('Entre para responder à dúvida.')) dialog.showModal(); });
   document.querySelector('#answer-cancel').addEventListener('click', () => dialog.close());
   text.addEventListener('input', () => text.setCustomValidity('')); source.addEventListener('input', () => source.setCustomValidity(''));
   document.querySelector('#answer-form').addEventListener('submit', event => {
-    event.preventDefault(); text.setCustomValidity(text.value.trim() ? '' : 'Escreva sua resposta.');
+    event.preventDefault();
+    if (!window.ToDentroAuth.requireLogin('Entre para publicar sua resposta.')) return;
+    text.setCustomValidity(text.value.trim() ? '' : 'Escreva sua resposta.');
     let url = '';
     try { if (source.value.trim()) { const parsed = new URL(source.value.trim()); if (!['http:', 'https:'].includes(parsed.protocol)) throw new Error(); url = parsed.href; } source.setCustomValidity(''); }
     catch { source.setCustomValidity('Informe um link que comece com https:// ou http://.'); }

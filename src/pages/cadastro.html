@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar conta | Tô Dentro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/login.css">
+    <script defer src="../scripts/services/auth.js"></script>
+</head>
+<body>
+    <main class="login-page" id="conteudo-principal">
+        <img class="login-logo" src="../../assets/images/combination-mark.svg" alt="Tô Dentro!" width="170" height="57">
+        <header class="login-header">
+            <h1>Seu próximo passo começa aqui.</h1>
+            <p>Crie sua conta para construir seu futuro com a gente.</p>
+        </header>
+        <section class="login-fields" aria-label="Dados para criar conta">
+            <div class="login-field">
+                <label for="signup-name">Nome</label>
+                <input id="signup-name" type="text" autocomplete="name" placeholder="Como podemos te chamar?">
+            </div>
+            <div class="login-field">
+                <label for="signup-email">E-mail</label>
+                <input id="signup-email" type="email" autocomplete="email" placeholder="seunome@exemplo.com">
+            </div>
+            <div class="login-field">
+                <label for="signup-password">Senha</label>
+                <input id="signup-password" type="password" autocomplete="new-password" placeholder="Crie sua senha">
+            </div>
+            <button class="login-action login-enter" type="button" aria-disabled="true">Criar conta</button>
+        </section>
+        <div class="login-signup">
+            <p>Já tem uma conta?</p>
+            <a class="login-action login-create" href="./login.html" data-account-link>Entrar</a>
+        </div>
+        <a class="login-explore" href="../../index.html">Explorar sem entrar</a>
+        <p class="account-notice" role="status" hidden></p>
+    </main>
+    <script defer src="../scripts/pages/conta.js"></script>
+</body>
+</html>

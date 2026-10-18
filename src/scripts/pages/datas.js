@@ -41,14 +41,15 @@
     const title = document.createElement('h2'); title.textContent = event.title; card.append(title);
     const lines = event.end ? [`Início: ${format(event.start, event.time)}`, `Fim: ${format(event.end, event.endTime)}`] : [format(event.start, event.time)];
     for (const line of lines) { const text = document.createElement('p'); text.textContent = line; card.append(text); }
-    const button = document.createElement('button'); button.type = 'button'; button.className = 'button button-yellow';
+    const button = document.createElement('button'); button.type = 'button'; button.dataset.authAction = 'calendar'; button.className = 'button button-yellow';
     const entries = entriesFor(event);
     function updateButton() {
       let added = false;
-      try { const saved = read(); added = entries.every(entry => saved.some(item => item.id === entry.id)); } catch { /* Permitir tentativa de salvar. */ }
+      try { const saved = read(); added = window.ToDentroAuth.isAuthenticated() && entries.every(entry => saved.some(item => item.id === entry.id)); } catch { /* Permitir tentativa de salvar. */ }
       button.disabled = added; button.textContent = added ? 'Adicionado ao meu calendário' : 'Adicionar ao meu calendário';
     }
     button.addEventListener('click', () => {
+      if (!window.ToDentroAuth.requireLogin('Entre para adicionar datas ao seu calendário.')) return;
       try {
         const saved = read();
         localStorage.setItem(key, JSON.stringify([...saved, ...entries.filter(entry => !saved.some(item => item.id === entry.id))]));

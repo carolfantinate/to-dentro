@@ -17,6 +17,13 @@
     const saved = JSON.parse(localStorage.getItem('to-dentro-calendar-dates') || '[]');
     if (Array.isArray(saved)) savedDates = saved.filter(item => item && typeof item.title === 'string' && validDate(item.date));
   } catch { /* Os lembretes continuam disponíveis. */ }
+  if (!window.ToDentroAuth.isAuthenticated()) {
+    reminders = []; savedDates = [];
+    document.title = 'Calendário de datas | Tô Dentro';
+    document.querySelector('.calendar-header > span').textContent = 'Calendário de datas';
+    document.querySelector('.calendar-intro').textContent = 'Explore inscrições, provas e resultados. Entre para organizar seu calendário pessoal.';
+    document.querySelector('.calendar-demo').textContent = 'Explore as datas das universidades. Alguns eventos são demonstrativos.';
+  }
   const days = document.querySelector('#calendar-days');
   const agenda = document.querySelector('#calendar-events');
   const filters = [...document.querySelectorAll('[data-category]')];
@@ -24,12 +31,13 @@
   if (/^\d{4}-\d{2}-01$/.test(params.get('mes') || '') && validDate(params.get('mes'))) {
     const parts = params.get('mes').split('-').map(Number); year = parts[0]; month = parts[1] - 1;
   }
-  if (params.get('categoria') === 'lembretes') category = 'lembretes';
+  if (window.ToDentroAuth.isAuthenticated() && params.get('categoria') === 'lembretes') category = 'lembretes';
   const universitySelect = document.querySelector('#calendar-university');
   for (const university of window.ToDentroUniversities) universitySelect.append(new Option(university.acronym, university.id));
   universitySelect.value = window.ToDentroUniversities.some(item => item.id === params.get('universidade')) ? params.get('universidade') : '';
   if (universitySelect.value) category = 'universidades';
   function openReminder(reminder) {
+    if (!window.ToDentroAuth.requireLogin('Entre para organizar seus lembretes pessoais.')) return;
     const destination = new URL('./criar-lembrete.html', location.href);
     if (reminder) destination.searchParams.set('id', reminder.id);
     destination.searchParams.set('data', selectedDay ? dateKey(selectedDay) : today);
