@@ -14,13 +14,17 @@
 <body>
     <main class="login-page signup-page" id="conteudo-principal">
         <div class="signup-top">
-            <img class="login-logo" src="../../assets/images/brand/logo.svg" alt="Tô Dentro!" width="170"
-                height="61">
+            <img class="login-logo" src="../../assets/images/brand/logo.svg" alt="Tô Dentro!" width="170" height="61">
             <span class="signup-step">Etapa 1 de 6</span>
         </div>
         <div class="signup-progress" role="progressbar" aria-label="Etapas do cadastro" aria-valuemin="1"
             aria-valuemax="6" aria-valuenow="1" aria-valuetext="Etapa 1 de 6: dados de acesso">
-            <span class="is-current"></span><span></span><span></span><span></span><span></span><span></span>
+            <span class="is-current"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
         <form id="signup-access-form" data-signup-step="1" aria-labelledby="signup-access-title" novalidate>
             <header class="login-header">
@@ -346,6 +350,8 @@
         <p class="account-notice" role="status" hidden></p>
     </main>
     <script defer src="../scripts/pages/conta.js"></script>
+    <script defer src="../data/mock-data.js"></script>
+    <script defer src="../data/catalog.js"></script>
     <script defer src="../data/courses.js"></script>
     <script defer src="../scripts/pages/cadastro.js"></script>
 </body>

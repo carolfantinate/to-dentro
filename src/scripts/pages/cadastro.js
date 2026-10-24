@@ -46,11 +46,7 @@
   }
 
   // Seleção visual em memória; ainda não há persistência nem envio de dados.
-  const cities = [
-    { id: 'sao-paulo', name: 'São Paulo', state: 'SP', color: 'blue' },
-    { id: 'campinas', name: 'Campinas', state: 'SP', color: 'green' },
-    { id: 'sao-carlos', name: 'São Carlos', state: 'SP', color: 'yellow' },
-  ];
+  const cities = window.ToDentroData.source.general.cities;
   const selectedCities = new Set(['sao-paulo', 'campinas']);
   const citySearch = document.querySelector('#signup-city-search');
   const cityOptions = document.querySelector('#signup-city-options');

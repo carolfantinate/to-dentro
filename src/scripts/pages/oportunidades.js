@@ -9,7 +9,7 @@
 
   const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
 
-  const sites = { usp: 'https://www.usp.br/', unesp: 'https://www.unesp.br/', unicamp: 'https://www.unicamp.br/' };
+  const sites = Object.fromEntries(universities.map(item => [item.id, item.website]));
   let category = entries.some(entry => entry.category === params.get('categoria')) ? params.get('categoria') : '';
   const selected = universities.find(item => item.id === params.get('universidade'));
   query.value = params.get('busca') || selected?.acronym || '';

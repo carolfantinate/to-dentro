@@ -2,11 +2,7 @@
   'use strict';
   const select = document.querySelector('#inclusion-university');
   const form = document.querySelector('#inclusion-university-form');
-  const sites = {
-    usp: 'https://prip.usp.br/apoio-estudantil/',
-    unesp: 'https://www.unesp.br/permanenciaestudantil',
-    unicamp: 'https://deape.unicamp.br/',
-  };
+  const sites = Object.fromEntries(window.ToDentroUniversities.filter(item => item.studentSupportUrl).map(item => [item.id, item.studentSupportUrl]));
   for (const university of window.ToDentroUniversities) {
     if (!sites[university.id]) continue;
     select.append(new Option(`${university.acronym} · ${university.name}`, university.id));

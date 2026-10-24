@@ -90,3 +90,28 @@ O calendário está em `src/pages/calendario.html`, acessível pela home, pelo p
 Salvos abre `src/pages/salvos.html` pela barra inferior ou pelo perfil. Reutiliza o componente dos cards e começa com USP/UNICAMP como seleção demonstrativa. Salvar/remover nos detalhes grava IDs em `to-dentro-saved-universities` no navegador, sem conta ou servidor. O perfil mostra a contagem atual de universidades e zero cursos. Cursos e Datas têm estado vazio até a implementação de seus fluxos de salvamento. Uma lista vazia persistida não é preenchida novamente. Em falha de armazenamento, há aviso na página de detalhes.
 
 
+
+## Configuração do Firebase
+
+A integração está preparada na raiz do aplicativo:
+
+```text
+config/
+  firebase.js    Configuração e inicialização de App, Authentication e Firestore
+services/
+  auth.js        Cadastro, login, logout, recuperação de senha e observação da sessão
+```
+
+Em `config/firebase.js`, substitua apenas o objeto `firebaseConfig` pelos dados do aplicativo Web registrados no console. Não cole a tag `<script>` inteira. Os módulos usam a mesma versão do SDK pelo CDN oficial, sem npm, Analytics ou Storage. Execute pelo servidor local ou GitHub Pages.
+
+O serviço `services/auth.js` exporta `createAccount`, `login`, `logout`, `resetPassword` e `observeAuth`, para importação por scripts do tipo módulo. As telas ainda usam o fluxo anterior de visitante. A conexão dos formulários e da sessão será feita após preencher a configuração e ativar o provedor E-mail/Senha no Firebase. O Firestore também precisa ser criado e ter regras definidas antes do uso de dados.
+
+## Dados mockados centralizados
+
+Os registros acadêmicos e da comunidade têm uma fonte única em `src/data/mock-data.js`, organizada por universidade. Cada campus, oferta de curso, nota, processo seletivo, edição, evento, relato e resposta possui um ID; registros ligados a uma instituição mantêm `universityId`.
+
+`src/data/catalog.js` centraliza consultas e relações. Os arquivos de dados anteriores são adaptadores para as telas existentes. Os links antigos continuam aceitos, e os novos fluxos acadêmicos passam a usar IDs estáveis. A estrutura distingue o curso geral da oferta em um campus e não reaproveita notas entre seleções diferentes.
+
+Consulte [a estrutura dos mocks, os exemplos de consulta e a preparação para migração](docs/mock-data.md). Esta etapa não conecta as telas ao Firestore nem publica regras.
+
+Validação: `node tests/data.cjs` e `node tests/access.cjs`.

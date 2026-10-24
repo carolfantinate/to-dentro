@@ -28,8 +28,8 @@
     return saved;
   }
   function entriesFor(event) {
-    const base = { universityId: selection.universityId, process: selection.process, edition, source: selection.source, official: true, color: 'blue', category: 'vestibular' };
-    const prefix = `${selection.universityId}-${selection.process}-${edition}-${event.id}`;
+    const base = { universityId: selection.universityId, process: selection.process, edition, source: selection.source, official: !selection.isMock, color: 'blue', category: 'vestibular' };
+    const prefix = `${selection.universityId}-${selection.process}-${edition}-${event.legacyId || event.id}`;
     return [
       { ...base, id: `${prefix}-inicio`, title: `${event.title}${event.end ? ' · início' : ''}`, date: event.start, time: event.time },
       ...(event.end ? [{ ...base, id: `${prefix}-fim`, title: `${event.title} · fim`, date: event.end, time: event.endTime }] : []),

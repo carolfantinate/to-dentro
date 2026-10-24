@@ -2,9 +2,11 @@
   'use strict';
   const params = new URLSearchParams(location.search);
   const university = window.ToDentroUniversities.find(item => item.id === params.get('universidade'));
-  const course = window.ToDentroCourseCatalog.courses.find(item => item.value === params.get('curso'));
-  const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-  if (!university || !course || !university.courses.some(name => normalize(name) === course.value)) {
+  const course = window.ToDentroData.getCourse(params.get('curso'));
+  const data = window.ToDentroData;
+  const offerings = university && course ? data.getOfferings({ universityId: university.id, courseId: course.id }) : [];
+  const selectedOffering = params.has('oferta') ? offerings.find(item => item.id === params.get('oferta')) : null;
+  if (!university || !course || !offerings.length || (params.has('oferta') && !selectedOffering)) {
     document.querySelector('#course-not-found').hidden = false;
     return;
   }
@@ -30,16 +32,18 @@
   document.title = `${course.name} · ${university.acronym} | Tô Dentro`;
   document.querySelector('#course-name').textContent = course.name;
   document.querySelector('#course-university').textContent = `${university.acronym} · ${university.name}`;
-  const computing = course.value === 'ciencia da computacao';
-  document.querySelector('#course-intro-title').textContent = computing ? 'Tecnologia que transforma' : 'Conhecimento que transforma';
-  document.querySelector('#course-description').textContent = computing ? 'Da lógica à criação de soluções digitais: conheça possibilidades na computação.' : `Explore a formação em ${course.name} e conheça as possibilidades dessa área.`;
+  const content = data.getCourseContent(course.id);
+  document.querySelector('#course-intro-title').textContent = content.introTitle;
+  document.querySelector('#course-description').textContent = content.description || `Explore a formação em ${course.name} e conheça as possibilidades dessa área.`;
+  const shownOfferings = selectedOffering ? [selectedOffering] : offerings;
+  const mode = data.source.general.modes.find(item => item.id === shownOfferings[0].modeId)?.name || 'Modalidade';
+  const period = data.source.general.periods.find(item => item.id === shownOfferings[0].periodId)?.name || 'Turno';
   const overview = [
-    ['university', computing ? 'Bacharelado' : course.degree, 'Formação de graduação.', 'blue'],
-    ['pin', 'Presencial', 'Atividades no campus.', 'green'],
-    ['clock', computing && university.id === 'usp' ? 'Integral' : 'Turno', 'Confira a oferta da unidade.', 'yellow'],
-    ['document', 'Duração', 'Varia conforme o campus.', 'blue']
+    ['university', course.degree, 'Formação de graduação.', 'blue'],
+    ['pin', mode, 'Atividades no campus.', 'green'],
+    ['clock', period, 'Confira a oferta da unidade.', 'yellow'],
+    ['document', selectedOffering?.durationYears ? `${selectedOffering.durationYears} anos` : 'Duração', 'Varia conforme o campus.', 'blue']
   ];
-  if (!(computing && university.id === 'usp')) overview[1] = ['pin', 'Modalidade', 'Confira a oferta da unidade.', 'green'];
   for (const [symbol, title, description, color] of overview) {
     const card = document.createElement('article'); card.className = color;
     card.innerHTML = `${icon(symbol)}<h3></h3><p></p>`;
@@ -53,14 +57,13 @@
       card.querySelector('strong').textContent = title; document.querySelector(target).append(card);
     }
   }
-  renderItems('#course-subjects', computing ? [['code','Programação','blue'],['chip','Algoritmos','green'],['chart','Dados e IA','yellow'],['screen','Sistemas','blue']] : [['document','Fundamentos da área','blue'],['science','Pesquisa','green'],['chart','Práticas e projetos','yellow'],['university','Formação acadêmica','blue']]);
-  renderItems('#course-careers', computing ? [['screen','Tecnologia e software','blue'],['chart','Dados e inteligência artificial','yellow'],['science','Pesquisa e inovação','green']] : [['document','Atuação profissional','blue'],['university','Ensino e formação','yellow'],['science','Pesquisa e inovação','green']]);
-  const official = { usp:'https://www5.usp.br/ensino/graduacao/cursos-oferecidos/', unesp:'https://www.unesp.br/', unicamp:'https://www.unicamp.br/' }[university.id];
-  const campuses = computing && university.id === 'usp' ? [
-    ['São Paulo · Butantã','IME','Ciência da Computação','https://www.ime.usp.br/bcc/'],
-    ['São Carlos','ICMC','Ciências de Computação · 5 anos','https://www.icmc.usp.br/graduacao/ciencias-de-computacao-bacharelado'],
-    ['Ribeirão Preto','FFCLRP','Ciência da Computação · 4 anos','https://www.ffclrp.usp.br/']
-  ] : [[university.city, university.acronym, 'Confira a oferta e as unidades no catálogo oficial.', official]];
+  renderItems('#course-subjects', content.subjects);
+  renderItems('#course-careers', content.careers);
+  const official = university.coursesUrl;
+  const campuses = shownOfferings.map(offering => {
+    const campus = data.getCampus(university.id, offering.campusId);
+    return [campus.label, offering.unit || university.acronym, offering.description, offering.website];
+  });
   for (const [city, unit, description, href] of campuses) {
     const card = document.createElement('article'); card.className = 'course-panel';
     card.innerHTML = `<div class="course-campus-heading"><span class="course-icon blue">${icon('pin')}</span><div><h3></h3><small></small></div></div><p></p><a target="_blank" rel="noopener noreferrer">Ver detalhes da unidade ↗</a>`;
@@ -70,11 +73,11 @@
   }
   document.querySelector('#course-official').href = official;
   document.querySelector('#course-official-title').textContent = `Conheça o curso na ${university.acronym}`;
-  document.querySelector('#course-cutoff-link').href = `./buscar-nota-de-corte.html?${new URLSearchParams({ universidade: university.id, curso: course.value })}`;
+  document.querySelector('#course-cutoff-link').href = `./buscar-nota-de-corte.html?${new URLSearchParams({ universidade: university.id, curso: course.id, ...(selectedOffering ? {campus: selectedOffering.campusId} : {}) })}`;
   for (const element of document.querySelectorAll('[data-icon]')) element.innerHTML = icon(element.dataset.icon);
   const save = document.querySelector('#course-save');
   const key = 'to-dentro-saved-courses';
-  const id = `${university.id}:${course.value}`;
+  const id = selectedOffering?.id || `${university.id}:${course.value}`;
   let saved = [];
   try { const value = JSON.parse(localStorage.getItem(key) || '[]'); if (Array.isArray(value)) saved = value.filter(item => typeof item === 'string'); } catch { /* Armazenamento indisponível. */ }
   function updateSave() { const active = window.ToDentroAuth.isAuthenticated() && saved.includes(id); save.setAttribute('aria-pressed', String(active)); save.setAttribute('aria-label', active ? 'Remover curso dos salvos' : 'Salvar curso'); }

@@ -8,7 +8,8 @@
   }
   const catalog = window.ToDentroCourseCatalog;
   const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-  const courses = university.courses.map(name => catalog.courses.find(course => course.value === normalize(name))).filter(Boolean);
+  const courseIds = new Set(window.ToDentroData.getOfferings({ universityId: university.id }).map(item => item.courseId));
+  const courses = catalog.courses.filter(course => courseIds.has(course.id));
   const back = new URL('./universidade.html', location.href);
   back.searchParams.set('id', university.id);
   if (params.get('from')) {
@@ -43,7 +44,7 @@
       const link = document.createElement('a'); link.className = 'button button-yellow'; link.textContent = 'Conhecer curso';
       link.setAttribute('aria-label', `Conhecer curso de ${course.name}`);
       const destination = new URL('./curso.html', location.href);
-      destination.searchParams.set('universidade', university.id); destination.searchParams.set('curso', course.value);
+      destination.searchParams.set('universidade', university.id); destination.searchParams.set('curso', course.id);
       destination.searchParams.set('from', `${location.pathname}?${state}`); link.href = destination.href;
       card.append(title, metadata, link); list.append(card);
     }

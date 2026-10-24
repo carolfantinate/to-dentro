@@ -21,15 +21,14 @@
       try { const value = JSON.parse(localStorage.getItem('to-dentro-saved-courses') || '[]'); if (Array.isArray(value)) saved = value; } catch { /* Armazenamento indisponível. */ }
       for (const id of saved) {
         if (typeof id !== 'string') continue;
-        const [universityId, courseId] = id.split(':');
-        const university = window.ToDentroUniversities.find(item => item.id === universityId);
-        const course = window.ToDentroCourseCatalog.courses.find(item => item.value === courseId);
-        if (!university || !course) continue;
+        const selection = window.ToDentroData.resolveSavedCourse(id);
+        if (!selection) continue;
+        const { university, course, offering, campus } = selection;
         const card = document.createElement('article'); card.className = 'course-card';
         const title = document.createElement('h2'); title.textContent = course.name;
-        const context = document.createElement('p'); context.textContent = university.acronym;
+        const context = document.createElement('p'); context.textContent = `${university.acronym}${campus ? ` · ${campus.label}` : ''}`;
         const link = document.createElement('a'); link.className = 'button button-yellow'; link.textContent = 'Conhecer curso';
-        link.href = `./curso.html?${new URLSearchParams({ universidade: universityId, curso: courseId })}`;
+        link.href = `./curso.html?${new URLSearchParams({ universidade: university.id, curso: course.id, ...(offering ? {oferta: offering.id} : {}) })}`;
         card.append(title, context, link); list.append(card);
       }
     }
@@ -39,7 +38,7 @@
       for (const value of saved) {
         if (typeof value !== 'string') continue;
         const state = new URLSearchParams(value);
-        const course = window.ToDentroCourseCatalog.courses.find(item => item.value === state.get('curso'));
+        const course = window.ToDentroData.getCourse(state.get('curso'));
         const selection = window.ToDentroComparison.readSelection(state);
         if (!course || selection.length < 2) continue;
         const card = document.createElement('article'); card.className = 'course-card';

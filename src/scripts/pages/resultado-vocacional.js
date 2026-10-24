@@ -5,12 +5,7 @@
   const button = document.querySelector('#save-interest-map');
   const status = document.querySelector('#result-status');
   // Perfil fixo do protótipo; não é calculado a partir das respostas do quiz.
-  const map = {
-    version: 1,
-    demonstrative: true,
-    profile: 'Cuidar e descobrir',
-    interests: { pessoas: 4.7, ciencia: 4.2, criacao: 2.9, analise: 3.6, organizacao: 2.5, comunicacao: 3.3 }
-  };
+  const map = window.ToDentroData.source.general.vocationalProfiles.find(item => item.id === 'cuidar-e-descobrir');
   function showSaved() {
     button.textContent = 'Mapa de interesses salvo';
     status.textContent = 'Seu mapa demonstrativo está salvo neste navegador.';

@@ -38,11 +38,7 @@
     'university-admission': university.admission,
   };
   for (const [id, text] of Object.entries(values)) document.getElementById(id).textContent = text;
-  const official = {
-    usp: ['https://www.usp.br/', 'https://www.fuvest.br/'],
-    unesp: ['https://www.unesp.br/', 'https://www.unesp.br/vestibular'],
-    unicamp: ['https://www.unicamp.br/', 'https://www.unicamp.br/estude-na-unicamp/'],
-  }[university.id];
+  const official = [university.website, university.admissionsUrl];
   document.querySelector('#university-official-site').href = official[0];
   document.querySelector('#university-selection-site').href = official[1];
   document.querySelector('#university-admission-link').href = official[1];
