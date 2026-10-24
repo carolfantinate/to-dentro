@@ -1,0 +1,79 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function ownsProfile(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    function validPreferences(preferences) {
+      return preferences is map
+        && preferences.keys().hasAll([
+          'institutionTypes', 'cityIds', 'modeIds', 'periodIds',
+          'courseIds', 'areaIds', 'admissionMethodIds', 'discoveringCourses'
+        ])
+        && preferences.keys().hasOnly([
+          'institutionTypes', 'cityIds', 'modeIds', 'periodIds',
+          'courseIds', 'areaIds', 'admissionMethodIds', 'discoveringCourses'
+        ])
+        && preferences.institutionTypes is list
+        && preferences.institutionTypes.size() <= 2
+        && preferences.institutionTypes.toSet().hasOnly(['publica', 'privada'])
+        && preferences.cityIds is list && preferences.cityIds.size() <= 50
+        && preferences.modeIds is list && preferences.modeIds.size() <= 3
+        && preferences.modeIds.toSet().hasOnly(['presencial', 'ead', 'hibrida'])
+        && preferences.periodIds is list && preferences.periodIds.size() <= 4
+        && preferences.periodIds.toSet().hasOnly(['manha', 'tarde', 'noite', 'integral'])
+        && preferences.courseIds is list && preferences.courseIds.size() <= 50
+        && preferences.areaIds is list && preferences.areaIds.size() <= 50
+        && preferences.admissionMethodIds is list && preferences.admissionMethodIds.size() <= 4
+        && preferences.admissionMethodIds.toSet().hasOnly(['sisu', 'enem', 'prouni', 'vestibular'])
+        && preferences.discoveringCourses is bool
+        && (!preferences.discoveringCourses || preferences.courseIds.size() == 0);
+    }
+
+    function validProfile(profile, uid) {
+      return profile.keys().hasAll([
+          'uid', 'displayName', 'email', 'preferences',
+          'createdAt', 'updatedAt', 'termsAcceptedAt', 'schemaVersion'
+        ])
+        && profile.keys().hasOnly([
+          'uid', 'displayName', 'email', 'preferences',
+          'createdAt', 'updatedAt', 'termsAcceptedAt', 'schemaVersion'
+        ])
+        && profile.uid == uid
+        && profile.displayName is string
+        && profile.displayName.size() > 0 && profile.displayName.size() <= 120
+        && profile.email is string && profile.email.size() <= 254
+        && profile.email == request.auth.token.email
+        && profile.schemaVersion == 1
+        && profile.createdAt is timestamp
+        && profile.updatedAt is timestamp
+        && profile.termsAcceptedAt is timestamp
+        && profile.updatedAt == request.time
+        && validPreferences(profile.preferences);
+    }
+
+    match /users/{uid} {
+      // Não permite listar perfis ou ler o cadastro de outra pessoa.
+      allow get: if ownsProfile(uid);
+      allow list: if false;
+
+      allow create: if ownsProfile(uid)
+        && validProfile(request.resource.data, uid)
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.termsAcceptedAt == request.time;
+
+      allow update: if ownsProfile(uid)
+        && validProfile(request.resource.data, uid)
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['displayName', 'email', 'preferences', 'updatedAt']);
+
+      allow delete: if false;
+    }
+    
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

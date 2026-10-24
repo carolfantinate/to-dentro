@@ -1,14 +1,15 @@
-(() => {
+(async () => {
   'use strict';
+  await window.ToDentroAuth.ready;
   const params = new URLSearchParams(location.search);
-  const key = 'to-dentro-community-replies';
+  const key = window.ToDentroAuth.storageKey('to-dentro-community-replies');
   function read(key) {
     const saved = JSON.parse(localStorage.getItem(key) || '[]');
     if (!Array.isArray(saved)) throw new Error('Invalid collection');
     return saved;
   }
   let localPosts = [], localReplies = [];
-  try { localPosts = read('to-dentro-community-posts'); } catch { /* Manter os exemplos disponíveis. */ }
+  try { localPosts = read(window.ToDentroAuth.storageKey('to-dentro-community-posts')); } catch { /* Manter os exemplos disponíveis. */ }
   try { localReplies = read(key); } catch { /* Manter as respostas demonstrativas disponíveis. */ }
   const post = [...window.ToDentroCommunity, ...localPosts].find(item => item && item.id === params.get('id') && item.category === 'duvidas' && typeof item.title === 'string' && typeof item.text === 'string');
   const back = new URL('./comunidade.html?categoria=duvidas', location.href);

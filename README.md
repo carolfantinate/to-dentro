@@ -83,7 +83,7 @@ O mapa real está em `src/pages/mapa.html`, com Leaflet 1.9.4 e tiles OpenStreet
 
 Referências: https://leafletjs.com/reference.html e https://operations.osmfoundation.org/policies/tiles/
 
-O Perfil da barra inferior abre `src/pages/perfil.html`. Nome e contagens de itens salvos são ilustrativos, sem autenticação. Editar preferências abre os filtros e retorna ao perfil; ao aplicar, o resumo é atualizado e as preferências são guardadas neste navegador em `to-dentro-preferences`, quando o armazenamento estiver disponível. Voltar sem aplicar descarta a edição. Essas preferências ainda não são sincronizadas automaticamente com a busca nem com um banco de dados. Listas de salvos, calendário e perfil vocacional ficam preparados para as próximas telas.
+O Perfil da barra inferior usa a sessão do Firebase Authentication e carrega nome, e-mail e preferências do Firestore. As escolhas do cadastro podem ser editadas pelos filtros do perfil.
 
 O calendário está em `src/pages/calendario.html`, acessível pela home, pelo perfil e por Ver prazos no calendário nos detalhes. Começa em outubro de 2026 conforme o protótipo, permite navegar pelos meses, filtrar categorias e selecionar um dia (clicar novamente remove a seleção). A agenda está em `src/data/calendar.js`: os três eventos são exemplos, não prazos oficiais, e não são específicos de uma universidade. A seta preserva a origem. Não há lembretes ou notificações nesta etapa.
 
@@ -104,7 +104,7 @@ services/
 
 Em `config/firebase.js`, substitua apenas o objeto `firebaseConfig` pelos dados do aplicativo Web registrados no console. Não cole a tag `<script>` inteira. Os módulos usam a mesma versão do SDK pelo CDN oficial, sem npm, Analytics ou Storage. Execute pelo servidor local ou GitHub Pages.
 
-O serviço `services/auth.js` exporta `createAccount`, `login`, `logout`, `resetPassword` e `observeAuth`, para importação por scripts do tipo módulo. As telas ainda usam o fluxo anterior de visitante. A conexão dos formulários e da sessão será feita após preencher a configuração e ativar o provedor E-mail/Senha no Firebase. O Firestore também precisa ser criado e ter regras definidas antes do uso de dados.
+Cadastro, login, recuperação de senha e sessão estão conectados ao Firebase. As preferências são salvas em `users/{uid}`. Publique manualmente o conteúdo de `firestore.rules` na aba Regras do Firestore. Consulte [a configuração e o fluxo de cadastro](docs/firebase-setup.md).
 
 ## Dados mockados centralizados
 
@@ -114,4 +114,4 @@ Os registros acadêmicos e da comunidade têm uma fonte única em `src/data/mock
 
 Consulte [a estrutura dos mocks, os exemplos de consulta e a preparação para migração](docs/mock-data.md). Esta etapa não conecta as telas ao Firestore nem publica regras.
 
-Validação: `node tests/data.cjs` e `node tests/access.cjs`.
+Validação: `node tests/data.cjs`, `node tests/access.cjs` e `node tests/registration.cjs`.

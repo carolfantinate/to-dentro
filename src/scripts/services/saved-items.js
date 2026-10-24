@@ -1,12 +1,12 @@
 (() => {
   'use strict';
-  const key = 'to-dentro-saved-universities';
+  const key = () => window.ToDentroAuth.storageKey('to-dentro-saved-universities');
   // Seleção inicial demonstrativa do protótipo.
   let memory = [];
   function getUniversities() {
     if (!window.ToDentroAuth.isAuthenticated()) return [];
     try {
-      const raw = localStorage.getItem(key);
+      const raw = localStorage.getItem(key());
       if (raw !== null) {
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed)) memory = parsed.filter(id => window.ToDentroUniversities.some(item => item.id === id));
@@ -21,7 +21,7 @@
     const saved = !ids.includes(id);
     memory = saved ? [...ids, id] : ids.filter(item => item !== id);
     let persisted = true;
-    try { localStorage.setItem(key, JSON.stringify(memory)); } catch { persisted = false; }
+    try { localStorage.setItem(key(), JSON.stringify(memory)); } catch { persisted = false; }
     return { saved, persisted };
   }
   window.ToDentroSaved = { getUniversities, toggleUniversity };

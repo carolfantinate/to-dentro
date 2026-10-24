@@ -1,9 +1,10 @@
-(() => {
+(async () => {
   'use strict';
+  await window.ToDentroAuth.ready;
   const params = new URLSearchParams(location.search);
   let localPosts = [];
   try {
-    const saved = JSON.parse(localStorage.getItem('to-dentro-community-posts') || '[]');
+    const saved = JSON.parse(localStorage.getItem(window.ToDentroAuth.storageKey('to-dentro-community-posts')) || '[]');
     if (Array.isArray(saved)) localPosts = saved;
   } catch { /* Os exemplos continuam disponíveis sem armazenamento. */ }
   const post = [...window.ToDentroCommunity, ...localPosts].find(item => item && item.id === params.get('id') && typeof item.title === 'string' && typeof item.text === 'string' && typeof item.author === 'string');

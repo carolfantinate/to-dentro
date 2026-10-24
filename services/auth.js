@@ -4,6 +4,7 @@ import {
   signOut,
   sendPasswordResetEmail,
   onAuthStateChanged,
+  updateProfile,
 } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js';
 import { auth } from '../config/firebase.js';
 
@@ -34,4 +35,18 @@ export function resetPassword(email) {
 
 export function observeAuth(callback, onError) {
   return onAuthStateChanged(requireAuth(), callback, onError);
+}
+
+export function getCurrentUser() {
+  return requireAuth().currentUser;
+}
+
+export function authReady() {
+  return requireAuth().authStateReady();
+}
+
+export function setDisplayName(displayName) {
+  const user = requireAuth().currentUser;
+  if (!user) throw Object.assign(new Error('Entre para atualizar seu nome.'), {code:'profile/not-authenticated'});
+  return updateProfile(user, {displayName: displayName.trim()});
 }

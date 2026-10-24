@@ -1,5 +1,6 @@
-(() => {
+(async () => {
   'use strict';
+  await window.ToDentroAuth.ready;
   const params = new URLSearchParams(location.search);
   const course = window.ToDentroData.getCourse(params.get('curso'));
   const selection = window.ToDentroComparison.readSelection(params);
@@ -45,7 +46,7 @@
     card.querySelector('.official').href = item.site;
     document.getElementById('results-options').append(card);
   });
-  const storageKey = 'to-dentro-saved-comparisons';
+  const storageKey = window.ToDentroAuth.storageKey('to-dentro-saved-comparisons');
   const identity = state.toString();
   const save = document.getElementById('results-save');
   function readSaved() {

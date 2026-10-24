@@ -15,7 +15,7 @@ class Element {
   matches() { return this.dataset.authAction === 'calendar' || this.dataset.category === 'lembretes'; }
 }
 const read = path => fs.readFileSync(path, 'utf8');
-function setup(page = 'index.html') {
+async function setup(page = 'index.html', user = null) {
   const main = new Element('main');
   main.append(new Element('section'));
   const body = new Element('body');
@@ -28,10 +28,11 @@ function setup(page = 'index.html') {
     addEventListener: (type, handler) => { listeners[type] = handler; },
   };
   const context = vm.createContext({document, Element, URL, URLSearchParams,
-    location: {href: `http://localhost/app/${page}`}, window: {},
+    location: {href: `http://localhost/app/${page}`}, window: {authService: {authReady: async () => {}, getCurrentUser: () => user, observeAuth: callback => { callback(user); }}},
     localStorage: { getItem: () => { throw Error('Visitor must not read personal saves'); }, setItem: () => writes++ },
   });
-  vm.runInContext(read('src/scripts/services/auth.js'), context);
+  vm.runInContext(read('src/scripts/services/auth.js').replace("import(new URL('services/auth.js', root).href)", 'Promise.resolve(window.authService)'), context);
+  await context.window.ToDentroAuth.ready;
   function dispatch(type, control) {
     const event = {target: control, prevented: false, stopped: false,
       preventDefault() { this.prevented = true; }, stopImmediatePropagation() { this.stopped = true; }};
@@ -41,19 +42,20 @@ function setup(page = 'index.html') {
   return {main, body, context, dispatch, writes: () => writes};
 }
 
+(async () => {
 // Acesso por URL direta não inicializa telas nem lê dados pessoais.
 const privateScripts = ['perfil', 'salvos', 'quiz-vocacional', 'resultado-vocacional', 'criar-lembrete', 'criar-duvida', 'compartilhar-experiencia'];
 for (const name of [...privateScripts, 'teste-vocacional']) {
-  const app = setup(`src/pages/${name}.html`);
+  const app = await setup(`src/pages/${name}.html`);
   assert.equal(app.main.className, 'auth-guest-page', name);
   assert.equal(app.context.window.ToDentroAuth.isRestrictedPage(), true);
-  if (privateScripts.includes(name)) vm.runInContext(read(`src/scripts/pages/${name}.js`), app.context);
+  if (privateScripts.includes(name)) await vm.runInContext(read(`src/scripts/pages/${name}.js`), app.context);
   assert.equal(app.writes(), 0);
 }
 
 // Todos os controles pessoais interrompem o evento antes dos handlers que gravam.
 for (const id of ['save-university', 'course-save', 'results-save', 'save-interest-map', 'community-share', 'discussion-answer', 'add-reminder']) {
-  const app = setup();
+  const app = await setup();
   const control = new Element('button'); control.id = id;
   const event = app.dispatch('click', control);
   assert.ok(event.prevented && event.stopped, id);
@@ -65,20 +67,20 @@ for (const id of ['save-university', 'course-save', 'results-save', 'save-intere
   dialog.children.at(-1).listeners.click(); assert.equal(dialog.open, false);
 }
 for (const dataset of [{authAction: 'calendar'}, {category: 'lembretes'}]) {
-  const app = setup('src/pages/calendario.html');
+  const app = await setup('src/pages/calendario.html');
   const button = new Element('button'); button.dataset = dataset;
   assert.equal(app.dispatch('click', button).prevented, true);
 }
 // Navegação informacional, Perfil e Salvos continuam acessíveis; os dois últimos têm convite próprio.
 for (const name of ['buscar-universidades', 'curso', 'universidade', 'comunidade', 'datas', 'explorar-datas', 'calendario', 'perfil', 'salvos']) {
-  const app = setup(); const link = new Element('a'); link.href = `http://localhost/app/src/pages/${name}.html`;
+  const app = await setup(); const link = new Element('a'); link.href = `http://localhost/app/src/pages/${name}.html`;
   assert.equal(app.dispatch('click', link).prevented, false, name);
 }
 for (const name of ['teste-vocacional', 'quiz-vocacional', 'criar-duvida', 'compartilhar-experiencia', 'criar-lembrete']) {
-  const app = setup(); const link = new Element('a'); link.href = `http://localhost/app/src/pages/${name}.html?origem=teste`;
+  const app = await setup(); const link = new Element('a'); link.href = `http://localhost/app/src/pages/${name}.html?origem=teste`;
   assert.equal(app.dispatch('click', link).prevented, true, name);
 }
-const app = setup('src/pages/duvida.html');
+const app = await setup('src/pages/duvida.html');
 const form = new Element('form'); form.id = 'answer-form';
 assert.equal(app.dispatch('submit', form).prevented, true);
 app.context.window.ToDentroUniversities = [{id:'usp'}];
@@ -95,3 +97,9 @@ for (const file of ['index.html', ...fs.readdirSync('src/pages').filter(file => 
   assert.ok(scriptSources[0].endsWith('scripts/services/auth.js'), file);
 }
 console.log('OK: páginas restritas, ações pessoais, navegação pública, retorno de conta e ausência de gravações para visitantes.');
+
+const signedIn = await setup('src/pages/perfil.html', {uid:'user-1', email:'aluno@example.com'});
+assert.equal(signedIn.context.window.ToDentroAuth.isAuthenticated(), true);
+assert.notEqual(signedIn.main.className, 'auth-guest-page');
+assert.equal(signedIn.context.window.ToDentroAuth.storageKey('saved'), 'saved:user-1');
+})().catch(error => { console.error(error); process.exitCode = 1; });

@@ -1,10 +1,11 @@
-(() => {
+(async () => {
   'use strict';
+  await window.ToDentroAuth.ready;
   const todayParts = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
   const todayValue = part => todayParts.find(item => item.type === part).value;
   const today = `${todayValue('year')}-${todayValue('month')}-${todayValue('day')}`;
   let month = Number(todayValue('month')) - 1, year = Number(todayValue('year')), category = 'todos', selectedDay = null;
-  const storageKey = 'to-dentro-reminders';
+  const storageKey = window.ToDentroAuth.storageKey('to-dentro-reminders');
   const validDate = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(`${value}T12:00:00`));
   let reminders = [];
   try {
@@ -14,7 +15,7 @@
   const personalEvents = () => reminders.map(item => ({ ...item, personal: true, color: 'yellow' }));
   let savedDates = [];
   try {
-    const saved = JSON.parse(localStorage.getItem('to-dentro-calendar-dates') || '[]');
+    const saved = JSON.parse(localStorage.getItem(window.ToDentroAuth.storageKey('to-dentro-calendar-dates')) || '[]');
     if (Array.isArray(saved)) savedDates = saved.filter(item => item && typeof item.title === 'string' && validDate(item.date));
   } catch { /* Os lembretes continuam disponíveis. */ }
   if (!window.ToDentroAuth.isAuthenticated()) {

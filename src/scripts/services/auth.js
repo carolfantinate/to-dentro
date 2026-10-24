@@ -1,9 +1,10 @@
 (() => {
   'use strict';
   const root = new URL('../../../', document.currentScript.src);
-  // O protótipo não autentica usuários. Conectar a uma sessão validada pelo servidor
-  // quando o login estiver implementado; dados locais não comprovam autenticação.
-  const isAuthenticated = () => false;
+  let user = null;
+  let loading = true;
+  let sessionError = null;
+  const isAuthenticated = () => Boolean(user);
   const privatePages = {
     'perfil.html': ['Seu futuro começa com você.', 'Entre ou crie sua conta para ter seu perfil, guardar suas escolhas e acompanhar seus próximos passos.', 'person'],
     'salvos.html': ['Suas escolhas merecem um lugar.', 'Entre ou crie sua conta para reunir universidades, cursos, comparações e seu resultado vocacional.', 'bookmark'],
@@ -55,9 +56,14 @@
     if (!dialog.open) dialog.showModal();
     return false;
   }
-  window.ToDentroAuth = { isAuthenticated, isRestrictedPage, requireLogin: prompt };
+  const access = { isAuthenticated, isRestrictedPage, requireLogin: prompt,
+    storageKey: name => `${name}:${user?.uid || 'guest'}` };
+  Object.defineProperties(access, {
+    user: {get: () => user}, loading: {get: () => loading}, error: {get: () => sessionError}
+  });
+  window.ToDentroAuth = access;
 
-  if (isRestrictedPage()) {
+  function renderGuestPage() {
     const [heading, description, symbol] = privatePages[currentPage];
     const main = document.querySelector('main');
     main.className = 'auth-guest-page';
@@ -102,4 +108,29 @@
       event.preventDefault(); event.stopImmediatePropagation(); prompt('Entre para publicar uma resposta na comunidade.');
     }
   }, true);
+  const main = document.querySelector('main');
+  const privatePage = Object.hasOwn(privatePages, currentPage);
+  if (privatePage) main.hidden = true;
+  access.ready = (async () => {
+    try {
+      const service = await import(new URL('services/auth.js', root).href);
+      await service.authReady();
+      user = service.getCurrentUser();
+      service.observeAuth(nextUser => {
+        const previousUid = user?.uid;
+        user = nextUser;
+        if (!loading && previousUid !== user?.uid && !['cadastro.html', 'login.html'].includes(currentPage)) location.reload();
+      });
+    } catch (error) {
+      sessionError = error;
+      user = null;
+    } finally {
+      loading = false;
+      if (privatePage) {
+        if (!user) renderGuestPage();
+        main.hidden = false;
+      }
+    }
+    return user;
+  })();
 })();

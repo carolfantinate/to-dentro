@@ -1,9 +1,10 @@
-(() => {
+(async () => {
   'use strict';
+  await window.ToDentroAuth.ready;
   const params = new URLSearchParams(location.search);
   let localPosts = [];
   try {
-    const saved = JSON.parse(localStorage.getItem('to-dentro-community-posts') || '[]');
+    const saved = JSON.parse(localStorage.getItem(window.ToDentroAuth.storageKey('to-dentro-community-posts')) || '[]');
     if (Array.isArray(saved)) localPosts = saved.filter(post => post && typeof post.id === 'string' && typeof post.author === 'string' && typeof post.title === 'string' && typeof post.text === 'string' && ['experiencias', 'duvidas'].includes(post.category));
   } catch { /* Relatos demonstrativos permanecem disponíveis. */ }
   const universityId = params.get('universidade');
@@ -28,7 +29,7 @@
   questionUniversity.value = university?.id || '';
   let localReplies = [];
   try {
-    const saved = JSON.parse(localStorage.getItem('to-dentro-community-replies') || '[]');
+    const saved = JSON.parse(localStorage.getItem(window.ToDentroAuth.storageKey('to-dentro-community-replies')) || '[]');
     if (Array.isArray(saved)) localReplies = saved.filter(item => item && typeof item.questionId === 'string' && typeof item.text === 'string');
   } catch { /* A lista continua disponível sem respostas locais. */ }
 

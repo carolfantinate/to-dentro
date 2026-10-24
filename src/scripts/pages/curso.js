@@ -1,5 +1,6 @@
-(() => {
+(async () => {
   'use strict';
+  await window.ToDentroAuth.ready;
   const params = new URLSearchParams(location.search);
   const university = window.ToDentroUniversities.find(item => item.id === params.get('universidade'));
   const course = window.ToDentroData.getCourse(params.get('curso'));
@@ -76,7 +77,7 @@
   document.querySelector('#course-cutoff-link').href = `./buscar-nota-de-corte.html?${new URLSearchParams({ universidade: university.id, curso: course.id, ...(selectedOffering ? {campus: selectedOffering.campusId} : {}) })}`;
   for (const element of document.querySelectorAll('[data-icon]')) element.innerHTML = icon(element.dataset.icon);
   const save = document.querySelector('#course-save');
-  const key = 'to-dentro-saved-courses';
+  const key = window.ToDentroAuth.storageKey('to-dentro-saved-courses');
   const id = selectedOffering?.id || `${university.id}:${course.value}`;
   let saved = [];
   try { const value = JSON.parse(localStorage.getItem(key) || '[]'); if (Array.isArray(value)) saved = value.filter(item => typeof item === 'string'); } catch { /* Armazenamento indisponível. */ }

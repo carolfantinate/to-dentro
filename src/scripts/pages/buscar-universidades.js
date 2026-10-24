@@ -1,6 +1,22 @@
-(() => {
+(async () => {
   'use strict';
-  const params = new URLSearchParams(location.search);
+  await window.ToDentroAuth.ready;
+  let params = new URLSearchParams(location.search);
+  const root = new URL('../../', location.href);
+  let shared;
+  const connected = window.ToDentroAuth.isAuthenticated();
+  const reportError = error => {
+    let notice = document.querySelector('#preferences-sync-status');
+    if (!notice) { notice = document.createElement('p'); notice.id = 'preferences-sync-status'; notice.setAttribute('role', 'alert'); document.querySelector('main').prepend(notice); }
+    notice.textContent = 'Não foi possível carregar ou salvar suas preferências. Confira a conexão e tente novamente.';
+  };
+  if (connected) {
+    try {
+      shared = await import(new URL('services/search-preferences.js', root).href);
+      const loaded = await shared.loadSearchPreferences(params, window.ToDentroData);
+      params = loaded.params;
+    } catch (error) { reportError(error); return; }
+  }
   const query = document.querySelector('#university-query');
   const list = document.querySelector('.university-results-list');
   const cards = [...list.querySelectorAll('td-university-card')];
@@ -13,7 +29,7 @@
   const filters = {
     city: params.has('city') ? params.getAll('city').join(',') : params.has('region') ? (params.get('region') === 'sp' ? 'sao-paulo' : params.get('region')) : 'sao-paulo',
     type: params.has('type') ? params.getAll('type').join(',') : 'publica',
-    course: params.get('course') || '', mode: params.getAll('mode').join(','),
+    course: params.getAll('course').join(','), mode: params.getAll('mode').join(','),
     area: params.get('area') || '',
     admission: params.getAll('admission').join(','),
   };
@@ -29,7 +45,7 @@
       card.hidden = !terms.every(term => normalize(data.search).includes(term))
         || (filters.city && !filters.city.split(',').includes(normalize(data.city).replace(/\s+/g, '-')))
         || (filters.type && !filters.type.split(',').includes(data.public === 'true' ? 'publica' : 'particular'))
-        || (filters.course && !(data.courses || '').split(',').includes(filters.course))
+        || (filters.course && !filters.course.split(',').some(course => (data.courses || '').split(',').includes(course)))
         || (filters.area && !window.ToDentroCourseCatalog.courses.some(course => course.area === filters.area && (data.courses || '').split(',').includes(course.value)))
         || (filters.mode && !filters.mode.split(',').includes(data.mode))
         || (filters.admission && !filters.admission.split(',').some(method => (data.admission || '').split(',').includes(method)));
@@ -38,7 +54,7 @@
     }
     count.textContent = matches === 1 ? '1 instituição encontrada' : `${matches} instituições encontradas`;
     document.querySelector('#search-empty').hidden = matches > 0;
-    regionChip.textContent = filters.city ? filters.city.split(',').map(city => city === 'campinas' ? 'Campinas' : 'São Paulo').join(' e ') : 'Cidade';
+    regionChip.textContent = filters.city ? filters.city.split(',').map(city => window.ToDentroData.source.general.cities.find(item => item.id === city)?.name || city).join(' e ') : 'Cidade';
     regionChip.setAttribute('aria-pressed', String(Boolean(filters.city)));
     typeChip.textContent = filters.type.includes(',') ? 'Públicas e particulares' : filters.type === 'particular' ? 'Particulares' : filters.type ? 'Públicas' : 'Tipo de instituição';
     typeChip.setAttribute('aria-pressed', String(Boolean(filters.type)));
@@ -58,7 +74,17 @@
   query.addEventListener('input', updateResults);
   sort.addEventListener('change', updateResults);
   document.querySelector('.university-search-form').addEventListener('submit', event => {event.preventDefault(); updateResults();});
-  regionChip.addEventListener('click', () => {filters.city = filters.city ? '' : 'sao-paulo'; updateResults();});
-  typeChip.addEventListener('click', () => {filters.type = filters.type ? '' : 'publica'; updateResults();});
+  async function changeFilter(key, fallback, button) {
+    const previous = filters[key];
+    filters[key] = previous ? '' : fallback;
+    regionChip.disabled = true; typeChip.disabled = true;
+    try {
+      if (connected) await shared.saveSearchPreferences(new URLSearchParams(filters), window.ToDentroData);
+      updateResults();
+    } catch (error) { filters[key] = previous; reportError(error); }
+    finally { regionChip.disabled = false; typeChip.disabled = false; }
+  }
+  regionChip.addEventListener('click', () => changeFilter('city', 'sao-paulo', regionChip));
+  typeChip.addEventListener('click', () => changeFilter('type', 'publica', typeChip));
   updateResults();
 })();

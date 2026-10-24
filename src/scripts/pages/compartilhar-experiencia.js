@@ -1,5 +1,6 @@
-(() => {
+(async () => {
   'use strict';
+  await window.ToDentroAuth.ready;
   if (window.ToDentroAuth.isRestrictedPage()) return;
   const params = new URLSearchParams(location.search);
   const university = document.querySelector('#experience-university');
@@ -60,9 +61,9 @@
       publishedAt: new Date().toISOString(),
     };
     try {
-      const saved = JSON.parse(localStorage.getItem('to-dentro-community-posts') || '[]');
+      const saved = JSON.parse(localStorage.getItem(window.ToDentroAuth.storageKey('to-dentro-community-posts')) || '[]');
       if (!Array.isArray(saved)) throw new Error('Invalid posts');
-      localStorage.setItem('to-dentro-community-posts', JSON.stringify([...saved, post]));
+      localStorage.setItem(window.ToDentroAuth.storageKey('to-dentro-community-posts'), JSON.stringify([...saved, post]));
     } catch {
       status.textContent = 'Não foi possível salvar no navegador. Seu texto continua aqui; tente novamente.';
       return;

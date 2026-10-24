@@ -1,8 +1,9 @@
-(() => {
+(async () => {
   'use strict';
+  await window.ToDentroAuth.ready;
   if (window.ToDentroAuth.isRestrictedPage()) return;
 
-  const storageKey = 'to-dentro-quiz-atividades';
+  const storageKey = window.ToDentroAuth.storageKey('to-dentro-quiz-atividades');
   if (new URLSearchParams(location.search).get('reiniciar') === '1') {
     try { sessionStorage.removeItem(storageKey); } catch { /* Reinicia os campos mesmo sem armazenamento. */ }
     history.replaceState(null, '', location.pathname);

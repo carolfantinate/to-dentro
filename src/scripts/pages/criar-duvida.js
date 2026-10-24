@@ -1,5 +1,6 @@
-(() => {
+(async () => {
   'use strict';
+  await window.ToDentroAuth.ready;
   if (window.ToDentroAuth.isRestrictedPage()) return;
   const params = new URLSearchParams(location.search);
   const university = document.querySelector('#question-university');
@@ -28,9 +29,9 @@
     const post = { id: crypto.randomUUID(), author: 'Você', initials: 'VC', category: 'duvidas', title: title.value.trim(), text: text.value.trim(),
       universityId: university.value || null, course: course.value, topic: topic.value, publishedAt: new Date().toISOString(), replies: [] };
     try {
-      const saved = JSON.parse(localStorage.getItem('to-dentro-community-posts') || '[]');
+      const saved = JSON.parse(localStorage.getItem(window.ToDentroAuth.storageKey('to-dentro-community-posts')) || '[]');
       if (!Array.isArray(saved)) throw new Error('Invalid posts');
-      localStorage.setItem('to-dentro-community-posts', JSON.stringify([...saved, post]));
+      localStorage.setItem(window.ToDentroAuth.storageKey('to-dentro-community-posts'), JSON.stringify([...saved, post]));
     } catch {
       document.querySelector('#question-status').textContent = 'Não foi possível salvar. Sua dúvida continua aqui; tente novamente.';
       return;

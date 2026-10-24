@@ -1,7 +1,8 @@
-(() => {
+(async () => {
   'use strict';
+  await window.ToDentroAuth.ready;
   if (window.ToDentroAuth.isRestrictedPage()) return;
-  const key = 'to-dentro-interest-map';
+  const key = window.ToDentroAuth.storageKey('to-dentro-interest-map');
   const button = document.querySelector('#save-interest-map');
   const status = document.querySelector('#result-status');
   // Perfil fixo do protótipo; não é calculado a partir das respostas do quiz.

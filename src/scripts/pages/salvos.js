@@ -1,5 +1,6 @@
-(() => {
+(async () => {
   'use strict';
+  await window.ToDentroAuth.ready;
   if (window.ToDentroAuth.isRestrictedPage()) return;
   const params = new URLSearchParams(location.search);
   const list = document.querySelector('#saved-list');
@@ -18,7 +19,7 @@
     }
     if (category === 'cursos') {
       let saved = [];
-      try { const value = JSON.parse(localStorage.getItem('to-dentro-saved-courses') || '[]'); if (Array.isArray(value)) saved = value; } catch { /* Armazenamento indisponível. */ }
+      try { const value = JSON.parse(localStorage.getItem(window.ToDentroAuth.storageKey('to-dentro-saved-courses')) || '[]'); if (Array.isArray(value)) saved = value; } catch { /* Armazenamento indisponível. */ }
       for (const id of saved) {
         if (typeof id !== 'string') continue;
         const selection = window.ToDentroData.resolveSavedCourse(id);
@@ -34,7 +35,7 @@
     }
     if (category === 'comparacoes') {
       let saved = [];
-      try { const value = JSON.parse(localStorage.getItem('to-dentro-saved-comparisons') || '[]'); if (Array.isArray(value)) saved = value; } catch { /* Armazenamento indisponível. */ }
+      try { const value = JSON.parse(localStorage.getItem(window.ToDentroAuth.storageKey('to-dentro-saved-comparisons')) || '[]'); if (Array.isArray(value)) saved = value; } catch { /* Armazenamento indisponível. */ }
       for (const value of saved) {
         if (typeof value !== 'string') continue;
         const state = new URLSearchParams(value);
@@ -50,7 +51,7 @@
     }
     if (category === 'vocacional') {
       let saved = null;
-      try { saved = JSON.parse(localStorage.getItem('to-dentro-interest-map') || 'null'); } catch { /* Armazenamento indisponível. */ }
+      try { saved = JSON.parse(localStorage.getItem(window.ToDentroAuth.storageKey('to-dentro-interest-map')) || 'null'); } catch { /* Armazenamento indisponível. */ }
       if (saved?.version === 1 && saved?.demonstrative === true && saved?.profile === 'Cuidar e descobrir') {
         const card = document.createElement('article'); card.className = 'course-card';
         const title = document.createElement('h2'); title.textContent = saved.profile;

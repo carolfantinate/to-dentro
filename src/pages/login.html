@@ -19,17 +19,17 @@
             <p>Entre para continuar construindo seu futuro.</p>
         </header>
 
-        <section class="login-fields" aria-label="Dados de acesso">
+        <form id="login-form" class="login-fields" aria-label="Dados de acesso" method="post">
             <div class="login-field">
                 <label for="login-email">E-mail</label>
-                <input id="login-email" type="email" autocomplete="email" placeholder="seunome@exemplo.com">
+                <input id="login-email" type="email" required autocomplete="email" placeholder="seunome@exemplo.com">
             </div>
 
             <div class="login-field">
                 <label for="login-password">Senha</label>
                 <div class="login-password">
-                    <input id="login-password" type="password" autocomplete="current-password" placeholder="••••••••">
-                    <button class="login-eye" type="button" aria-label="Mostrar senha" aria-disabled="true">
+                    <input id="login-password" type="password" required autocomplete="current-password" placeholder="••••••••">
+                    <button class="login-eye" type="button" aria-label="Mostrar senha">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="1.4" aria-hidden="true">
                             <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" />
@@ -39,10 +39,10 @@
                 </div>
             </div>
 
-            <button class="login-text-button login-forgot" type="button" aria-disabled="true">Esqueci minha
+            <button class="login-text-button login-forgot" type="button">Esqueci minha
                 senha</button>
-            <button class="login-action login-enter" type="button" aria-disabled="true">Entrar</button>
-        </section>
+            <button class="login-action login-enter" type="submit">Entrar</button>
+        </form>
 
         <div class="login-signup">
             <p>Ainda não tem uma conta?</p>

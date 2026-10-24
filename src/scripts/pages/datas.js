@@ -1,5 +1,6 @@
-(() => {
+(async () => {
   'use strict';
+  await window.ToDentroAuth.ready;
   const params = new URLSearchParams(location.search);
   const currentYear = Number(new Intl.DateTimeFormat('en-US', { timeZone: 'America/Sao_Paulo', year: 'numeric' }).format(new Date()));
   const university = window.ToDentroUniversities.find(item => item.id === params.get('universidade'));
@@ -21,7 +22,7 @@
   if (!selection) { document.querySelector('#admission-empty').hidden = false; return; }
   document.querySelector('#admission-note').textContent = selection.notice;
   const source = document.querySelector('#admission-source'); source.href = selection.source; source.hidden = false;
-  const key = 'to-dentro-calendar-dates';
+  const key = window.ToDentroAuth.storageKey('to-dentro-calendar-dates');
   function read() {
     const saved = JSON.parse(localStorage.getItem(key) || '[]');
     if (!Array.isArray(saved)) throw new Error('Invalid calendar');

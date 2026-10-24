@@ -1,5 +1,10 @@
-(() => {
+(async () => {
   'use strict';
+  // Impede envio nativo com senha na URL enquanto a sessão e os módulos carregam.
+  for (const form of document.querySelectorAll('#signup-access-form, #signup-create-form')) form.addEventListener('submit', event => event.preventDefault());
+  await window.ToDentroAuth.ready;
+  const appRoot = new URL('../../', location.href);
+  const { accountErrorMessage, accountDestination } = await import(new URL('services/account-ui.js', appRoot).href);
   const panels = [...document.querySelectorAll('[data-signup-step]')];
   const progress = document.querySelector('.signup-progress');
   const status = document.querySelector('.account-notice');
@@ -45,7 +50,7 @@
     button.addEventListener('click', () => showStep(Number(button.dataset.signupBack) || 1));
   }
 
-  // Seleção visual em memória; ainda não há persistência nem envio de dados.
+  // As seleções ficam em memória até a confirmação final do cadastro.
   const cities = window.ToDentroData.source.general.cities;
   const selectedCities = new Set(['sao-paulo', 'campinas']);
   const citySearch = document.querySelector('#signup-city-search');
@@ -122,7 +127,7 @@
     for (const course of matches) {
       const label = document.createElement('label'); label.className = 'signup-option signup-course-option';
       label.dataset.courseColor = colors[catalog.courses.indexOf(course) % colors.length];
-      const input = document.createElement('input'); input.type = 'checkbox'; input.name = 'interest-courses'; input.value = course.value; input.checked = selectedCourses.has(course.value);
+      const input = document.createElement('input'); input.type = 'checkbox'; input.name = 'interest-courses'; input.value = course.id; input.checked = selectedCourses.has(course.id);
       const icon = document.createElement('span'); icon.className = 'signup-option-icon material-symbols-outlined'; icon.setAttribute('aria-hidden', 'true');
       icon.textContent = { saude: 'favorite', biologicas: 'eco', humanas: 'person', sociais: 'account_balance', exatas: 'code', artes: 'palette' }[course.area];
       const copy = document.createElement('span'); copy.className = 'signup-option-copy';
@@ -133,8 +138,8 @@
         description.textContent = `${catalog.areas[course.area]} · ${input.checked ? 'Interesse selecionado' : 'Outra possibilidade para explorar'}`;
       };
       input.addEventListener('change', () => {
-        if (input.checked) { selectedCourses.add(course.value); discoverCourses.setAttribute('aria-pressed', 'false'); }
-        else selectedCourses.delete(course.value);
+        if (input.checked) { selectedCourses.add(course.id); discoverCourses.setAttribute('aria-pressed', 'false'); }
+        else selectedCourses.delete(course.id);
         update();
       });
       update(); copy.append(title, description);
@@ -193,7 +198,7 @@
     const modes = [...document.querySelectorAll('[name="study-mode"]:checked')].map(input => modeLabels[input.value]);
     const selectedShifts = shifts.filter(input => input.checked).map(input => shiftLabels[input.value]);
     set('study', [modes.join(', ') || 'Sem preferência de modalidade', selectedShifts.join(', ') || 'Sem preferência de turno'].join(' · '));
-    set('courses', catalog.courses.filter(course => selectedCourses.has(course.value)).map(course => course.name).join('\n') || 'Ainda estou descobrindo');
+    set('courses', catalog.courses.filter(course => selectedCourses.has(course.id)).map(course => course.name).join('\n') || 'Ainda estou descobrindo');
   }
   function clearPreferences() {
     for (const input of document.querySelectorAll('[name="institution-type"]')) input.checked = false;
@@ -206,13 +211,83 @@
     if (currentStep !== 1 || validateAccess()) showStep(6);
   });
   document.querySelector('#signup-clear-preferences').addEventListener('click', () => { clearPreferences(); renderReview(); });
-  document.querySelector('#signup-create-form').addEventListener('submit', event => {
+  let submitting = false;
+  let registration;
+  const createForm = document.querySelector('#signup-create-form');
+  const createButton = createForm.querySelector('[type="submit"]');
+  const email = document.getElementById('signup-email');
+  function resumeAuthenticatedUser(user) {
+    if (!user) return;
+    email.value = user.email || '';
+    email.readOnly = true;
+    if (!name.value.trim()) name.value = user.displayName || '';
+    for (const input of [password, confirmation]) {
+      input.value = '';
+      input.disabled = true;
+      input.closest('.login-field').hidden = true;
+    }
+    createButton.textContent = 'Concluir cadastro';
+  }
+  createForm.addEventListener('submit', async event => {
     event.preventDefault();
+    if (submitting) return;
     if (!validateAccess()) { showStep(1); accessForm.reportValidity(); return; }
-    if (!document.querySelector('#signup-create-form').reportValidity()) return;
-    status.textContent = 'Seu perfil está pronto para revisão! Esta é uma prévia: a criação da conta e o armazenamento dos dados estarão disponíveis em breve.';
+    if (!createForm.reportValidity()) return;
+    submitting = true;
+    const fields = [...document.querySelectorAll('.signup-page input, .signup-page button')].map(element => [element, element.disabled]);
+    const institution = document.querySelector('[name="institution-type"]:checked')?.value;
+    const modes = [...document.querySelectorAll('[name="study-mode"]:checked')].map(input => input.value);
+    const periods = shifts.filter(input => input.checked).map(input => input.value);
+    const input = { displayName: name.value.trim(), email: email.value.trim(), password: password.value,
+      termsAccepted: document.querySelector('#signup-terms').checked };
+    const previousLabel = createButton.textContent;
+    fields.forEach(([element]) => { element.disabled = true; });
+    createForm.setAttribute('aria-busy', 'true');
+    createButton.textContent = 'Salvando seu cadastro…';
+    status.textContent = 'Criando sua conta e salvando suas preferências…';
     status.hidden = false;
+    try {
+      const [authService, profileService, preferencesService, registrationService] = await Promise.all([
+        import(new URL('services/auth.js', appRoot).href),
+        import(new URL('services/profile.js', appRoot).href),
+        import(new URL('services/preferences.js', appRoot).href),
+        import(new URL('services/registration.js', appRoot).href),
+      ]);
+      input.preferences = preferencesService.signupPreferences({ institutionType: institution,
+        cityIds: [...selectedCities], modeIds: modes, periodIds: periods,
+        courseIds: [...selectedCourses], discoveringCourses: discoverCourses.getAttribute('aria-pressed') === 'true' });
+      registration ||= registrationService.createRegistrationService({ getCurrentUser: authService.getCurrentUser,
+        createAccount: authService.createAccount, setDisplayName: authService.setDisplayName,
+        saveProfile: profileService.saveRegistrationProfile });
+      await registration.register(input);
+      password.value = ''; confirmation.value = '';
+      status.textContent = 'Conta criada e preferências salvas! Abrindo seu perfil…';
+      location.assign(accountDestination(location.search, appRoot, 'src/pages/perfil.html'));
+    } catch (error) {
+      status.textContent = error.accountCreated
+        ? `Sua conta já foi criada, mas falta concluir o perfil. ${accountErrorMessage(error)} Suas escolhas continuam nesta tela; tente concluir novamente.`
+        : accountErrorMessage(error);
+      status.hidden = false;
+      fields.forEach(([element, disabled]) => { element.disabled = disabled; });
+      createButton.textContent = previousLabel;
+      resumeAuthenticatedUser(window.ToDentroAuth.user);
+    } finally {
+      submitting = false;
+      createForm.setAttribute('aria-busy', 'false');
+      // A senha nunca é enviada ao Firestore nem persistida no navegador.
+      input.password = '';
+    }
   });
+  if (window.ToDentroAuth.user) {
+    resumeAuthenticatedUser(window.ToDentroAuth.user);
+    try {
+      const { getProfile } = await import(new URL('services/profile.js', appRoot).href);
+      if (await getProfile()) location.replace(accountDestination(location.search, appRoot, 'src/pages/perfil.html'));
+    } catch (error) {
+      status.textContent = accountErrorMessage(error);
+      status.hidden = false;
+    }
+  }
   for (const button of document.querySelectorAll('[data-toggle-password]')) {
     const input = document.getElementById(button.getAttribute('aria-controls'));
     const description = input.id === 'signup-password' ? 'senha' : 'confirmação de senha';

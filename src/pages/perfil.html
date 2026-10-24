@@ -21,7 +21,8 @@
         <section class="profile-identity" aria-labelledby="profile-name">
             <span class="profile-avatar" aria-hidden="true"><span class="material-symbols-outlined">person</span></span>
             <div>
-                <h2 id="profile-name">Ana Luiza</h2>
+                <h2 id="profile-name">Meu perfil</h2>
+                <p id="profile-email"></p>
                 <p>Seu futuro, suas escolhas.</p>
             </div>
         </section>
@@ -32,7 +33,7 @@
                 <li><a class="profile-choice" href="./salvos.html?from=perfil">
                         <span class="material-symbols-outlined" aria-hidden="true">account_balance</span>
                         <span>Universidades salvas</span>
-                        <span class="profile-count">5<span class="visually-hidden">
+                        <span class="profile-count">0<span class="visually-hidden">
                                 universidades</span>
                         </span>
                     </a>
@@ -41,7 +42,7 @@
                 <li><a class="profile-choice" href="./salvos.html?categoria=cursos&amp;from=perfil">
                         <span class="material-symbols-outlined" aria-hidden="true">bookmark</span>
                         <span>Cursos salvos</span>
-                        <span class="profile-count">8
+                        <span class="profile-count">0
                             <span class="visually-hidden">cursos</span>
                         </span>
                     </a>
@@ -50,7 +51,7 @@
                 <li><button class="profile-choice" type="button" disabled title="Disponível em breve">
                         <span class="material-symbols-outlined" aria-hidden="true">explore</span>
                         <span>Oportunidades salvas</span>
-                        <span class="profile-count">3
+                        <span class="profile-count">0
                             <span class="visually-hidden">oportunidades</span>
                         </span>
                     </button>
@@ -59,7 +60,7 @@
                 <li><a class="profile-choice" href="./calendario.html?from=./perfil.html">
                         <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
                         <span>Datas no calendário</span>
-                        <span class="profile-count">4
+                        <span class="profile-count">0
                             <span class="visually-hidden">datas</span>
                         </span>
                     </a>
@@ -69,8 +70,8 @@
 
         <section class="profile-preferences" aria-labelledby="preferences-title">
             <div class="profile-preferences-header">
-                <h2 id="preferences-title">Seu perfil de busca</h2>
-                <a id="edit-preferences" class="profile-edit-preferences" href="./filtros.html?return=perfil"
+                <h2 id="preferences-title">Preferências</h2>
+                <a hidden id="edit-preferences" class="profile-edit-preferences" href="./filtros.html?return=perfil"
                     aria-label="Editar preferências" title="Editar preferências">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -80,16 +81,20 @@
             </div>
 
             <div class="profile-preferences-card">
-                <p>Cidades: <span id="profile-city">São Paulo</span></p>
-                <p>Tipo de instituição: <span id="profile-type">Pública</span></p>
-                <p>Modalidades: <span id="profile-mode">Presencial</span></p>
-                <p>Formas de ingresso: <span id="profile-admission">Todas</span></p>
-                <p>Área: <span id="profile-area">Todas as áreas</span></p>
-                <p>Curso: <span id="profile-course">Medicina</span></p>
+                <p>Cidades: <span id="profile-city">—</span></p>
+                <p>Tipo de instituição: <span id="profile-type">—</span></p>
+                <p>Modalidades: <span id="profile-mode">—</span></p>
+                <p>Turnos: <span id="profile-period">—</span></p>
+                <p>Formas de ingresso: <span id="profile-admission">—</span></p>
+                <p>Área: <span id="profile-area">—</span></p>
+                <p>Curso: <span id="profile-course">—</span></p>
             </div>
         </section>
 
         <button class="button button-yellow" type="button" disabled title="Disponível em breve">Ver meu perfil vocacional</button>
+        <p id="profile-status" role="status" hidden></p>
+        <button class="button button-blue" type="button" id="profile-retry" hidden>Tentar novamente</button>
+        <button class="button button-blue" type="button" id="profile-logout">Sair da conta</button>
     </main>
     <td-bottom-nav active="perfil"></td-bottom-nav>
     <script defer src="../data/mock-data.js"></script>
