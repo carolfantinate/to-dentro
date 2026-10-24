@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  import(new URL('../components/device-tip.js', document.currentScript.src).href).catch(() => { /* A recomendação não impede a navegação. */ });
   const root=new URL('../../../',document.currentScript.src);
   const local=(value,allowSame=false)=>{
     if(!value)return null;

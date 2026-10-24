@@ -47,6 +47,7 @@
   width: 13.75rem;
   height: auto;
   margin-bottom: var(--space-6);
+  margin-inline: auto;
 }
 
 .home-header h1 {

@@ -10,6 +10,8 @@ Abra a pasta em um servidor local, como o Live Server do VS Code, e acesse `inde
 
 Use HTTP local ou HTTPS: os módulos JavaScript e as integrações não devem ser executados por `file://`. É necessária conexão para Firebase, Google Fonts, Material Symbols e o mapa.
 
+O aplicativo prioriza o celular. Em tablets e desktops, o conteúdo fica centralizado, as listas aproveitam a largura disponível e a navegação permanece acessível. A partir de 1024 px, uma apresentação recomenda o celular em cada carregamento, inclusive ao atualizar ou abrir outra página. Depois de fechá-la, o aviso no topo permanece visível. As adaptações ficam em `src/styles/layout/responsive.css`.
+
 ## Estrutura
 
 ```text
