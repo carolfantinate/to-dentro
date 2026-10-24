@@ -12,3 +12,13 @@ Thumbs.db
 **/*firebase-adminsdk*.json
 **/serviceAccountKey.json
 **/to-dentro-admin.json
+
+# Materiais locais de pesquisa, importação e verificação
+/tools/
+/tests/
+/outputs/
+*.xlsx
+*.xls
+*.csv
+*.tsv
+*.inspect.ndjson
