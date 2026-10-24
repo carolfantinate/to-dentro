@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 1,
+  "campuses": [
+    {
+      "id": "usp-cidade-universitaria",
+      "universityId": "usp",
+      "name": "Cidade Universitária / Butantã",
+      "city": "São Paulo",
+      "state": "SP",
+      "latitude": -23.561043,
+      "longitude": -46.731059
+    },
+    {
+      "id": "usp-sao-carlos",
+      "universityId": "usp",
+      "name": "São Carlos",
+      "city": "São Carlos",
+      "state": "SP",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "usp-ribeirao-preto",
+      "universityId": "usp",
+      "name": "Ribeirão Preto",
+      "city": "Ribeirão Preto",
+      "state": "SP",
+      "latitude": -21.167484,
+      "longitude": -47.851714
+    },
+    {
+      "id": "usp-bauru",
+      "universityId": "usp",
+      "name": "Bauru",
+      "city": "Bauru",
+      "state": "SP",
+      "latitude": -22.3345975,
+      "longitude": -49.057502
+    },
+    {
+      "id": "usp-piracicaba",
+      "universityId": "usp",
+      "name": "Piracicaba",
+      "city": "Piracicaba",
+      "state": "SP",
+      "latitude": -22.706667,
+      "longitude": -47.628889
+    },
+    {
+      "id": "usp-pirassununga",
+      "universityId": "usp",
+      "name": "Pirassununga",
+      "city": "Pirassununga",
+      "state": "SP",
+      "latitude": -21.9536,
+      "longitude": -47.4519
+    },
+    {
+      "id": "unesp-botucatu",
+      "universityId": "unesp",
+      "name": "Botucatu",
+      "city": "Botucatu",
+      "state": "SP",
+      "latitude": -22.8904,
+      "longitude": -48.4553
+    },
+    {
+      "id": "unesp-bauru",
+      "universityId": "unesp",
+      "name": "Bauru",
+      "city": "Bauru",
+      "state": "SP",
+      "latitude": -22.350056,
+      "longitude": -49.033639
+    },
+    {
+      "id": "unesp-rio-claro",
+      "universityId": "unesp",
+      "name": "Rio Claro",
+      "city": "Rio Claro",
+      "state": "SP",
+      "latitude": -22.3873,
+      "longitude": -47.5451
+    },
+    {
+      "id": "unesp-sao-jose-do-rio-preto",
+      "universityId": "unesp",
+      "name": "São José do Rio Preto",
+      "city": "São José do Rio Preto",
+      "state": "SP",
+      "latitude": -20.78521,
+      "longitude": -49.36004
+    },
+    {
+      "id": "unesp-araraquara",
+      "universityId": "unesp",
+      "name": "Araraquara",
+      "city": "Araraquara",
+      "state": "SP",
+      "latitude": -21.814735,
+      "longitude": -48.195179
+    },
+    {
+      "id": "unesp-presidente-prudente",
+      "universityId": "unesp",
+      "name": "Presidente Prudente",
+      "city": "Presidente Prudente",
+      "state": "SP",
+      "latitude": -22.1167,
+      "longitude": -51.4
+    },
+    {
+      "id": "unesp-sao-vicente",
+      "universityId": "unesp",
+      "name": "São Vicente",
+      "city": "São Vicente",
+      "state": "SP",
+      "latitude": -23.971111,
+      "longitude": -46.394444
+    },
+    {
+      "id": "unicamp-barao-geraldo",
+      "universityId": "unicamp",
+      "name": "Barão Geraldo",
+      "city": "Campinas",
+      "state": "SP",
+      "latitude": -22.8172,
+      "longitude": -47.0694
+    },
+    {
+      "id": "unicamp-limeira",
+      "universityId": "unicamp",
+      "name": "Limeira",
+      "city": "Limeira",
+      "state": "SP",
+      "latitude": -22.5531,
+      "longitude": -47.4283
+    },
+    {
+      "id": "unicamp-piracicaba",
+      "universityId": "unicamp",
+      "name": "Piracicaba",
+      "city": "Piracicaba",
+      "state": "SP",
+      "latitude": -22.715056,
+      "longitude": -47.644861
+    },
+    {
+      "id": "unifesp-sao-paulo",
+      "universityId": "unifesp",
+      "name": "São Paulo",
+      "city": "São Paulo",
+      "state": "SP",
+      "latitude": -23.5993,
+      "longitude": -46.64248
+    },
+    {
+      "id": "unifesp-baixada-santista",
+      "universityId": "unifesp",
+      "name": "Baixada Santista",
+      "city": "Santos",
+      "state": "SP",
+      "latitude": -23.95402778,
+      "longitude": -46.32586111
+    },
+    {
+      "id": "unifesp-diadema",
+      "universityId": "unifesp",
+      "name": "Diadema",
+      "city": "Diadema",
+      "state": "SP",
+      "latitude": -23.68327778,
+      "longitude": -46.62911111
+    },
+    {
+      "id": "unifesp-guarulhos",
+      "universityId": "unifesp",
+      "name": "Guarulhos",
+      "city": "Guarulhos",
+      "state": "SP",
+      "latitude": -23.4400473,
+      "longitude": -46.4041948
+    },
+    {
+      "id": "unifesp-sao-jose-dos-campos",
+      "universityId": "unifesp",
+      "name": "São José dos Campos",
+      "city": "São José dos Campos",
+      "state": "SP",
+      "latitude": -23.1747,
+      "longitude": -45.9221
+    },
+    {
+      "id": "unifesp-osasco",
+      "universityId": "unifesp",
+      "name": "Osasco",
+      "city": "Osasco",
+      "state": "SP",
+      "latitude": -23.52983,
+      "longitude": -46.8073
+    },
+    {
+      "id": "ufscar-sao-carlos",
+      "universityId": "ufscar",
+      "name": "São Carlos",
+      "city": "São Carlos",
+      "state": "SP",
+      "latitude": -21.984167,
+      "longitude": -47.881944
+    },
+    {
+      "id": "ufscar-araras",
+      "universityId": "ufscar",
+      "name": "Araras",
+      "city": "Araras",
+      "state": "SP",
+      "latitude": -22.31128,
+      "longitude": -47.38352
+    },
+    {
+      "id": "ufscar-sorocaba",
+      "universityId": "ufscar",
+      "name": "Sorocaba",
+      "city": "Sorocaba",
+      "state": "SP",
+      "latitude": -23.58349,
+      "longitude": -47.52294
+    },
+    {
+      "id": "ufscar-lagoa-do-sino",
+      "universityId": "ufscar",
+      "name": "Lagoa do Sino",
+      "city": "Buri",
+      "state": "SP",
+      "latitude": -23.5994483,
+      "longitude": -48.5296291
+    },
+    {
+      "id": "ufabc-santo-andre",
+      "universityId": "ufabc",
+      "name": "Santo André",
+      "city": "Santo André",
+      "state": "SP",
+      "latitude": -23.64466,
+      "longitude": -46.52832
+    },
+    {
+      "id": "ufabc-sao-bernardo-do-campo",
+      "universityId": "ufabc",
+      "name": "São Bernardo do Campo",
+      "city": "São Bernardo do Campo",
+      "state": "SP",
+      "latitude": -23.645,
+      "longitude": -46.528
+    }
+  ]
+}

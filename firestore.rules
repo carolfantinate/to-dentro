@@ -58,6 +58,11 @@ service cloud.firestore {
     match /universities/{universityId} {
       allow get, list: if true;
       allow create, update, delete: if false;
+
+      match /campuses/{campusId} {
+        allow get, list: if true;
+        allow create, update, delete: if false;
+      }
     }
 
     match /users/{uid} {

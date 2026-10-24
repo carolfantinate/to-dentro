@@ -1,6 +1,7 @@
 (async () => {
   'use strict';
   if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
+  if (window.ToDentroCampusesReady) await window.ToDentroCampusesReady;
   const params = new URLSearchParams(location.search);
   const query = document.querySelector('#map-query');
   const list = document.querySelector('#map-universities');
@@ -16,6 +17,7 @@
   const types = selections('type');
   const admissions = selections('admission');
   const modes = selections('mode');
+  const courses = selections('course');
   const from = params.get('from');
   if (from) {
     const url = new URL(from, location.href);
@@ -43,8 +45,13 @@
       && (!types.length || types.includes(item.public ? 'publica' : 'particular'))
       && (!modes.length || modes.includes(item.mode))
       && (!params.get('area') || window.ToDentroCourseCatalog.courses.some(course => course.area === params.get('area') && item.courses.some(name => normalize(name) === course.value)))
-      && (!params.get('course') || item.courses.some(course => normalize(course) === params.get('course')))
+      && (!courses.length || item.courses.some(course => courses.includes(normalize(course))))
       && (!admissions.length || admissions.some(method => (item.admissionMethods || []).includes(method))));
+    const located = visible.filter(campus => Array.isArray(campus.coordinates) && campus.coordinates.length === 2 && campus.coordinates.every(Number.isFinite));
+    const missing = visible.length - located.length;
+    document.querySelector('#map-location-note').textContent = missing
+      ? `Localizações aproximadas. ${missing} ${missing === 1 ? 'campus está sem coordenadas e aparece apenas na lista' : 'campi estão sem coordenadas e aparecem apenas na lista'}.`
+      : 'Localizações aproximadas dos campi e unidades.';
     list.replaceChildren();
     if (markers) markers.clearLayers();
     for (const campus of visible) {
@@ -57,10 +64,10 @@
       card.href = destination.href;
       card.setAttribute('aria-label', `Ver universidade: ${campus.acronym} · ${campus.name}`);
       const heading = document.createElement('h3'); heading.textContent = `${campus.acronym} · ${campus.name}`;
-      const description = document.createElement('p'); description.textContent = `${campus.city} · ${campus.public ? 'Pública' : 'Privada'}`;
+      const description = document.createElement('p'); description.textContent = `${campus.city} · ${campus.public ? 'Pública' : 'Privada'}${campus.coordinates ? '' : ' · Localização a confirmar'}`;
       const action = document.createElement('span'); action.className = 'button button-yellow'; action.textContent = 'Ver universidade';
       card.append(heading, description, action); list.append(card);
-      if (map) {
+      if (map && located.includes(campus)) {
         const popup = document.createElement('div');
         const title = document.createElement('strong'); title.textContent = `${campus.acronym} · ${campus.name}`;
         const note = document.createElement('p'); note.textContent = `${campus.city} · Localização aproximada`;
@@ -70,9 +77,9 @@
       }
     }
     document.querySelector('#map-empty').hidden = visible.length > 0;
-    if (map && visible.length) {
-      if (selected && visible.includes(selected) && !query.value && !params.has('return')) map.setView(selected.coordinates, 15);
-      else map.fitBounds(visible.map(item => item.coordinates), { padding: [32, 32], maxZoom: 13 });
+    if (map && located.length) {
+      if (selected && located.includes(selected) && !query.value && !params.has('return')) map.setView(selected.coordinates, 15);
+      else map.fitBounds(located.map(item => item.coordinates), { padding: [32, 32], maxZoom: 13 });
     }
   }
   query.addEventListener('input', render);

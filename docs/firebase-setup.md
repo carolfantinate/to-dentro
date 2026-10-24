@@ -40,6 +40,16 @@ Nome, sigla, categoria administrativa, mensalidade, descrição, texto de ingres
 
 A página de universidade exibe categoria, mensalidade e descrição, além de permitir acessar a fonte das informações. Se a consulta falhar, há aviso explícito de que os dados apresentados são a demonstração local.
 
-**Publicação necessária:** copie novamente `firestore.rules` no console do Firebase e publique. A regra de `/universities/{universityId}` permite leitura pública dos documentos gerais e bloqueia escrita pelo cliente. As subcoleções continuam bloqueadas. As regras de perfis permanecem restritas ao dono. O arquivo local não altera as regras publicadas automaticamente.
+**Publicação necessária:** copie novamente `firestore.rules` no console do Firebase e publique. A regra de `/universities/{universityId}` permite leitura pública dos documentos gerais e bloqueia escrita pelo cliente. A subcoleção `campuses` também permite leitura pública; outras subcoleções continuam bloqueadas. As regras de perfis permanecem restritas ao dono. O arquivo local não altera as regras publicadas automaticamente.
 
 Verificação local: `node tests/universities.cjs`. A execução das regras não foi validada no emulador.
+
+## Campi e mapa
+
+`services/campuses.js` lê `universities/{universityId}/campuses` para cada universidade do catálogo. A consulta não usa collection group e não exige login. O adaptador aguarda as universidades, carrega os campi e só então o mapa renderiza a lista e os marcadores.
+
+Os campos usados são ID, vínculo com a universidade, nome, cidade, UF, latitude e longitude. Coordenadas vêm exclusivamente do documento: valores nulos ou inválidos não são substituídos por coordenadas dos mocks. O campus permanece na lista com a indicação de localização pendente. Somente pontos válidos entram nos marcadores, no enquadramento do mapa ou na centralização por campus. Se Leaflet não carregar, a lista continua disponível. Se o banco falhar, há aviso explícito de demonstração local.
+
+Cursos e modalidade são demonstrativos apenas para campi cujos IDs correspondem aos mocks existentes; não são copiados para os novos campi. Publique novamente `firestore.rules` para habilitar a leitura da subcoleção `campuses`, preservando a escrita administrativa e a privacidade dos perfis.
+
+Verificação: `node tests/campuses.cjs` cobre os 28 documentos, os 27 pontos válidos, o campus sem coordenadas, filtro de cidade, falha de consulta e lista sem Leaflet. A integração com as regras publicadas depende da publicação manual no console.
