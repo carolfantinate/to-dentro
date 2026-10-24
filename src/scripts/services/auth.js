@@ -61,7 +61,7 @@
     const [heading, description, symbol] = privatePages[currentPage];
     const main = document.querySelector('main');
     main.className = 'auth-guest-page';
-    const logo = node('img', 'auth-logo'); logo.src = new URL('assets/images/combination-mark.svg', root).href; logo.alt = 'Tô Dentro!'; logo.width = 170; logo.height = 57;
+    const logo = node('img', 'auth-logo'); logo.src = new URL('assets/images/brand/logo.svg', root).href; logo.alt = 'Tô Dentro!'; logo.width = 170; logo.height = 61;
     const card = node('section', 'auth-guest-card');
     const icon = node('span', 'auth-icon material-symbols-outlined', symbol); icon.setAttribute('aria-hidden', 'true');
     const back = node('a', 'auth-dismiss', 'Explorar sem entrar'); back.href = new URL('index.html', root).href;
