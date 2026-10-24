@@ -1,5 +1,6 @@
 (async () => {
   'use strict';
+  if (window.ToDentroCoursesReady) await window.ToDentroCoursesReady;
   if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   await window.ToDentroAuth.ready;
   if (window.ToDentroAuth.isRestrictedPage()) return;
@@ -45,7 +46,7 @@
         if (!course || selection.length < 2) continue;
         const card = document.createElement('article'); card.className = 'course-card';
         const title = document.createElement('h2'); title.textContent = course.name;
-        const summary = document.createElement('p'); summary.textContent = `${selection.map(item => item.university.acronym).join(' · ')} · ${state.get('edicao')} · Exemplo demonstrativo`;
+        const summary = document.createElement('p'); summary.textContent = selection.map(item => `${item.university.acronym} · ${item.campus.name} · ${item.process.name} · ${item.reference.edition}`).join(' | ');
         const link = document.createElement('a'); link.className = 'button button-yellow'; link.textContent = 'Ver comparação'; link.href = `./comparacao-notas.html?${state}`;
         card.append(title, summary, link); list.append(card);
       }

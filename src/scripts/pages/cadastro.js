@@ -1,5 +1,6 @@
 (async () => {
   'use strict';
+  if (window.ToDentroCoursesReady) await window.ToDentroCoursesReady;
   // Impede envio nativo com senha na URL enquanto a sessão e os módulos carregam.
   for (const form of document.querySelectorAll('#signup-access-form, #signup-create-form')) form.addEventListener('submit', event => event.preventDefault());
   await window.ToDentroAuth.ready;

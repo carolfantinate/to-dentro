@@ -8,18 +8,22 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/pages/perfil.css">
     <script defer src="../scripts/services/auth.js"></script>
+    <script defer src="../scripts/services/navigation.js"></script>
 </head>
 
 <body>
     <main class="page-container profile-page" id="conteudo-principal">
         <header class="profile-header">
-            <a class="profile-back" href="../../index.html" aria-label="Voltar ao início"><span
-                    class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a>
+            <a class="profile-back" href="../../index.html" aria-label="Voltar ao início">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span>
+            </a>
             <h1>Meu perfil</h1>
         </header>
 
         <section class="profile-identity" aria-labelledby="profile-name">
-            <span class="profile-avatar" aria-hidden="true"><span class="material-symbols-outlined">person</span></span>
+            <span class="profile-avatar" aria-hidden="true">
+                <span class="material-symbols-outlined">person</span>
+            </span>
             <div>
                 <h2 id="profile-name">Meu perfil</h2>
                 <p id="profile-email"></p>
@@ -91,7 +95,8 @@
             </div>
         </section>
 
-        <button class="button button-yellow" type="button" disabled title="Disponível em breve">Ver meu perfil vocacional</button>
+        <button class="button button-yellow" type="button" disabled title="Disponível em breve">Ver meu perfil
+            vocacional</button>
         <p id="profile-status" role="status" hidden></p>
         <button class="button button-blue" type="button" id="profile-retry" hidden>Tentar novamente</button>
         <button class="button button-blue" type="button" id="profile-logout">Sair da conta</button>

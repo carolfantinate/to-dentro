@@ -1,5 +1,6 @@
 (async () => {
   'use strict';
+  if (window.ToDentroCoursesReady) await window.ToDentroCoursesReady;
   let initialized = false;
   document.querySelector('#preferences-form').addEventListener('submit', event => { if (!initialized) event.preventDefault(); });
   await window.ToDentroAuth.ready;

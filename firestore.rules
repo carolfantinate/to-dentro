@@ -59,9 +59,25 @@ service cloud.firestore {
       allow get, list: if true;
       allow create, update, delete: if false;
 
+      match /courses/{courseId} {
+        allow get, list: if true;
+        allow create, update, delete: if false;
+      }
+      match /admissionProcesses/{processId} {
+        allow get, list: if true;
+        allow create, update, delete: if false;
+      }
       match /campuses/{campusId} {
         allow get, list: if true;
         allow create, update, delete: if false;
+        match /courses/{offeringId} {
+          allow get, list: if true;
+          allow create, update, delete: if false;
+          match /cutoffScores/{scoreId} {
+            allow get, list: if true;
+            allow create, update, delete: if false;
+          }
+        }
       }
     }
 

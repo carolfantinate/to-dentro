@@ -58,3 +58,42 @@ node tools/universities-import/import-campuses.mjs --write --project to-dentro-w
 O último comando grava no banco e exige as mesmas credenciais administrativas. Testes: `node tests/campuses-import.mjs`.
 
 O mapa está conectado às subcoleções por `services/campuses.js` e `src/data/campuses.js`. Publique a versão atual de `firestore.rules`: ela libera a leitura dos documentos de campi e mantém a escrita pelo cliente bloqueada. Campi sem coordenadas aparecem apenas na lista, sem marcador. Cursos e modalidades continuam associados aos mocks apenas quando há correspondência pelo ID do campus. Em falha de leitura, a tela avisa que está exibindo a demonstração local.
+
+## Cursos da terceira aba
+
+Fonte: aba `Cursos - amostra`, intervalo A1:L13, terminando **inclusive** em Sistemas de Informação da USP São Carlos. Foram transcritas 12 ofertas de Medicina, Direito, Ciência da Computação e Sistemas de Informação. Nenhuma linha posterior foi usada.
+
+Arquivos:
+
+- `courses-source.json`: transcrição dos campos da planilha e números das linhas.
+- `courses-campus-mapping.json`: vínculo explícito dos nomes da aba com os IDs dos campi. “Ribeirão” aponta para `usp-ribeirao-preto`. “São Paulo” aponta **provisoriamente**, por escolha da usuária, para `usp-cidade-universitaria`. As ofertas guardam `sourceCampus` e `campusAssignmentProvisional`; esse vínculo não confirma o endereço ou unidade de cada curso.
+- `prepare-courses.mjs` e `courses.json`: conversão e dados estruturados; o preparador exige a linha limite e ignora qualquer linha posterior.
+- `import-courses.mjs`: simulação ou gravação administrativa com transação e conferência por releitura.
+
+Estrutura no Firestore:
+
+```text
+universities/usp
+  courses/{courseId}                              4 definições de curso
+  admissionProcesses/{processId}                  3 processos
+  campuses/{campusId}
+    courses/{offeringId}                          12 ofertas
+      cutoffScores/{scoreId}                     29 resultados no total
+```
+
+A definição geral mantém nome e área conforme a planilha. Cada oferta tem ID próprio incluindo campus, curso, grau, modalidade e turno, além de duração em semestres, vagas, fonte e referências. Duas ofertas de Direito em São Paulo, por exemplo, são registros separados para manhã e noite. `seatsPeriod` é `year` somente quando a célula menciona ano; “60 vagas” permanece com período nulo. A matriz curricular é nula porque ainda não foi coletada.
+
+As células de processo/ano/modalidade/nota são decompostas sem compartilhar notas entre ofertas. As notas da FUVEST de Medicina em São Paulo conservam primeira fase com valor 80 e segunda fase com faixa 80–88. No Provão Paulista, L1, L2 e L4 conservam faixa 70–74 e L3 faixa 76–80, como categorias separadas. Uma faixa usa `minimum`/`maximum` e `value: null`; uma nota única usa `value` e limites nulos. Quando a fase ou escala não está indicada, fica nula. As siglas L1–L4 não receberam uma descrição de cota por suposição. O texto original de cada processo é preservado em `rawResult`.
+
+A fonte oficial recebida é o link geral do Jupiterweb. Os números foram transcritos da planilha e não conferidos independentemente em editais. Nenhum dado foi inventado para preencher matriz, escala ou fase.
+
+```powershell
+node tools/universities-import/prepare-courses.mjs
+node tools/universities-import/import-courses.mjs
+node tools/universities-import/import-courses.mjs --write --project to-dentro-webapp
+node tests/courses-import.mjs
+```
+
+A gravação verifica os documentos pais, exige que o arquivo preparado corresponda à fonte e aos vínculos aprovados, e atualiza por IDs fixos sem excluir registros. `createdAt` é preservado; `updatedAt` usa timestamp do servidor. A etapa alimenta o banco. As telas de cursos e notas estão conectadas por `services/academics.js`; publique a versão atual de `firestore.rules` para habilitar a leitura pública dos cursos, ofertas, processos e resultados. Os dados da USP substituem os mocks acadêmicos dessa instituição.
+
+Importação executada em 24/10/2026 no projeto `to-dentro-webapp`: 48 documentos gravados e relidos, com todos os campos conferidos contra o arquivo preparado (4 cursos, 12 ofertas, 3 processos e 29 resultados).

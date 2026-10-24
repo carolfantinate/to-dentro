@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/pages/universidade.css">
     <script defer src="../scripts/services/auth.js"></script>
+    <script defer src="../scripts/services/navigation.js"></script>
 </head>
 
 <body>
@@ -38,8 +39,8 @@
 
             <nav class="university-sections" aria-label="Seções da universidade">
                 <a class="university-shortcut tag-blue" id="university-courses-link" href="./cursos.html">Cursos</a>
-                <button class="university-shortcut tag-green" type="button" data-detail="cutoffs-dialog">Notas de
-                    corte</button>
+                <a class="university-shortcut tag-green" id="university-cutoff-link"
+                    href="./buscar-nota-de-corte.html">Notas de corte</a>
                 <a class="university-shortcut tag-blue" id="university-opportunities-link"
                     href="./oportunidades.html">Oportunidades</a>
                 <a class="university-shortcut shortcut-calendar" id="university-calendar"
@@ -55,27 +56,22 @@
                 </div>
             </section>
 
-            <a class="button button-green" href="./mapa.html" data-map-link>Ver localização</a>
+            <a class="button button-green" href="./mapa.html" data-map-link data-map-university>Ver localização</a>
             <a class="button button-yellow" id="university-community" href="./comunidade.html">Experiências do
                 estudante</a>
             <section class="university-more" aria-labelledby="more-title">
                 <h2 id="more-title">Saiba mais</h2>
-                <nav class="university-official-links" aria-label="Links oficiais">
-                    <a id="university-official-site" target="_blank">Site oficial <span aria-hidden="true">🔗</span></a>
-                    <a id="university-selection-site" target="_blank">Processos seletivos e editais <span
-                            aria-hidden="true">🔗</span></a>
-                    <a id="university-source" target="_blank" rel="noopener noreferrer" hidden>Fonte das informações</a>
-                </nav>
+                <a id="university-official-site" class="university-official-card" target="_blank"
+                    rel="noopener noreferrer">
+                    <span class="material-symbols-outlined" aria-hidden="true">language</span>
+                    <span><strong>Site oficial</strong><small>Conheça a instituição</small></span>
+                    <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span>
+                </a>
             </section>
         </div>
         <p id="save-status" class="visually-hidden" role="status"></p>
 
-        <dialog class="university-dialog" id="cutoffs-dialog" aria-labelledby="cutoffs-title">
-            <h2 id="cutoffs-title">Notas de corte</h2>
-            <p>Compare por curso, campus e modalidade.</p>
-            <p class="detail-note">A consultar • Sem notas oficiais neste exemplo.</p>
-            <form method="dialog"><button class="button button-yellow">Fechar</button></form>
-        </dialog>
+
 
         <section id="university-not-found" hidden>
             <h1>Universidade não encontrada</h1>
@@ -89,6 +85,7 @@
     <script defer src="../data/mock-data.js"></script>
     <script defer src="../data/catalog.js"></script>
     <script defer src="../data/universities.js"></script>
+    <script defer src="../data/courses.js"></script>
     <script defer src="../scripts/services/saved-items.js"></script>
     <script defer src="../scripts/components/bottom-nav.js"></script>
     <script defer src="../scripts/pages/universidade.js"></script>

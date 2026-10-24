@@ -1,5 +1,6 @@
 (async () => {
   'use strict';
+  if (window.ToDentroCoursesReady) await window.ToDentroCoursesReady;
   if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   if (window.ToDentroCampusesReady) await window.ToDentroCampusesReady;
   const params = new URLSearchParams(location.search);
@@ -10,6 +11,9 @@
     ...window.ToDentroUniversities.find(university => university.id === campus.universityId),
     ...campus,
   }));
+  const universityFilter=params.get('universidade');
+  const institution=window.ToDentroUniversities.find(item=>item.id===universityFilter);
+  if(institution)document.querySelector('#map-region-title').textContent=`Campi da ${institution.acronym}`;
   const selected = campuses.find(item => params.get('campus') ? item.id === params.get('campus') : item.universityId === params.get('universidade'));
   const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
   const selections = name => params.getAll(name).flatMap(value => value.split(',')).filter(Boolean);
@@ -21,7 +25,7 @@
   const from = params.get('from');
   if (from) {
     const url = new URL(from, location.href);
-    const allowed = ['../../index.html', './universidade.html', './buscar-universidades.html', './comunidade.html', './filtros.html'].map(path => new URL(path, location.href));
+    const allowed = ['../../index.html', './universidade.html', './buscar-universidades.html', './comunidade.html', './filtros.html', './curso.html'].map(path => new URL(path, location.href));
     if (allowed.some(item => item.protocol === url.protocol && item.host === url.host && item.pathname === url.pathname)) document.querySelector('#map-back').href = url.href;
   }
   const filterState = new URLSearchParams(params);
@@ -40,7 +44,8 @@
   function render() {
     filterState.set('cidade', query.value);
     document.querySelector('#map-filter').href = `./filtros.html?${filterState}`;
-    const visible = campuses.filter(item => normalize(item.city).includes(normalize(query.value))
+    const visible = campuses.filter(item => (!universityFilter || item.universityId===universityFilter)
+      && normalize(item.city).includes(normalize(query.value))
       && (!cities.length || cities.includes(normalize(item.city).replace(/\s+/g, '-')))
       && (!types.length || types.includes(item.public ? 'publica' : 'particular'))
       && (!modes.length || modes.includes(item.mode))
@@ -78,7 +83,7 @@
     }
     document.querySelector('#map-empty').hidden = visible.length > 0;
     if (map && located.length) {
-      if (selected && located.includes(selected) && !query.value && !params.has('return')) map.setView(selected.coordinates, 15);
+      if (params.get('campus') && selected && located.includes(selected) && !query.value && !params.has('return')) map.setView(selected.coordinates, 15);
       else map.fitBounds(located.map(item => item.coordinates), { padding: [32, 32], maxZoom: 13 });
     }
   }

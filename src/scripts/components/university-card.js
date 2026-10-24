@@ -5,8 +5,8 @@
 
   class UniversityCard extends HTMLElement {
     static get observedAttributes() { return ['university-id', 'variant']; }
-    async connectedCallback() { if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady; this.render(); }
-    async attributeChangedCallback() { if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady; if (this.isConnected) this.render(); }
+    async connectedCallback() { if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady; if (window.ToDentroCoursesReady) await window.ToDentroCoursesReady; this.render(); }
+    async attributeChangedCallback() { if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady; if (window.ToDentroCoursesReady) await window.ToDentroCoursesReady; if (this.isConnected) this.render(); }
 
     render() {
       const university = window.ToDentroUniversities.find(item => item.id === this.getAttribute('university-id'));

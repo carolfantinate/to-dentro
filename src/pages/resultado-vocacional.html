@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,66 +8,145 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/pages/resultado-vocacional.css">
     <script defer src="../scripts/services/auth.js"></script>
+    <script defer src="../scripts/services/navigation.js"></script>
 </head>
+
 <body>
     <main class="page-container result-page" id="conteudo-principal">
-        <header class="result-header"><a href="./quiz-vocacional.html" aria-label="Voltar ao teste"><span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span></a><span>Seu resultado</span></header>
+        <header class="result-header">
+            <a href="./quiz-vocacional.html" aria-label="Voltar ao teste">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back_ios_new</span>
+            </a>
+            <span>Seu resultado</span>
+        </header>
+
         <h1>Você tem muitos caminhos.</h1>
         <p class="result-intro">Um mapa de interesses para começar a explorar.</p>
 
         <section class="result-profile" aria-labelledby="profile-title">
             <img src="../../assets/images/brand/icon.png" alt="" width="66" height="66">
-            <div><p class="profile-label">Perfil ilustrativo</p><h2 id="profile-title">Cuidar e descobrir</h2><p>Pessoas + curiosidade científica</p></div>
+            <div>
+                <p class="profile-label">Perfil ilustrativo</p>
+                <h2 id="profile-title">Cuidar e descobrir</h2>
+                <p>Pessoas + curiosidade científica</p>
+            </div>
         </section>
 
         <section class="interest-map" aria-labelledby="map-title">
             <h2 id="map-title">Seu mapa de interesses</h2>
             <figure class="radar-card">
-                <svg class="interest-radar" viewBox="0 0 350 310" role="img" aria-labelledby="radar-title radar-description">
+                <svg class="interest-radar" viewBox="0 0 350 310" role="img"
+                    aria-labelledby="radar-title radar-description">
                     <title id="radar-title">Mapa ilustrativo de interesses</title>
-                    <desc id="radar-description">Exemplo visual sem cálculo das respostas. Escala de zero a cinco: Pessoas 4,7; Ciência 4,2; Criação 2,9; Análise 3,6; Organização 2,5; Comunicação 3,3.</desc>
-                    <defs><polygon id="radar-ring" points="0,-95 82.27,-47.5 82.27,47.5 0,95 -82.27,47.5 -82.27,-47.5"/></defs>
+                    <desc id="radar-description">Exemplo visual sem cálculo das respostas. Escala de zero a cinco:
+                        Pessoas 4,7; Ciência 4,2; Criação 2,9; Análise 3,6; Organização 2,5; Comunicação 3,3.</desc>
+                    <defs>
+                        <polygon id="radar-ring" points="0,-95 82.27,-47.5 82.27,47.5 0,95 -82.27,47.5 -82.27,-47.5" />
+                    </defs>
                     <g transform="translate(175 160)" class="radar-grid">
-                        <use href="#radar-ring" fill="var(--color-background)"/>
-                        <use href="#radar-ring" transform="scale(.75)"/><use href="#radar-ring" transform="scale(.5)"/><use href="#radar-ring" transform="scale(.25)"/>
-                        <path d="M0 0V-95M0 0 82.27-47.5M0 0 82.27 47.5M0 0V95M0 0-82.27 47.5M0 0-82.27-47.5"/>
+                        <use href="#radar-ring" fill="var(--color-background)" />
+                        <use href="#radar-ring" transform="scale(.75)" />
+                        <use href="#radar-ring" transform="scale(.5)" />
+                        <use href="#radar-ring" transform="scale(.25)" />
+                        <path d="M0 0V-95M0 0 82.27-47.5M0 0 82.27 47.5M0 0V95M0 0-82.27 47.5M0 0-82.27-47.5" />
                     </g>
-                    <polygon class="radar-area" points="175,70.7 244.1,120.1 222.7,187.6 175,228.4 133.9,183.8 120.7,128.7"/>
-                    <g class="radar-dots"><circle cx="175" cy="70.7" r="5" class="radar-highlight"/><circle cx="244.1" cy="120.1" r="5" class="radar-highlight"/><circle cx="222.7" cy="187.6" r="4"/><circle cx="175" cy="228.4" r="4"/><circle cx="133.9" cy="183.8" r="4"/><circle cx="120.7" cy="128.7" r="4"/></g>
-                    <g class="radar-labels"><text x="175" y="38" text-anchor="middle">Pessoas</text><text x="270" y="99">Ciência</text><text x="270" y="232">Criação</text><text x="175" y="282" text-anchor="middle">Análise</text><text x="80" y="232" text-anchor="end">Organização</text><text x="83" y="99" text-anchor="end">Comunicação</text></g>
+                    <polygon class="radar-area"
+                        points="175,70.7 244.1,120.1 222.7,187.6 175,228.4 133.9,183.8 120.7,128.7" />
+                    <g class="radar-dots">
+                        <circle cx="175" cy="70.7" r="5" class="radar-highlight" />
+                        <circle cx="244.1" cy="120.1" r="5" class="radar-highlight" />
+                        <circle cx="222.7" cy="187.6" r="4" />
+                        <circle cx="175" cy="228.4" r="4" />
+                        <circle cx="133.9" cy="183.8" r="4" />
+                        <circle cx="120.7" cy="128.7" r="4" />
+                    </g>
+                    <g class="radar-labels"><text x="175" y="38" text-anchor="middle">Pessoas</text><text x="270"
+                            y="99">Ciência</text><text x="270" y="232">Criação</text><text x="175" y="282"
+                            text-anchor="middle">Análise</text><text x="80" y="232"
+                            text-anchor="end">Organização</text><text x="83" y="99" text-anchor="end">Comunicação</text>
+                    </g>
                 </svg>
                 <figcaption>Exemplo visual · dados demonstrativos</figcaption>
             </figure>
         </section>
 
         <section class="result-strengths" aria-label="Interesses em destaque">
-            <article class="strength-green"><span class="material-symbols-outlined" aria-hidden="true">favorite</span><h3>Conexão humana</h3><p>Cuidar, ouvir e trabalhar com pessoas.</p></article>
-            <article class="strength-blue"><span class="material-symbols-outlined" aria-hidden="true">science</span><h3>Olhar investigativo</h3><p>Observar, perguntar e buscar respostas.</p></article>
+            <article class="strength-green">
+                <span class="material-symbols-outlined" aria-hidden="true">favorite</span>
+                <h3>Conexão humana</h3>
+                <p>Cuidar, ouvir e trabalhar com pessoas.</p>
+            </article>
+            <article class="strength-blue">
+                <span class="material-symbols-outlined" aria-hidden="true">science</span>
+                <h3>Olhar investigativo</h3>
+                <p>Observar, perguntar e buscar respostas.</p>
+            </article>
         </section>
 
         <section class="result-courses" aria-labelledby="courses-title">
             <h2 id="courses-title">Cursos para você explorar</h2>
             <p>Possibilidades para conhecer, sem limitar sua escolha.</p>
             <div class="result-course-grid">
-                <article><span class="course-symbol symbol-blue material-symbols-outlined" aria-hidden="true">person</span><h3>Psicologia</h3><p>Pessoas e comportamento.</p><a href="./buscar-universidades.html?course=psicologia&amp;city=&amp;type=" aria-label="Conhecer curso de Psicologia">Conhecer curso →</a></article>
-                <article><span class="course-symbol symbol-green material-symbols-outlined" aria-hidden="true">eco</span><h3>Ciências Biológicas</h3><p>Vida e investigação.</p><a href="./buscar-universidades.html?course=ciencias%20biologicas&amp;city=&amp;type=" aria-label="Conhecer curso de Ciências Biológicas">Conhecer curso →</a></article>
-                <article><span class="course-symbol symbol-yellow material-symbols-outlined" aria-hidden="true">favorite</span><h3>Medicina</h3><p>Ciência e cuidado.</p><a href="./buscar-universidades.html?course=medicina&amp;city=&amp;type=" aria-label="Conhecer curso de Medicina">Conhecer curso →</a></article>
-                <article><span class="course-symbol symbol-blue material-symbols-outlined" aria-hidden="true">account_balance</span><h3>Enfermagem</h3><p>Cuidado e saúde.</p><a href="./buscar-universidades.html?course=enfermagem&amp;city=&amp;type=" aria-label="Conhecer curso de Enfermagem">Conhecer curso →</a></article>
+                <article>
+                    <span class="course-symbol symbol-blue material-symbols-outlined" aria-hidden="true">person</span>
+                    <h3>Psicologia</h3>
+                    <p>Pessoas e comportamento.</p><a
+                        href="./buscar-universidades.html?course=psicologia&amp;city=&amp;type="
+                        aria-label="Conhecer curso de Psicologia">Conhecer curso →</a>
+                </article>
+                <article>
+                    <span class="course-symbol symbol-green material-symbols-outlined" aria-hidden="true">eco</span>
+                    <h3>Ciências Biológicas</h3>
+                    <p>Vida e investigação.</p><a
+                        href="./buscar-universidades.html?course=ciencias%20biologicas&amp;city=&amp;type="
+                        aria-label="Conhecer curso de Ciências Biológicas">Conhecer curso →</a>
+                </article>
+                <article>
+                    <span class="course-symbol symbol-yellow material-symbols-outlined"
+                        aria-hidden="true">favorite</span>
+                    <h3>Medicina</h3>
+                    <p>Ciência e cuidado.</p><a href="./buscar-universidades.html?course=medicina&amp;city=&amp;type="
+                        aria-label="Conhecer curso de Medicina">Conhecer curso →</a>
+                </article>
+                <article>
+                    <span class="course-symbol symbol-blue material-symbols-outlined"
+                        aria-hidden="true">account_balance</span>
+                    <h3>Enfermagem</h3>
+                    <p>Cuidado e saúde.</p><a href="./buscar-universidades.html?course=enfermagem&amp;city=&amp;type="
+                        aria-label="Conhecer curso de Enfermagem">Conhecer curso →</a>
+                </article>
             </div>
         </section>
 
-        <aside class="result-explore"><span class="material-symbols-outlined" aria-hidden="true">explore</span><div><h3>Quer descobrir outros caminhos?</h3><p>Explore também áreas fora deste resultado.</p></div></aside>
-        <aside class="result-note"><p>Seu futuro é uma construção</p><p>Este resultado é demonstrativo. O teste orienta a exploração de interesses; não é diagnóstico nem garantia de afinidade.</p></aside>
-        <button class="button button-ink result-save" id="save-interest-map" type="button">Salvar meu mapa de interesses</button>
+        <aside class="result-explore">
+            <span class="material-symbols-outlined" aria-hidden="true">explore</span>
+            <div>
+                <h3>Quer descobrir outros caminhos?</h3>
+                <p>Explore também áreas fora deste resultado.</p>
+            </div>
+        </aside>
+        <aside class="result-note">
+            <p>Seu futuro é uma construção</p>
+            <p>Este resultado é demonstrativo. O teste orienta a exploração de interesses; não é diagnóstico nem
+                garantia de afinidade.</p>
+        </aside>
+        <button class="button button-ink result-save" id="save-interest-map" type="button">Salvar meu mapa de
+            interesses</button>
         <p id="result-status" class="result-status" role="status" hidden></p>
         <a class="result-all-courses" href="./buscar-universidades.html?city=&amp;type=">Explorar todos os cursos →</a>
-        <a class="result-restart" href="./quiz-vocacional.html?reiniciar=1"><span aria-hidden="true">↻</span> Refazer teste</a>
-        <noscript><p>Ative o JavaScript para salvar seu mapa neste navegador.</p></noscript>
+        <a class="result-restart" href="./quiz-vocacional.html?reiniciar=1">
+            <span aria-hidden="true">↻</span> Refazer teste
+        </a>
+        <noscript>
+            <p>Ative o JavaScript para salvar seu mapa neste navegador.</p>
+        </noscript>
     </main>
+
     <td-bottom-nav></td-bottom-nav>
     <script defer src="../scripts/components/bottom-nav.js"></script>
     <script defer src="../data/mock-data.js"></script>
     <script defer src="../data/catalog.js"></script>
     <script defer src="../scripts/pages/resultado-vocacional.js"></script>
 </body>
+
 </html>

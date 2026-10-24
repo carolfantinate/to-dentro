@@ -1,53 +1,47 @@
-(() => {
+(async () => {
   'use strict';
-  const data = window.ToDentroData;
-  const params = new URLSearchParams(location.search);
-  const form = document.querySelector('#cutoff-form');
-  const courseSelect = document.querySelector('#cutoff-course');
-  const universitySelect = document.querySelector('#cutoff-university');
-  const campusSelect = document.querySelector('#cutoff-campus');
-  const processSelect = document.querySelector('#cutoff-process');
-  const courses = data.views.courseCatalog.courses.filter(course => data.getOfferings({ courseId: course.id }).length);
-  const options = (select, entries) => select.replaceChildren(...entries.map(([value, label]) => new Option(label, value)));
-  options(courseSelect, courses.map(course => [course.id, course.name]));
-  function updateContext() {
-    const university = data.getUniversity(universitySelect.value);
-    const campusIds = new Set(data.getOfferings({ universityId: university?.id, courseId: courseSelect.value }).map(item => item.campusId));
-    const campuses = university ? data.getCampuses(university.id).filter(item => campusIds.has(item.id)) : [];
-    options(campusSelect, campuses.map(campus => [campus.id, campus.label]));
-    options(processSelect, university ? data.getProcesses(university.id).map(process => [process.id, process.name]) : []);
-    form.querySelector('[type="submit"]').disabled = !university || !campuses.length;
+  if(window.ToDentroCoursesReady)await window.ToDentroCoursesReady;
+  if(window.ToDentroUniversitiesReady)await window.ToDentroUniversitiesReady;
+  const data=window.ToDentroData,ui=window.ToDentroAcademicUI,params=new URLSearchParams(location.search);
+  const form=document.querySelector('#cutoff-form');
+  const fields={curso:document.querySelector('#cutoff-course'),universidade:document.querySelector('#cutoff-university'),campus:document.querySelector('#cutoff-campus'),turno:document.querySelector('#cutoff-shift'),processo:document.querySelector('#cutoff-process'),edicao:document.querySelector('#cutoff-year'),modalidade:document.querySelector('#cutoff-category'),fase:document.querySelector('#cutoff-stage')};
+  const options=(key,entries,preferred)=>{const select=fields[key];select.replaceChildren(...entries.map(([value,label])=>new Option(label,String(value))));if(entries.some(([value])=>String(value)===preferred))select.value=preferred;};
+  function rebuild(initial=false){
+    const previous=Object.fromEntries(Object.entries(fields).map(([key,field])=>[key,initial?(params.get(key)||''):field.value]));
+    const resolved=data.getCourse(previous.curso);if(resolved)previous.curso=resolved.id;
+    const campus=data.getCampus(previous.universidade,previous.campus);if(campus)previous.campus=campus.id;
+    const process=data.getProcess(previous.universidade,previous.processo);if(process)previous.processo=process.id;
+    const category=data.source.general.selectionCategories.find(item=>item.name===previous.modalidade);if(category)previous.modalidade=category.id;
+    const period=data.source.general.periods.find(item=>item.name===previous.turno);if(period)previous.turno=period.id;
+    const preferredUniversity=previous.universidade || (initial && previous.curso ? data.views.universities.find(item=>data.getOfferings({universityId:item.id,courseId:previous.curso}).length)?.id : '');
+    options('universidade',[['','Selecione a universidade'],...data.views.universities.map(item=>[item.id,`${item.acronym} · ${item.name}`])],preferredUniversity);
+    const universityOffers=fields.universidade.value ? data.getOfferings({universityId:fields.universidade.value}) : [];
+    const availableCourses=new Set(universityOffers.map(offer=>offer.courseId));
+    const courses=data.views.courseCatalog.courses.filter(course=>availableCourses.has(course.id));
+    options('curso',[['','Selecione o curso'],...courses.map(course=>[course.id,course.name])],previous.curso);
+    const offers=universityOffers.filter(offer=>offer.courseId===fields.curso.value);
+    const campusIds=new Set(offers.map(offer=>offer.campusId));
+    options('campus',data.getCampuses(fields.universidade.value).filter(item=>campusIds.has(item.id)).map(item=>[item.id,item.label||item.name]),previous.campus);
+    const campusOffers=offers.filter(offer=>offer.campusId===fields.campus.value);
+    options('turno',[...new Set(campusOffers.map(offer=>offer.periodId))].map(id=>[id,ui.period(id)]),previous.turno);
+    const offerIds=new Set(campusOffers.filter(offer=>offer.periodId===fields.turno.value).map(offer=>offer.id));
+    let scores=data.getScores({universityId:fields.universidade.value,courseId:fields.curso.value}).filter(score=>offerIds.has(score.offeringId));
+    options('processo',data.getProcesses(fields.universidade.value).filter(process=>scores.some(score=>score.processId===process.id)).map(process=>[process.id,process.name]),previous.processo);
+    scores=scores.filter(score=>score.processId===fields.processo.value);
+    options('edicao',[...new Set(scores.map(score=>score.edition))].sort((a,b)=>b-a).map(year=>[year,year]),previous.edicao);
+    scores=scores.filter(score=>String(score.edition)===fields.edicao.value);
+    options('modalidade',[...new Set(scores.map(score=>score.selectionCategoryId))].map(id=>[id,ui.category(id)]),previous.modalidade);
+    scores=scores.filter(score=>score.selectionCategoryId===fields.modalidade.value);
+    options('fase',[...new Set(scores.map(score=>score.stageId||''))].map(id=>[id,ui.stage(id)]),previous.fase);
+    form.querySelector('[type="submit"]').disabled=!scores.length;
+    const status=document.querySelector('#cutoff-status');
+    status.hidden=!(fields.universidade.value && !universityOffers.length);
+    status.textContent='Nenhuma oferta cadastrada para esta universidade no catálogo disponível.';
   }
-  function updateUniversities(preferred = universitySelect.value) {
-    const ids = new Set(data.getOfferings({ courseId: courseSelect.value }).map(item => item.universityId));
-    options(universitySelect, data.views.universities.filter(item => ids.has(item.id)).map(item => [item.id, `${item.acronym} · ${item.name}`]));
-    if (ids.has(preferred)) universitySelect.value = preferred;
-    updateContext();
-  }
-  const initialCourse = data.getCourse(params.get('curso'));
-  const initialUniversity = data.getUniversity(params.get('universidade'));
-  if (initialCourse && courses.some(item => item.id === initialCourse.id)) courseSelect.value = initialCourse.id;
-  updateUniversities(initialUniversity?.id);
-  for (const name of ['edicao', 'modalidade', 'turno']) {
-    const field = form.elements.namedItem(name);
-    if ([...field.options].some(option => option.value === params.get(name))) field.value = params.get(name);
-  }
-  const campus = data.getCampus(universitySelect.value, params.get('campus'));
-  if (campus && [...campusSelect.options].some(option => option.value === campus.id)) campusSelect.value = campus.id;
-  const process = data.getProcess(universitySelect.value, params.get('processo'));
-  if (process) processSelect.value = process.id;
-  if (initialUniversity && initialCourse && data.getOfferings({ universityId: initialUniversity.id, courseId: initialCourse.id }).length) {
-    document.querySelector('#cutoff-back').href = `./curso.html?${new URLSearchParams({ universidade: initialUniversity.id, curso: initialCourse.id })}`;
-  }
-  courseSelect.addEventListener('change', () => updateUniversities());
-  universitySelect.addEventListener('change', updateContext);
-  form.addEventListener('reset', () => requestAnimationFrame(() => {
-    courseSelect.selectedIndex = 0;
-    updateUniversities();
-    history.replaceState(null, '', location.pathname);
-  }));
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    if (form.reportValidity()) location.href = `./nota-de-corte.html?${new URLSearchParams(new FormData(form))}`;
-  });
+  rebuild(true);
+  Object.values(fields).forEach(field=>field.addEventListener('change',()=>rebuild()));
+  const university=data.getUniversity(params.get('universidade')),course=data.getCourse(params.get('curso'));
+  if(university && course)document.querySelector('#cutoff-back').href=`./curso.html?${new URLSearchParams({universidade:university.id,curso:course.id})}`;
+  form.addEventListener('reset',()=>requestAnimationFrame(()=>{rebuild();history.replaceState(null,'',location.pathname);}));
+  form.addEventListener('submit',event=>{event.preventDefault();if(form.reportValidity())location.href=`./nota-de-corte.html?${new URLSearchParams(new FormData(form))}`;});
 })();

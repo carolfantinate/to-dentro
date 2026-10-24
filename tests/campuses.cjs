@@ -43,6 +43,14 @@ const read=file=>fs.readFileSync(file,'utf8');
   assert.equal(selected.elements.get('#map-universities').children.length,2);
   assert.equal(selected.state.markers.length,1);
   assert.equal(selected.state.centers.length,1); // Apenas o centro inicial; nunca centraliza em null.
+  const usp=await screen('?universidade=usp');
+  assert.equal(usp.elements.get('#map-universities').children.length,6);
+  assert.equal(usp.state.markers.length,5);
+  assert.equal(usp.state.bounds[0].length,5);
+  assert.equal(usp.state.centers.length,1);
+  assert.equal(usp.elements.get('#map-region-title').textContent,'Campi da USP');
+  const bauru=await screen('?universidade=usp&campus=usp-bauru');
+  assert.equal(bauru.state.centers.length,2);
   const offline=await screen('',false);
   assert.equal(offline.elements.get('#map-universities').children.length,28);
   assert.match(offline.elements.get('#map-status').textContent,/mapa não carregou/);

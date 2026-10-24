@@ -1,0 +1,8 @@
+{
+  "usp": {
+    "sao-paulo": {"campusId": "usp-cidade-universitaria", "provisional": true},
+    "ribeirao": {"campusId": "usp-ribeirao-preto", "provisional": false},
+    "bauru": {"campusId": "usp-bauru", "provisional": false},
+    "sao-carlos": {"campusId": "usp-sao-carlos", "provisional": false}
+  }
+}

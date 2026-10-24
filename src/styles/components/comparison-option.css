@@ -1,0 +1,48 @@
+.comparison-builder-actions {
+    display: grid;
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+.comparison-builder-actions .button {
+    width: 100%;
+}
+
+.comparison-builder-actions .button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.comparison-option-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.comparison-criteria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+    gap: .625rem 1rem;
+    margin: 1rem 0;
+}
+
+.comparison-criteria div {
+    min-width: 0;
+}
+
+.comparison-criteria dt {
+    font-size: .75rem;
+    color: var(--color-text-muted);
+}
+
+.comparison-criteria dd {
+    margin: .25rem 0 0;
+    font-size: .8125rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.comparison-reference-score {
+    color: var(--color-ink);
+    font-size: 1rem;
+    font-weight: 800;
+}

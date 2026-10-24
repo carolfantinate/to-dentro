@@ -12,3 +12,5 @@
 /* Importar estilos de componentes e páginas conforme forem implementados. */
 
 @import url('./components/auth.css');
+
+@import url('./components/comparison-option.css');

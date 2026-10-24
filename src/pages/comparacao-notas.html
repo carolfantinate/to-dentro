@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="stylesheet" href="../styles/pages/comparacao-notas.css">
     <script defer src="../scripts/services/auth.js"></script>
+    <script defer src="../scripts/services/navigation.js"></script>
 </head>
 
 <body>
@@ -21,21 +22,17 @@
     <div id="results-content" hidden>
       <section class="context-card">
         <div class="context-heading"><span class="result-icon blue" aria-hidden="true">⇄</span>
-          <h2>Mesmo contexto, lado a lado</h2>
+          <h2>Mesmo curso, lado a lado</h2>
         </div><strong id="results-process"></strong>
         <p id="results-context"></p>
       </section>
-      <aside>
-        <strong>Comparação ilustrativa</strong>
-        <p>As notas, a edição e as ofertas abaixo são fictícias. Servem apenas para demonstrar a interface.</p>
-      </aside>
 
-      <section aria-labelledby="chart-title">
+      <section id="results-chart-section" aria-labelledby="chart-title">
         <h2 id="chart-title">Notas lado a lado</h2>
         <div class="chart-card">
-          <p>Escala de 0 a 1.000 pontos</p>
+          <p id="results-scale"></p>
           <div class="chart" role="img" id="results-chart">
-            <div class="chart-axis" aria-hidden="true"><span>1000</span><span>500</span><span>0</span></div>
+            <div class="chart-axis" aria-hidden="true"><span id="results-axis-max"></span><span id="results-axis-mid"></span><span>0</span></div>
             <div class="chart-plot" id="results-bars" aria-hidden="true"></div>
           </div>
         </div>
@@ -54,7 +51,7 @@
         <h2 id="options-title">Conheça cada opção</h2>
         <div id="results-options" class="results-options"></div>
       </section>
-      <a class="add-university blue" id="results-add" href="./filtros-comparacao.html">＋ Adicionar universidade</a>
+      <a class="add-university blue" id="results-add" href="./filtros-comparacao.html">＋ Adicionar opção</a>
 
       <aside>
         <strong>Nota de corte não mede qualidade</strong>
@@ -67,11 +64,11 @@
       </button>
 
       <p id="results-status" role="status"></p>
-      <a id="results-edit" class="edit-filters" href="./filtros-comparacao.html">Alterar curso ou filtros →</a>
+      <a id="results-edit" class="edit-filters" href="./filtros-comparacao.html">Editar opções da comparação →</a>
     </div>
 
     <section id="results-empty" hidden>
-      <p>Escolha um curso e pelo menos duas universidades de São Paulo para comparar.</p><a class="edit-filters"
+      <p>Escolha um curso e adicione pelo menos duas opções para comparar.</p><a class="edit-filters"
         href="./filtros-comparacao.html">Escolher opções →</a>
     </section>
   </main>
@@ -83,6 +80,7 @@
   <script defer src="../data/courses.js"></script>
   <script defer src="../data/comparisons.js"></script>
   <script defer src="../scripts/components/bottom-nav.js"></script>
+  <script defer src="../scripts/components/academic-details.js"></script>
   <script defer src="../scripts/pages/comparacao-notas.js"></script>
 </body>
 

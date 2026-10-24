@@ -7,7 +7,8 @@
   <title>Filtros da comparação | Tô Dentro</title>
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="stylesheet" href="../styles/pages/filtros-comparacao.css">
-    <script defer src="../scripts/services/auth.js"></script>
+  <script defer src="../scripts/services/auth.js"></script>
+  <script defer src="../scripts/services/navigation.js"></script>
 </head>
 
 <body>
@@ -22,101 +23,92 @@
       <div><span class="comparison-icon blue" aria-hidden="true">⇄</span>
         <h2>Uma comparação do seu jeito</h2>
       </div>
-      <p>Escolha um curso, pelo menos duas universidades e o contexto das notas.</p>
+      <p>Escolha um curso e salve pelo menos duas opções. Cada uma mantém seus próprios critérios.</p>
     </section>
 
+    <label for="comparison-course">Curso da comparação</label>
+    <span class="select-chevron"><select id="comparison-course" name="curso" required></select></span>
     <form id="comparison-form">
-      <label for="comparison-course">Curso</label>
-      <span class="select-chevron">
-        <select id="comparison-course" name="curso" required></select>
-      </span>
-
       <fieldset>
-        <legend>Contexto da comparação</legend>
+        <legend>Adicionar uma opção</legend>
         <div class="comparison-grid">
           <div>
-            <label for="comparison-process">Processo seletivo</label>
+            <label for="comparison-university">Universidade</label>
             <span class="select-chevron">
-              <select id="comparison-process" name="processo">
-                <option value="enem">Enem</option>
-                <option value="vestibular">Vestibular próprio</option>
-              </select>
+              <select id="comparison-university" name="universidade" required></select>
             </span>
           </div>
 
           <div>
-            <label for="comparison-year">Edição</label>
+            <label for="comparison-campus">Campus</label>
             <span class="select-chevron">
-              <select id="comparison-year" name="edicao">
-                <option>2026</option>
-                <option>2025</option>
-                <option>2024</option>
-              </select>
-            </span>
-          </div>
-
-          <div>
-            <label for="comparison-category">Concorrência</label>
-            <span class="select-chevron">
-              <select id="comparison-category" name="modalidade">
-                <option>Ampla concorrência</option>
-                <option>Escola pública</option>
-                <option>Pretos, pardos e indígenas</option>
-              </select>
+              <select id="comparison-campus" name="campus" required></select>
             </span>
           </div>
           <div>
             <label for="comparison-shift">Turno</label>
-            <span class="select-chevron"><select id="comparison-shift" name="turno">
-                <option>Integral</option>
-                <option>Matutino</option>
-                <option>Vespertino</option>
-                <option>Noturno</option>
-              </select>
+            <span class="select-chevron">
+              <select id="comparison-shift" name="turno" required></select>
+            </span>
+          </div>
+          <div>
+            <label for="comparison-process">Processo seletivo</label>
+            <span class="select-chevron">
+              <select id="comparison-process" name="processo" required></select>
+            </span>
+          </div>
+          <div>
+            <label for="comparison-year">Edição</label>
+            <span class="select-chevron">
+              <select id="comparison-year" name="edicao" required></select>
+            </span>
+          </div>
+          <div>
+            <label for="comparison-category">Modalidade de concorrência</label>
+            <span class="select-chevron">
+              <select id="comparison-category" name="modalidade" required></select>
+            </span>
+          </div>
+          <div>
+            <label for="comparison-stage">Fase</label>
+            <span class="select-chevron">
+              <select id="comparison-stage" name="fase"></select>
             </span>
           </div>
         </div>
       </fieldset>
 
-      <section class="comparison-institutions" aria-labelledby="institutions-title">
-        <h2 id="institutions-title">Universidades e campi</h2>
-        <p>Selecione pelo menos duas instituições.</p>
-        <p class="comparison-scope">Universidades do estado de São Paulo.</p>
-        <label class="visually-hidden" for="comparison-search">Buscar universidade de São Paulo</label>
-        <div class="comparison-search">
-          <span class="material-symbols-outlined" aria-hidden="true">search</span>
-          <input id="comparison-search" type="search" placeholder="Buscar universidade" autocomplete="off"
-            aria-controls="comparison-options">
-        </div>
-        <div id="comparison-options" class="comparison-options" hidden></div>
-        <p id="comparison-count" class="comparison-count" role="status"></p>
-        <div id="comparison-selected" class="comparison-selected"></div>
-        <button id="comparison-add" class="comparison-add" type="button">＋ Adicionar universidade</button>
-      </section>
-
-      <aside>
-        <strong>Compare informações equivalentes</strong>
-        <p>Processo, edição, modalidade e escala das notas precisam ser compatíveis entre as opções.</p>
-      </aside>
-
-      <p id="comparison-validation" class="comparison-validation" role="status"></p>
-      
-      <button id="comparison-submit" class="comparison-submit" type="submit">
-        <span aria-hidden="true">⇄</span>
-        <span id="comparison-submit-label">Comparar universidades</span>
-      </button>
-
-      <button class="comparison-clear" type="reset">Limpar filtros</button>
+      <div class="comparison-builder-actions">
+        <button id="comparison-add" class="button button-ink" type="submit">Salvar opção na comparação</button>
+        <button id="comparison-clear-fields" class="comparison-clear" type="button">Limpar campos</button>
+      </div>
+      <p id="comparison-builder-status" class="comparison-validation" role="status"></p>
     </form>
+
+    <section class="comparison-institutions" aria-labelledby="institutions-title">
+      <h2 id="institutions-title">Suas opções selecionadas</h2>
+      <p id="comparison-count" class="comparison-count" role="status"></p>
+      <div id="comparison-selected" class="comparison-selected"></div>
+    </section>
+
+    <p id="comparison-validation" class="comparison-validation" role="status"></p>
+    <button id="comparison-submit" class="comparison-submit" type="button" disabled>
+      <span aria-hidden="true">⇄</span>
+      <span id="comparison-submit-label">Comparar opções</span>
+    </button>
+    <button id="comparison-clear-all" class="comparison-clear" type="button">Limpar comparação</button>
 
   </main>
   <td-bottom-nav active="buscar"></td-bottom-nav>
+  
   <script defer src="../data/mock-data.js"></script>
   <script defer src="../data/catalog.js"></script>
   <script defer src="../data/universities.js"></script>
   <script defer src="../data/courses.js"></script>
   <script defer src="../data/comparisons.js"></script>
   <script defer src="../scripts/components/bottom-nav.js"></script>
+  <script defer src="../scripts/components/academic-details.js"></script>
+  <script defer src="../scripts/components/comparison-details.js"></script>
   <script defer src="../scripts/pages/filtros-comparacao.js"></script>
 </body>
 

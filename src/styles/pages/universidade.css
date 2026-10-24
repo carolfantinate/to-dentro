@@ -278,3 +278,9 @@
   flex-direction: column;
   gap: var(--space-4);
 }
+.university-official-card { display:flex; align-items:center; gap:var(--space-3); padding:var(--space-4); border:1px solid #dfe8eb; border-radius:var(--radius-card); background:var(--color-surface); color:var(--color-text); text-decoration:none; }
+.university-official-card > span:first-child { padding:.625rem; border-radius:.75rem; background:var(--color-blue); }
+.university-official-card > span:nth-child(2) { flex:1; min-width:0; }
+.university-official-card strong { display:block; font-size:var(--font-size-sm); }
+.university-official-card small { display:block; margin-top:.25rem; color:var(--color-text-muted); font-size:var(--font-size-xs); }
+.university-official-card:focus-visible { outline:3px solid var(--color-ink); outline-offset:4px; }

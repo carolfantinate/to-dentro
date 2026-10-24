@@ -1,5 +1,6 @@
 (async () => {
   'use strict';
+  if(window.ToDentroCoursesReady)await window.ToDentroCoursesReady;
   if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   const params = new URLSearchParams(location.search);
   const university = window.ToDentroUniversities.find(item => item.id === params.get('id'));
@@ -21,6 +22,7 @@
   coursesUrl.searchParams.set('universidade', university.id);
   coursesUrl.searchParams.set('from', location.pathname + location.search);
   document.querySelector('#university-courses-link').href = coursesUrl.href;
+  document.querySelector('#university-cutoff-link').href=`./buscar-nota-de-corte.html?${new URLSearchParams({universidade:university.id})}`;
   const opportunitiesUrl = new URL('./oportunidades.html', location.href);
   opportunitiesUrl.searchParams.set('universidade', university.id);
   opportunitiesUrl.searchParams.set('from', location.pathname + location.search);
@@ -43,10 +45,7 @@
   for (const [id, text] of Object.entries(values)) document.getElementById(id).textContent = text;
   const official = [university.website, university.admissionsUrl];
   document.querySelector('#university-official-site').href = official[0];
-  document.querySelector('#university-selection-site').href = official[1];
   document.querySelector('#university-admission-link').href = official[1];
-  const sourceLink = document.querySelector('#university-source');
-  if (university.officialSource) { sourceLink.href = university.officialSource; sourceLink.hidden = false; }
   const gallery = document.querySelector('#university-gallery-track');
   const photos = university.photos || [];
   for (const photo of photos) {

@@ -121,6 +121,7 @@ function cutoffScreen(query) {
     if(!elements.has(id))elements.set(id,{classList:{toggle(){}},hidden:true});
     return elements.get(id);
   }};
+  vm.runInContext(read('src/scripts/components/academic-details.js'),app);
   vm.runInContext(read('src/scripts/pages/nota-de-corte.js'),app);
   return elements;
 }

@@ -7,7 +7,8 @@
   <title>Nota de corte | Tô Dentro</title>
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="stylesheet" href="../styles/pages/nota-de-corte.css">
-    <script defer src="../scripts/services/auth.js"></script>
+  <script defer src="../scripts/services/auth.js"></script>
+  <script defer src="../scripts/services/navigation.js"></script>
 </head>
 
 <body>
@@ -33,6 +34,10 @@
           <div>
             <dt>Modalidade</dt>
             <dd id="result-category"></dd>
+          </div>
+          <div>
+            <dt>Fase</dt>
+            <dd id="result-stage"></dd>
           </div>
           <div>
             <dt>Campus / turno</dt>
@@ -85,11 +90,12 @@
     </div>
     <p id="result-invalid" hidden>Selecione um curso e uma universidade na busca para consultar a referência.</p>
   </main>
-  
+
   <script defer src="../data/mock-data.js"></script>
   <script defer src="../data/catalog.js"></script>
   <script defer src="../data/universities.js"></script>
   <script defer src="../data/courses.js"></script>
+  <script defer src="../scripts/components/academic-details.js"></script>
   <script defer src="../scripts/pages/nota-de-corte.js"></script>
 </body>
 

@@ -1,5 +1,6 @@
 (async () => {
   'use strict';
+  if (window.ToDentroCoursesReady) await window.ToDentroCoursesReady;
   if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   const params = new URLSearchParams(location.search);
   const university = window.ToDentroUniversities.find(item => item.id === params.get('universidade'));

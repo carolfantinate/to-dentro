@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="stylesheet" href="../styles/pages/buscar-nota-de-corte.css">
     <script defer src="../scripts/services/auth.js"></script>
+    <script defer src="../scripts/services/navigation.js"></script>
 </head>
 
 <body>
@@ -32,15 +33,15 @@
     <form id="cutoff-form">
       <fieldset>
         <legend>Curso e universidade</legend>
-        <label for="cutoff-course">Curso</label>
-        <span class="select-chevron">
-          <select id="cutoff-course" name="curso" required>
-          </select>
-        </span>
-
         <label for="cutoff-university">Universidade</label>
         <span class="select-chevron">
           <select id="cutoff-university" name="universidade" required>
+          </select>
+        </span>
+
+        <label for="cutoff-course">Curso</label>
+        <span class="select-chevron">
+          <select id="cutoff-course" name="curso" required>
           </select>
         </span>
 
@@ -95,9 +96,14 @@
               </select>
             </span>
           </div>
+          <div>
+            <label for="cutoff-stage">Fase</label>
+            <span class="select-chevron"><select id="cutoff-stage" name="fase"></select></span>
+          </div>
         </div>
       </fieldset>
 
+      <p id="cutoff-status" role="status" hidden></p>
       <aside>
         <strong>Cada nota tem um contexto</strong>
         <p>Curso, campus, processo, edição e modalidade identificam a referência que será consultada.</p>
@@ -117,6 +123,7 @@
   <script defer src="../data/catalog.js"></script>
   <script defer src="../data/universities.js"></script>
   <script defer src="../data/courses.js"></script>
+  <script defer src="../scripts/components/academic-details.js"></script>
   <script defer src="../scripts/pages/buscar-nota-de-corte.js"></script>
 </body>
 
