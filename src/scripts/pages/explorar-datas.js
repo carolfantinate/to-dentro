@@ -1,5 +1,6 @@
-(() => {
+(async () => {
   'use strict';
+  if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   const universities = window.ToDentroUniversities;
   const processes = [
     { id: 'fuvest', name: 'Fuvest', universityId: 'usp' },

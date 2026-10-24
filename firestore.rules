@@ -54,6 +54,12 @@ service cloud.firestore {
         && validPreferences(profile.preferences);
     }
 
+    // Catálogo institucional público; escrita apenas por ferramentas administrativas.
+    match /universities/{universityId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
     match /users/{uid} {
       // Não permite listar perfis ou ler o cadastro de outra pessoa.
       allow get: if ownsProfile(uid);

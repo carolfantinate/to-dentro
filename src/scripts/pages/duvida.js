@@ -1,5 +1,6 @@
 (async () => {
   'use strict';
+  if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   await window.ToDentroAuth.ready;
   const params = new URLSearchParams(location.search);
   const key = window.ToDentroAuth.storageKey('to-dentro-community-replies');

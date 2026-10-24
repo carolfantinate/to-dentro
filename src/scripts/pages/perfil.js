@@ -1,5 +1,6 @@
 (async () => {
   'use strict';
+  if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   await window.ToDentroAuth.ready;
   if (window.ToDentroAuth.isRestrictedPage()) return;
   const root = new URL('../../', location.href);

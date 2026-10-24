@@ -6,3 +6,9 @@ dist/
 *.log
 .DS_Store
 Thumbs.db
+
+# Credenciais administrativas locais do Firebase
+/.credentials/
+**/*firebase-adminsdk*.json
+**/serviceAccountKey.json
+**/to-dentro-admin.json

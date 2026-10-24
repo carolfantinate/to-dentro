@@ -1,5 +1,6 @@
-(() => {
+(async () => {
   'use strict';
+  if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
 
   const searchForm = document.querySelector('.home-search');
   const searchInput = document.querySelector('#university-search');

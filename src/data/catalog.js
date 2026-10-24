@@ -128,7 +128,8 @@
 
   // Visões derivadas e índices em memória; os registros só são editados em mock-data.js.
   freeze(source);
-  const views = freeze({ universities, campuses: mapCampuses, courseCatalog: { areas, courses }, admissionDates,
+  let activeUniversities = universities;
+  const views = freeze({ get universities() { return activeUniversities; }, campuses: mapCampuses, courseCatalog: { areas, courses }, admissionDates,
     calendarEvents, communityPosts, opportunities: source.general.opportunities });
   const collections = freeze({ universities: source.universities.map(({ campuses, admissionEditions, calendarEvents, communityPosts, admissionProcesses, photos, ...record }) => ({...record, photoIds: (photos || []).map(photo => photo.id)})),
     campuses, courses: source.courseCatalog, courseAreas: source.courseAreas, courseOfferings: offerings, cutoffScores,
@@ -138,6 +139,11 @@
     communityReplies: [...source.universities.flatMap(item => item.communityPosts), ...source.general.communityPosts].flatMap(item=>item.replies),
     cities: source.general.cities, vocationalProfiles: source.general.vocationalProfiles, universityPhotos: source.universities.flatMap(item => item.photos || []), people: source.general.people, opportunities: source.general.opportunities, selectionCategories: source.general.selectionCategories, periods: source.general.periods, modes: source.general.modes });
   window.ToDentroData = Object.freeze({ source, views, collections, normalize,
+    applyUniversities: records => {
+      activeUniversities = freeze(records);
+      universityIndex.clear();
+      records.forEach(record => universityIndex.set(record.id, record));
+    },
     getUniversity: id => universityIndex.get(id) || null,
     getCourse: value => courseIndex.get(courseId(value)) || null,
     getCampus: (universityId, value) => resolveCampus(universityId, value) || null,

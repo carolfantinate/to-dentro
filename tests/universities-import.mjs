@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {validateUniversities, main} from '../tools/universities-import/import.mjs';
+const data = JSON.parse(await readFile(new URL('../tools/universities-import/universities.json', import.meta.url), 'utf8'));
+assert.equal(validateUniversities(data).length, 7);
+assert.deepEqual(data.universities.map(row=>row.id), ['usp','unesp','unicamp','unifesp','ufscar','ufabc','univesp']);
+assert.throws(()=>validateUniversities({...data,universities:[data.universities[0],data.universities[0]]}), /duplicado/);
+const invalid = structuredClone(data); invalid.universities[0].officialWebsite='javascript:alert(1)';
+assert.throws(()=>validateUniversities(invalid),/URL inválida/);
+const missing = structuredClone(data); delete missing.universities[0].description;
+assert.throws(()=>validateUniversities(missing),/Campos/);
+await assert.rejects(main(['--write']),/ID exato/);
+console.log('OK: sete registros, IDs únicos, campos obrigatórios, URLs e bloqueio de gravação sem projeto explícito.');

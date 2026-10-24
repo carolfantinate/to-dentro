@@ -1,5 +1,6 @@
-(() => {
+(async () => {
   'use strict';
+  if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   const params = new URLSearchParams(location.search);
   const query = document.querySelector('#map-query');
   const list = document.querySelector('#map-universities');

@@ -1,5 +1,6 @@
 (async () => {
   'use strict';
+  if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   await window.ToDentroAuth.ready;
   const params = new URLSearchParams(location.search);
   const currentYear = Number(new Intl.DateTimeFormat('en-US', { timeZone: 'America/Sao_Paulo', year: 'numeric' }).format(new Date()));

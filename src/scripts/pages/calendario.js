@@ -1,5 +1,6 @@
 (async () => {
   'use strict';
+  if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   await window.ToDentroAuth.ready;
   const todayParts = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
   const todayValue = part => todayParts.find(item => item.type === part).value;

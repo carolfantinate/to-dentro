@@ -1,5 +1,6 @@
 (async () => {
   'use strict';
+  if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   await window.ToDentroAuth.ready;
   let params = new URLSearchParams(location.search);
   const root = new URL('../../', location.href);
@@ -19,7 +20,15 @@
   }
   const query = document.querySelector('#university-query');
   const list = document.querySelector('.university-results-list');
-  const cards = [...list.querySelectorAll('td-university-card')];
+  list.replaceChildren();
+  const cards = window.ToDentroUniversities.map(university => {
+    const card = document.createElement('td-university-card');
+    card.setAttribute('university-id', university.id);
+    card.setAttribute('variant', 'featured');
+    list.append(card);
+    card.render();
+    return card;
+  });
   const count = document.querySelector('#results-count');
   const sort = document.querySelector('#sort-universities');
   const regionChip = document.querySelector('[data-filter="sp"]');

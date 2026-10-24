@@ -1,5 +1,6 @@
-(() => {
+(async () => {
   'use strict';
+  if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   const select = document.querySelector('#inclusion-university');
   const form = document.querySelector('#inclusion-university-form');
   const sites = Object.fromEntries(window.ToDentroUniversities.filter(item => item.studentSupportUrl).map(item => [item.id, item.studentSupportUrl]));

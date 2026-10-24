@@ -1,5 +1,6 @@
-(() => {
+(async () => {
   'use strict';
+  if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
   const params = new URLSearchParams(location.search);
   const university = window.ToDentroUniversities.find(item => item.id === params.get('id'));
   // Permitir retorno apenas às telas locais conhecidas, preservando a busca.
@@ -34,14 +35,18 @@
   document.querySelector('#university-calendar').href = calendarUrl.href;
   const values = {
     'university-name': university.name,
-    'university-location': `${university.acronym} · ${university.public ? 'Pública' : 'Particular'} · Vários campi`,
+    'university-location': [university.acronym, university.category || (university.public ? 'Pública' : 'Particular')].join(' · '),
     'university-admission': university.admission,
+    'university-description': university.description,
+    'university-tuition': university.tuition || (university.free ? 'Gratuita' : 'Com mensalidade'),
   };
   for (const [id, text] of Object.entries(values)) document.getElementById(id).textContent = text;
   const official = [university.website, university.admissionsUrl];
   document.querySelector('#university-official-site').href = official[0];
   document.querySelector('#university-selection-site').href = official[1];
   document.querySelector('#university-admission-link').href = official[1];
+  const sourceLink = document.querySelector('#university-source');
+  if (university.officialSource) { sourceLink.href = university.officialSource; sourceLink.hidden = false; }
   const gallery = document.querySelector('#university-gallery-track');
   const photos = university.photos || [];
   for (const photo of photos) {
@@ -84,5 +89,6 @@
     status.textContent = !result.persisted ? 'O navegador não permitiu guardar a alteração. Ela vale apenas nesta página.'
       : result.saved ? 'Universidade salva nas suas escolhas.' : 'Universidade removida das suas escolhas.';
   });
+  await window.ToDentroAuth.ready;
   updateSaved();
 })();
