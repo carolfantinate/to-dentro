@@ -41,7 +41,7 @@
     document.title = 'Editar lembrete | Tô Dentro';
     document.querySelector('#reminder-heading').textContent = 'Editar lembrete';
     title.value = reminder.title; date.value = reminder.date; time.value = reminder.time || '';
-    category.value = ['pessoal', 'estudo', 'inscricao', 'prova'].includes(reminder.reminderCategory) ? reminder.reminderCategory : 'pessoal';
+    category.value = ['pessoal', 'estudo', 'inscricao', 'prova', 'resultado'].includes(reminder.reminderCategory) ? reminder.reminderCategory : 'pessoal';
     university.value = window.ToDentroUniversities.some(item => item.id === reminder.universityId) ? reminder.universityId : '';
     description.value = reminder.description || '';
     document.querySelector('#delete-reminder').hidden = false;

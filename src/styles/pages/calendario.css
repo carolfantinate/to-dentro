@@ -1,4 +1,6 @@
 .calendar-page {
+    --calendar-study: #e8dff3;
+    --calendar-personal: #e8dff3;
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
@@ -102,10 +104,11 @@
 }
 
 .calendar-day {
+    position: relative;
     display: grid;
     place-items: center;
     min-width: 0;
-    min-height: 2rem;
+    min-height: 2.75rem;
     padding: var(--space-1);
     border: 0;
     border-radius: var(--radius-pill);
@@ -115,14 +118,65 @@
     cursor: pointer;
 }
 
-.calendar-day.event-blue {
-    background: var(--color-blue);
+[data-kind='inscricao'] {
+    --event-color: var(--color-blue);
+    --event-marker: #397da5;
+}
+
+[data-kind='prova'] {
+    --event-color: var(--color-yellow);
+    --event-marker: #987916;
+}
+
+[data-kind='resultado'] {
+    --event-color: var(--color-green);
+    --event-marker: #4e7b37;
+}
+
+[data-kind='estudo'] {
+    --event-color: var(--calendar-study);
+    --event-marker: #8263a4;
+}
+
+[data-kind='pessoal'] {
+    --event-color: var(--calendar-personal);
+    --event-marker: #8263a4;
+}
+
+.calendar-day[data-kind] {
+    background: var(--event-color);
     font-weight: var(--font-weight-extrabold);
 }
 
-.calendar-day.event-green {
-    background: var(--color-green);
-    font-weight: var(--font-weight-extrabold);
+.calendar-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.calendar-legend li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.calendar-legend li::before {
+    content: '';
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: var(--event-color);
+    border: 1px solid var(--event-marker);
+}
+
+.calendar-forecast {
+    padding-left: var(--space-3);
+    border-left: 3px solid var(--event-marker);
 }
 
 .calendar-day[aria-pressed='true'] {
@@ -166,6 +220,27 @@
     gap: var(--space-4);
 }
 
+#calendar-estimates:not(:empty) {
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    border-radius: var(--radius-card);
+    background: var(--color-yellow);
+    font-size: var(--font-size-sm);
+}
+
+.calendar-filter select {
+    max-width: 100%;
+}
+
+#calendar-estimates a {
+    display: inline-block;
+    margin-top: var(--space-2);
+    font-weight: var(--font-weight-bold);
+    text-decoration: underline;
+}
+
 .calendar-event {
     display: flex;
     align-items: center;
@@ -174,6 +249,26 @@
     border: 1px solid var(--color-blue);
     border-radius: var(--radius-card);
     background: var(--color-surface);
+    border-left: 4px solid var(--event-marker);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color 150ms ease;
+}
+
+.calendar-event:hover {
+    border-color: var(--event-marker);
+}
+
+.calendar-event:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+}
+
+.calendar-event-arrow {
+    flex-shrink: 0;
+    margin-left: auto;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
 }
 
 .calendar-event-date {
@@ -186,7 +281,7 @@
     min-height: 3.5rem;
     padding: var(--space-2);
     border-radius: var(--radius-card);
-    background: var(--color-yellow);
+    background: var(--event-color, var(--color-yellow));
 }
 
 .calendar-event-date strong {
@@ -222,11 +317,6 @@
     font-weight: var(--font-weight-extrabold);
     text-decoration: underline;
     text-underline-offset: 3px;
-}
-
-.calendar-day.event-yellow {
-    background: var(--color-yellow);
-    font-weight: var(--font-weight-extrabold);
 }
 
 .calendar-university-filter {

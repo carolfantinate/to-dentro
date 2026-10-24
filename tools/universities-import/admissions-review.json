@@ -1,0 +1,25 @@
+{
+  "issues": [
+    {
+      "row": 2,
+      "editionId": "usp-fuvest-2027",
+      "code": "fee-conditions-missing",
+      "domain": "fees",
+      "message": "A taxa tem valores alternativos sem informar a condição de cada valor."
+    },
+    {
+      "row": 3,
+      "editionId": "enem-2027",
+      "code": "source-process-review",
+      "domain": "source",
+      "message": "O processo está como ENEM, mas a fonte aponta para ENEM-USP; conferir a correspondência."
+    },
+    {
+      "row": 5,
+      "editionId": "unesp-vestibular-unesp-2027",
+      "code": "exam-phase-order",
+      "domain": "dates",
+      "message": "Datas das fases da prova aparecem fora de ordem no mesmo mês; conferir a planilha."
+    }
+  ]
+}

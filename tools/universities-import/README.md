@@ -97,3 +97,56 @@ node tests/courses-import.mjs
 A gravação verifica os documentos pais, exige que o arquivo preparado corresponda à fonte e aos vínculos aprovados, e atualiza por IDs fixos sem excluir registros. `createdAt` é preservado; `updatedAt` usa timestamp do servidor. A etapa alimenta o banco. As telas de cursos e notas estão conectadas por `services/academics.js`; publique a versão atual de `firestore.rules` para habilitar a leitura pública dos cursos, ofertas, processos e resultados. Os dados da USP substituem os mocks acadêmicos dessa instituição.
 
 Importação executada em 24/10/2026 no projeto `to-dentro-webapp`: 48 documentos gravados e relidos, com todos os campos conferidos contra o arquivo preparado (4 cursos, 12 ofertas, 3 processos e 29 resultados).
+
+## Vestibulares e programas gerais
+
+Em 24/10/2026, a aba `Vestibulares` foi transcrita em `admissions-source.json` (A1:J14; dados em A2:J12, linhas 13 e 14 vazias). São 11 registros: sete vinculados a universidades e quatro gerais — ENEM, Provão Paulista, Sisu e ProUni.
+
+`prepare-admissions.mjs` gera `admissions.json` e `admissions-review.json`. `import-admissions.mjs` valida contra a fonte antes de escrever, confere os pais no banco, grava em transação com IDs estáveis e relê os documentos para comparar todos os campos. Não exclui dados; preserva `createdAt` e atualiza `updatedAt`.
+
+```text
+universities/{universityId}
+  admissionProcesses/{processId}
+  admissionEditions/{editionId}
+    events/{eventId}
+
+admissionPrograms/{programId}
+  editions/{editionId}
+    events/{eventId}
+```
+
+Processos Sisu de UFSCar e UFABC referenciam o programa geral `sisu` em `relatedProgramIds`. A indicação de Provão na UNIVESP também é preservada. Não se cria uma cópia do calendário geral para cada universidade. A modalidade mista da Unifesp fica registrada conforme o texto da planilha; não recebe automaticamente datas do Sisu.
+
+### Datas e estimativas
+
+- `dateSpec.precision: date`: dia/mês/ano explicitamente fornecidos, com ISO `YYYY-MM-DD`.
+- `day-month`: dia/mês sem ano. Mantém dia e mês, com `year` e `iso` nulos. Não usa a edição do vestibular como ano presumido da prova ou chamada.
+- `estimate`: mantém a expressão original e uma aproximação (mês e período, como última semana, primeira semana, início ou meados). Não recebe dia inventado nem data ISO.
+- `not-provided`: informação ausente, sem valor fictício.
+
+`calendarEligible` só é verdadeiro para etapas com datas completas e sem pendências de cronologia. Essa marca indica precisão suficiente para futura integração; não representa verificação independente de edital. Etapas com duas datas ou fases preservam todas as datas fornecidas, e o texto completo permanece em `dateSpec.text`. Registro de edição sem ano usa `edition: null` e ID com `edicao-nao-informada`; o rótulo não significa edição atual.
+
+As células de inscrições, prova e resultado também são preservadas na edição em `schedule`. Taxas usam BRL, texto original, valor único quando disponível e variantes quando houver alternativas. Campos vazios permanecem nulos; taxa zero é gratuidade. A taxa da FUVEST conserva 228 e 144 sem inventar a condição de cada preço. A UNESP conserva 225, 56,25 (75%) e 112,50 (50%).
+
+### Pendências preservadas
+
+`admissions-review.json` contém três apontamentos, que também são identificados nas respectivas edições por `needsReview` e `reviewIssueCodes`:
+
+1. FUVEST: condições dos valores 228/144 não informadas.
+2. ENEM: a fonte informada aponta para ENEM-USP; conferir a correspondência com o nome do processo.
+3. UNESP: segunda fase em 13/11 e 14/11 aparece antes da primeira fase em 22/11. Esses meses não foram corrigidos automaticamente.
+
+Os dados foram armazenados como fornecidos, sem consulta independente aos editais. As etapas da UNESP ficam fora da futura publicação automática em calendário até revisão das datas.
+
+```powershell
+node tools/universities-import/prepare-admissions.mjs
+node tools/universities-import/import-admissions.mjs
+node tools/universities-import/import-admissions.mjs --write --project to-dentro-webapp
+node tests/admissions-import.mjs
+```
+
+Importação concluída no projeto `to-dentro-webapp`: 53 documentos conferidos por releitura (11 definições, 11 edições e 31 etapas). Esta etapa somente alimenta o banco: calendário, páginas de vestibulares e programas ainda precisam de integração específica. As regras de leitura dessas edições/etapas e programas não foram alteradas nem publicadas nesta etapa.
+
+Correção confirmada pela usuária: o resultado da UNESP é 27/01/2027. O arquivo de origem registra a correção do ano, os dados preparados foram regenerados e o apontamento de resultado anterior à inscrição foi removido.
+
+A usuária confirmou que **todas** as referências a janeiro são de 2027. `confirmedMonthYears` no arquivo de origem aplica esse ano a datas e estimativas de janeiro, tanto no resumo da edição quanto nas etapas. Datas com dia definido passam a ter ISO em janeiro de 2027; expressões como “última semana de janeiro” mantêm o caráter estimado, apenas com o ano confirmado.

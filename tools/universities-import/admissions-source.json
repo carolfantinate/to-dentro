@@ -1,0 +1,172 @@
+{
+  "sheet": "Vestibulares",
+  "range": "A1:J14",
+  "dataRange": "A2:J12",
+  "emptyRows": [
+    13,
+    14
+  ],
+  "rows": [
+    {
+      "university": "USP",
+      "process": "Fuvest",
+      "edition": "2027",
+      "type": "Vestibular próprio",
+      "registrationStart": "17/08/2026",
+      "registrationEnd": "09/10/2026",
+      "exams": "1ª Fase - 01/11 | 2ª fase 6 /12 e 7/12",
+      "results": "Convocados 2ª Fase: 23/11 | 1ª Chamada 26/01",
+      "fee": "228 ou 144",
+      "officialSource": "https://leginf.usp.br/resolucoes/resolucao-cog-no-9008-de-30-de-julho-de-2026/",
+      "row": 2
+    },
+    {
+      "university": "-",
+      "process": "ENEM",
+      "edition": "2027",
+      "type": "ENEM",
+      "registrationStart": "22/05/2026",
+      "registrationEnd": "12/06/2026",
+      "exams": "1º Dia - 8/11 | 2º Dia - 15/11",
+      "results": "Meados de janeiro",
+      "fee": "85",
+      "officialSource": "https://www.fuvest.br/enem-usp/",
+      "row": 3
+    },
+    {
+      "university": "-",
+      "process": "Provão Paulista",
+      "edition": "2027",
+      "type": "Avaliação seriada",
+      "registrationStart": "Escolha do curso: 5/10",
+      "registrationEnd": "Fim da escolha do curso: 27/11",
+      "exams": "4/11 e 5/11 para os terceiros anos",
+      "results": "Notas: 07/01 | 1ª Chamada: 28/01",
+      "fee": "0",
+      "officialSource": "",
+      "row": 4
+    },
+    {
+      "university": "UNESP",
+      "process": "Vestibular UNESP",
+      "edition": "2027",
+      "type": "Vestibular próprio",
+      "registrationStart": "04/09/2026",
+      "registrationEnd": "26/10/2026",
+      "exams": "1ª Fase - 22/11 | 2ª Fase - 13/11 e 14/11",
+      "results": "27/01/2027",
+      "fee": "225 ou (75%) 56,25 ou ainda (50%) 112,5",
+      "officialSource": "",
+      "row": 5
+    },
+    {
+      "university": "UNICAMP",
+      "process": "Vestibular Unicamp",
+      "edition": "2027",
+      "type": "Vestibular próprio",
+      "registrationStart": "03/08/2026",
+      "registrationEnd": "08/09/2026",
+      "exams": "1ª Fase - 18/10 | 2ª Fase - 29/11 e 30/11",
+      "results": "Convocados 2ª Fase: 23/11 | 1ª Chamada 25/01",
+      "fee": "230",
+      "officialSource": "",
+      "row": 6
+    },
+    {
+      "university": "UNIFESP",
+      "process": "Vestibular misto",
+      "edition": "2026",
+      "type": "SISU (Medicina é misto)",
+      "registrationStart": "",
+      "registrationEnd": "",
+      "exams": "",
+      "results": "",
+      "fee": "",
+      "officialSource": "",
+      "row": 7
+    },
+    {
+      "university": "UFSCar",
+      "process": "SiSU",
+      "edition": "",
+      "type": "SISU (ENEM)",
+      "registrationStart": "",
+      "registrationEnd": "",
+      "exams": "",
+      "results": "",
+      "fee": "",
+      "officialSource": "",
+      "row": 8
+    },
+    {
+      "university": "UFABC",
+      "process": "SiSU",
+      "edition": "",
+      "type": "SISU (ENEM)",
+      "registrationStart": "",
+      "registrationEnd": "",
+      "exams": "",
+      "results": "",
+      "fee": "",
+      "officialSource": "",
+      "row": 9
+    },
+    {
+      "university": "UNIVESP",
+      "process": "Vestibular Univesp",
+      "edition": "",
+      "type": "Provão e vest proprio sem data",
+      "registrationStart": "-",
+      "registrationEnd": "",
+      "exams": "",
+      "results": "",
+      "fee": "",
+      "officialSource": "",
+      "row": 10
+    },
+    {
+      "university": "-",
+      "process": "SISU",
+      "edition": "",
+      "type": "",
+      "registrationStart": "Última semana de janeiro",
+      "registrationEnd": "",
+      "exams": "",
+      "results": "Primeira semana de fev",
+      "fee": "",
+      "officialSource": "",
+      "row": 11
+    },
+    {
+      "university": "-",
+      "process": "ProUni",
+      "edition": "",
+      "type": "",
+      "registrationStart": "Última semana de janeiro",
+      "registrationEnd": "",
+      "exams": "",
+      "results": "Inicio de fevereiro",
+      "fee": "",
+      "officialSource": "",
+      "row": 12
+    }
+  ],
+  "corrections": [
+    {
+      "row": 5,
+      "field": "results",
+      "original": "27/01/2026",
+      "corrected": "27/01/2027",
+      "reason": "Ano corrigido pela usuária: resultado de janeiro é de 2027."
+    },
+    {
+      "scope": "Todas as referências a janeiro, inclusive estimativas",
+      "month": 1,
+      "year": 2027,
+      "reason": "Ano confirmado expressamente pela usuária."
+    }
+  ],
+  "confirmedMonthYears": {
+    "1": 2027
+  }
+}

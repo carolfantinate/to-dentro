@@ -1,75 +1,38 @@
 (async () => {
   'use strict';
-  if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
-  const universities = window.ToDentroUniversities;
-  const processes = [
-    { id: 'fuvest', name: 'Fuvest', universityId: 'usp' },
-    { id: 'enem', name: 'Enem' },
-    { id: 'vestibular-unesp', name: 'Vestibular Unesp', universityId: 'unesp' },
-    { id: 'vestibular-unicamp', name: 'Vestibular Unicamp', universityId: 'unicamp' },
-  ];
+  await window.ToDentroUniversitiesReady;
+  await window.ToDentroAdmissionsReady;
+  const catalog = window.ToDentroAdmissionCatalog;
   const params = new URLSearchParams(location.search);
   const university = document.querySelector('#dates-university');
   const process = document.querySelector('#dates-exam');
-  const program = document.querySelector('#dates-program');
   const status = document.querySelector('#dates-status');
-  const results = document.querySelector('#dates-results');
-
-  for (const item of universities) university.append(new Option(`${item.acronym} — ${item.name}`, item.id));
+  for (const item of window.ToDentroUniversities) university.append(new Option(`${item.acronym} — ${item.name}`, item.id));
+  university.value = params.get('universidade') || '';
   const back = new URL('./calendario.html', location.href);
-
   if (params.get('from')) {
     const from = new URL(params.get('from'), location.href);
     if (from.origin === back.origin && from.pathname === back.pathname) back.search = from.search;
   }
-
   document.querySelector('#dates-back').href = back.href;
-  function populateProcesses(selected = '') {
-    process.replaceChildren(new Option('Escolha um exame', ''));
-    const available = processes.filter(item => !item.universityId || !university.value || item.universityId === university.value);
-    for (const item of available) process.append(new Option(item.name, item.id));
-    process.value = available.some(item => item.id === selected) ? selected : '';
+  function populate(selected = '') {
+    const choices = catalog?.choicesForUniversity(university.value) || [];
+    process.replaceChildren(new Option('Escolha um processo', ''));
+    for (const choice of choices) process.append(new Option(choice.name, choice.id));
+    process.value = choices.some(item => item.id === selected) ? selected : choices[0]?.id || '';
+    status.textContent = university.value ? 'Escolha o processo que deseja consultar para esta universidade.' : 'ENEM, Sisu, ProUni e Provão Paulista têm calendários próprios. Não é necessário escolher uma universidade.';
   }
-  university.value = universities.some(item => item.id === params.get('universidade')) ? params.get('universidade') : '';
-
-  const selectedExam = params.get('exame') || params.get('processo') || '';
-  if (selectedExam === 'enem') university.value = '';
-  populateProcesses(selectedExam);
-  if (['sisu', 'prouni'].includes(params.get('programa'))) { program.value = params.get('programa'); university.value = ''; populateProcesses(); }
-
-  function resetFeedback() {
-    status.textContent = ''; results.hidden = true;
-  }
-
-  university.addEventListener('change', () => {
-    program.value = ''; populateProcesses(process.value === 'enem' ? '' : process.value); resetFeedback();
-  });
-
-  process.addEventListener('change', () => {
-    program.value = '';
-    if (process.value === 'enem') { university.value = ''; populateProcesses('enem'); }
-    resetFeedback();
-  });
-
-  program.addEventListener('change', () => {
-    if (program.value) { university.value = ''; populateProcesses(); }
-    resetFeedback();
-  });
-  
+  populate(params.get('programa') || params.get('processo') || params.get('exame') || '');
+  university.addEventListener('change', () => populate());
   document.querySelector('#explore-dates-form').addEventListener('submit', event => {
     event.preventDefault();
-    const selectedProcess = processes.find(item => item.id === process.value);
-    const selectedUniversity = universities.find(item => item.id === university.value);
-    const selectedLabel = program.value ? (program.value === 'sisu' ? 'Sisu' : 'ProUni') : selectedProcess?.name || selectedUniversity?.name;
-    if (!selectedLabel) { status.textContent = 'Escolha uma universidade, exame ou programa.'; return; }
-    status.textContent = '';
+    const choice = catalog?.choices.find(item => item.id === process.value);
+    if (!choice) { status.textContent = 'Escolha um processo seletivo.'; return; }
     const destination = new URL('./datas.html', location.href);
-    const state = new URLSearchParams(params);
-    state.delete('processo');
-    for (const [name, value] of [['universidade', selectedProcess && !selectedProcess.universityId ? '' : selectedUniversity?.id || selectedProcess?.universityId || ''], ['exame', process.value], ['programa', program.value]]) {
-      if (value) destination.searchParams.set(name, value);
-      state.set(name, value);
-    }
+    if (choice.universityId) destination.searchParams.set('universidade', choice.universityId);
+    destination.searchParams.set(choice.programId ? 'programa' : 'processo', choice.id);
+    const state = new URLSearchParams(params); state.set('universidade', university.value); state.set('processo', choice.id);
+    state.delete('exame'); state.delete('programa');
     destination.searchParams.set('from', `${location.pathname}?${state}`);
     location.href = destination.href;
   });

@@ -1,0 +1,1711 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "definition": {
+        "id": "usp-fuvest",
+        "universityId": "usp",
+        "programId": null,
+        "name": "FUVEST",
+        "method": "vestibular",
+        "relatedProgramIds": []
+      },
+      "edition": {
+        "id": "usp-fuvest-2027",
+        "processId": "usp-fuvest",
+        "universityId": "usp",
+        "programId": null,
+        "edition": 2027,
+        "name": "Fuvest",
+        "typeLabel": "Vestibular próprio",
+        "fee": {
+          "text": "228 ou 144",
+          "currency": "BRL",
+          "amount": null,
+          "isFree": false,
+          "variants": [
+            {
+              "amount": 228,
+              "discountPercent": null
+            },
+            {
+              "amount": 144,
+              "discountPercent": null
+            }
+          ]
+        },
+        "officialSource": "https://leginf.usp.br/resolucoes/resolucao-cog-no-9008-de-30-de-julho-de-2026/",
+        "schedule": {
+          "registrationStart": {
+            "text": "17/08/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 17,
+                "month": 8,
+                "year": 2026,
+                "iso": "2026-08-17"
+              }
+            ],
+            "approximation": null
+          },
+          "registrationEnd": {
+            "text": "09/10/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 9,
+                "month": 10,
+                "year": 2026,
+                "iso": "2026-10-09"
+              }
+            ],
+            "approximation": null
+          },
+          "exams": {
+            "text": "1ª Fase - 01/11 | 2ª fase 6 /12 e 7/12",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 1,
+                "month": 11,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 6,
+                "month": 12,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 7,
+                "month": 12,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "results": {
+            "text": "Convocados 2ª Fase: 23/11 | 1ª Chamada 26/01",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 23,
+                "month": 11,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 26,
+                "month": 1,
+                "year": 2027,
+                "iso": "2027-01-26"
+              }
+            ],
+            "approximation": null
+          }
+        },
+        "sourceRow": 2,
+        "sourceSheet": "Vestibulares",
+        "needsReview": true,
+        "reviewIssueCodes": [
+          "fee-conditions-missing"
+        ]
+      },
+      "events": [
+        {
+          "id": "usp-fuvest-2027-registrationstart-inicio-das-inscricoes",
+          "editionId": "usp-fuvest-2027",
+          "processId": "usp-fuvest",
+          "universityId": "usp",
+          "programId": null,
+          "type": "registrationStart",
+          "title": "Início das inscrições",
+          "dateSpec": {
+            "text": "17/08/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 17,
+                "month": 8,
+                "year": 2026,
+                "iso": "2026-08-17"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": true
+        },
+        {
+          "id": "usp-fuvest-2027-registrationend-fim-das-inscricoes",
+          "editionId": "usp-fuvest-2027",
+          "processId": "usp-fuvest",
+          "universityId": "usp",
+          "programId": null,
+          "type": "registrationEnd",
+          "title": "Fim das inscrições",
+          "dateSpec": {
+            "text": "09/10/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 9,
+                "month": 10,
+                "year": 2026,
+                "iso": "2026-10-09"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": true
+        },
+        {
+          "id": "usp-fuvest-2027-exams-1-fase",
+          "editionId": "usp-fuvest-2027",
+          "processId": "usp-fuvest",
+          "universityId": "usp",
+          "programId": null,
+          "type": "exams",
+          "title": "1ª Fase",
+          "dateSpec": {
+            "text": "1ª Fase - 01/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 1,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "usp-fuvest-2027-exams-2-fase",
+          "editionId": "usp-fuvest-2027",
+          "processId": "usp-fuvest",
+          "universityId": "usp",
+          "programId": null,
+          "type": "exams",
+          "title": "2ª fase",
+          "dateSpec": {
+            "text": "2ª fase 6 /12 e 7/12",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 6,
+                "month": 12,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 7,
+                "month": 12,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "usp-fuvest-2027-results-convocados-2-fase",
+          "editionId": "usp-fuvest-2027",
+          "processId": "usp-fuvest",
+          "universityId": "usp",
+          "programId": null,
+          "type": "results",
+          "title": "Convocados 2ª Fase",
+          "dateSpec": {
+            "text": "Convocados 2ª Fase: 23/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 23,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "usp-fuvest-2027-results-1-chamada",
+          "editionId": "usp-fuvest-2027",
+          "processId": "usp-fuvest",
+          "universityId": "usp",
+          "programId": null,
+          "type": "results",
+          "title": "1ª Chamada",
+          "dateSpec": {
+            "text": "1ª Chamada 26/01",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 26,
+                "month": 1,
+                "year": 2027,
+                "iso": "2027-01-26"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": true
+        }
+      ]
+    },
+    {
+      "definition": {
+        "id": "enem",
+        "universityId": null,
+        "programId": "enem",
+        "name": "ENEM",
+        "method": "enem"
+      },
+      "edition": {
+        "id": "enem-2027",
+        "processId": "enem",
+        "universityId": null,
+        "programId": "enem",
+        "edition": 2027,
+        "name": "ENEM",
+        "typeLabel": "ENEM",
+        "fee": {
+          "text": "85",
+          "currency": "BRL",
+          "amount": 85,
+          "isFree": false,
+          "variants": [
+            {
+              "amount": 85,
+              "discountPercent": null
+            }
+          ]
+        },
+        "officialSource": "https://www.fuvest.br/enem-usp/",
+        "schedule": {
+          "registrationStart": {
+            "text": "22/05/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 22,
+                "month": 5,
+                "year": 2026,
+                "iso": "2026-05-22"
+              }
+            ],
+            "approximation": null
+          },
+          "registrationEnd": {
+            "text": "12/06/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 12,
+                "month": 6,
+                "year": 2026,
+                "iso": "2026-06-12"
+              }
+            ],
+            "approximation": null
+          },
+          "exams": {
+            "text": "1º Dia - 8/11 | 2º Dia - 15/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 8,
+                "month": 11,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 15,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "results": {
+            "text": "Meados de janeiro",
+            "precision": "estimate",
+            "isEstimated": true,
+            "dates": [],
+            "approximation": {
+              "month": 1,
+              "period": "middle",
+              "year": 2027
+            }
+          }
+        },
+        "sourceRow": 3,
+        "sourceSheet": "Vestibulares",
+        "needsReview": true,
+        "reviewIssueCodes": [
+          "source-process-review"
+        ]
+      },
+      "events": [
+        {
+          "id": "enem-2027-registrationstart-inicio-das-inscricoes",
+          "editionId": "enem-2027",
+          "processId": "enem",
+          "universityId": null,
+          "programId": "enem",
+          "type": "registrationStart",
+          "title": "Início das inscrições",
+          "dateSpec": {
+            "text": "22/05/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 22,
+                "month": 5,
+                "year": 2026,
+                "iso": "2026-05-22"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": true
+        },
+        {
+          "id": "enem-2027-registrationend-fim-das-inscricoes",
+          "editionId": "enem-2027",
+          "processId": "enem",
+          "universityId": null,
+          "programId": "enem",
+          "type": "registrationEnd",
+          "title": "Fim das inscrições",
+          "dateSpec": {
+            "text": "12/06/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 12,
+                "month": 6,
+                "year": 2026,
+                "iso": "2026-06-12"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": true
+        },
+        {
+          "id": "enem-2027-exams-1-dia",
+          "editionId": "enem-2027",
+          "processId": "enem",
+          "universityId": null,
+          "programId": "enem",
+          "type": "exams",
+          "title": "1º Dia",
+          "dateSpec": {
+            "text": "1º Dia - 8/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 8,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "enem-2027-exams-2-dia",
+          "editionId": "enem-2027",
+          "processId": "enem",
+          "universityId": null,
+          "programId": "enem",
+          "type": "exams",
+          "title": "2º Dia",
+          "dateSpec": {
+            "text": "2º Dia - 15/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 15,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "enem-2027-results-resultado",
+          "editionId": "enem-2027",
+          "processId": "enem",
+          "universityId": null,
+          "programId": "enem",
+          "type": "results",
+          "title": "Resultado",
+          "dateSpec": {
+            "text": "Meados de janeiro",
+            "precision": "estimate",
+            "isEstimated": true,
+            "dates": [],
+            "approximation": {
+              "month": 1,
+              "period": "middle",
+              "year": 2027
+            }
+          },
+          "calendarEligible": false
+        }
+      ]
+    },
+    {
+      "definition": {
+        "id": "provao-paulista",
+        "universityId": null,
+        "programId": "provao-paulista",
+        "name": "Provão Paulista",
+        "method": "vestibular"
+      },
+      "edition": {
+        "id": "provao-paulista-2027",
+        "processId": "provao-paulista",
+        "universityId": null,
+        "programId": "provao-paulista",
+        "edition": 2027,
+        "name": "Provão Paulista",
+        "typeLabel": "Avaliação seriada",
+        "fee": {
+          "text": "0",
+          "currency": "BRL",
+          "amount": 0,
+          "isFree": true,
+          "variants": [
+            {
+              "amount": 0,
+              "discountPercent": null
+            }
+          ]
+        },
+        "officialSource": null,
+        "schedule": {
+          "registrationStart": {
+            "text": "Escolha do curso: 5/10",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 5,
+                "month": 10,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "registrationEnd": {
+            "text": "Fim da escolha do curso: 27/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 27,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "exams": {
+            "text": "4/11 e 5/11 para os terceiros anos",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 4,
+                "month": 11,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 5,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "results": {
+            "text": "Notas: 07/01 | 1ª Chamada: 28/01",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 7,
+                "month": 1,
+                "year": 2027,
+                "iso": "2027-01-07"
+              },
+              {
+                "day": 28,
+                "month": 1,
+                "year": 2027,
+                "iso": "2027-01-28"
+              }
+            ],
+            "approximation": null
+          }
+        },
+        "sourceRow": 4,
+        "sourceSheet": "Vestibulares",
+        "needsReview": false,
+        "reviewIssueCodes": []
+      },
+      "events": [
+        {
+          "id": "provao-paulista-2027-registrationstart-escolha-do-curso",
+          "editionId": "provao-paulista-2027",
+          "processId": "provao-paulista",
+          "universityId": null,
+          "programId": "provao-paulista",
+          "type": "registrationStart",
+          "title": "Escolha do curso",
+          "dateSpec": {
+            "text": "Escolha do curso: 5/10",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 5,
+                "month": 10,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "provao-paulista-2027-registrationend-fim-da-escolha-do-curso",
+          "editionId": "provao-paulista-2027",
+          "processId": "provao-paulista",
+          "universityId": null,
+          "programId": "provao-paulista",
+          "type": "registrationEnd",
+          "title": "Fim da escolha do curso",
+          "dateSpec": {
+            "text": "Fim da escolha do curso: 27/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 27,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "provao-paulista-2027-exams-prova",
+          "editionId": "provao-paulista-2027",
+          "processId": "provao-paulista",
+          "universityId": null,
+          "programId": "provao-paulista",
+          "type": "exams",
+          "title": "Prova",
+          "dateSpec": {
+            "text": "4/11 e 5/11 para os terceiros anos",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 4,
+                "month": 11,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 5,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "provao-paulista-2027-results-notas",
+          "editionId": "provao-paulista-2027",
+          "processId": "provao-paulista",
+          "universityId": null,
+          "programId": "provao-paulista",
+          "type": "results",
+          "title": "Notas",
+          "dateSpec": {
+            "text": "Notas: 07/01",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 7,
+                "month": 1,
+                "year": 2027,
+                "iso": "2027-01-07"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": true
+        },
+        {
+          "id": "provao-paulista-2027-results-1-chamada",
+          "editionId": "provao-paulista-2027",
+          "processId": "provao-paulista",
+          "universityId": null,
+          "programId": "provao-paulista",
+          "type": "results",
+          "title": "1ª Chamada",
+          "dateSpec": {
+            "text": "1ª Chamada: 28/01",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 28,
+                "month": 1,
+                "year": 2027,
+                "iso": "2027-01-28"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": true
+        }
+      ]
+    },
+    {
+      "definition": {
+        "id": "unesp-vestibular-unesp",
+        "universityId": "unesp",
+        "programId": null,
+        "name": "Vestibular UNESP",
+        "method": "vestibular",
+        "relatedProgramIds": []
+      },
+      "edition": {
+        "id": "unesp-vestibular-unesp-2027",
+        "processId": "unesp-vestibular-unesp",
+        "universityId": "unesp",
+        "programId": null,
+        "edition": 2027,
+        "name": "Vestibular UNESP",
+        "typeLabel": "Vestibular próprio",
+        "fee": {
+          "text": "225 ou (75%) 56,25 ou ainda (50%) 112,5",
+          "currency": "BRL",
+          "amount": null,
+          "isFree": false,
+          "variants": [
+            {
+              "amount": 225,
+              "discountPercent": null
+            },
+            {
+              "amount": 56.25,
+              "discountPercent": 75
+            },
+            {
+              "amount": 112.5,
+              "discountPercent": 50
+            }
+          ]
+        },
+        "officialSource": null,
+        "schedule": {
+          "registrationStart": {
+            "text": "04/09/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 4,
+                "month": 9,
+                "year": 2026,
+                "iso": "2026-09-04"
+              }
+            ],
+            "approximation": null
+          },
+          "registrationEnd": {
+            "text": "26/10/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 26,
+                "month": 10,
+                "year": 2026,
+                "iso": "2026-10-26"
+              }
+            ],
+            "approximation": null
+          },
+          "exams": {
+            "text": "1ª Fase - 22/11 | 2ª Fase - 13/11 e 14/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 22,
+                "month": 11,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 13,
+                "month": 11,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 14,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "results": {
+            "text": "27/01/2027",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 27,
+                "month": 1,
+                "year": 2027,
+                "iso": "2027-01-27"
+              }
+            ],
+            "approximation": null
+          }
+        },
+        "sourceRow": 5,
+        "sourceSheet": "Vestibulares",
+        "needsReview": true,
+        "reviewIssueCodes": [
+          "exam-phase-order"
+        ]
+      },
+      "events": [
+        {
+          "id": "unesp-vestibular-unesp-2027-registrationstart-inicio-das-inscricoes",
+          "editionId": "unesp-vestibular-unesp-2027",
+          "processId": "unesp-vestibular-unesp",
+          "universityId": "unesp",
+          "programId": null,
+          "type": "registrationStart",
+          "title": "Início das inscrições",
+          "dateSpec": {
+            "text": "04/09/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 4,
+                "month": 9,
+                "year": 2026,
+                "iso": "2026-09-04"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "unesp-vestibular-unesp-2027-registrationend-fim-das-inscricoes",
+          "editionId": "unesp-vestibular-unesp-2027",
+          "processId": "unesp-vestibular-unesp",
+          "universityId": "unesp",
+          "programId": null,
+          "type": "registrationEnd",
+          "title": "Fim das inscrições",
+          "dateSpec": {
+            "text": "26/10/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 26,
+                "month": 10,
+                "year": 2026,
+                "iso": "2026-10-26"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "unesp-vestibular-unesp-2027-exams-1-fase",
+          "editionId": "unesp-vestibular-unesp-2027",
+          "processId": "unesp-vestibular-unesp",
+          "universityId": "unesp",
+          "programId": null,
+          "type": "exams",
+          "title": "1ª Fase",
+          "dateSpec": {
+            "text": "1ª Fase - 22/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 22,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "unesp-vestibular-unesp-2027-exams-2-fase",
+          "editionId": "unesp-vestibular-unesp-2027",
+          "processId": "unesp-vestibular-unesp",
+          "universityId": "unesp",
+          "programId": null,
+          "type": "exams",
+          "title": "2ª Fase",
+          "dateSpec": {
+            "text": "2ª Fase - 13/11 e 14/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 13,
+                "month": 11,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 14,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "unesp-vestibular-unesp-2027-results-resultado",
+          "editionId": "unesp-vestibular-unesp-2027",
+          "processId": "unesp-vestibular-unesp",
+          "universityId": "unesp",
+          "programId": null,
+          "type": "results",
+          "title": "Resultado",
+          "dateSpec": {
+            "text": "27/01/2027",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 27,
+                "month": 1,
+                "year": 2027,
+                "iso": "2027-01-27"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        }
+      ]
+    },
+    {
+      "definition": {
+        "id": "unicamp-vestibular-unicamp",
+        "universityId": "unicamp",
+        "programId": null,
+        "name": "Vestibular Unicamp",
+        "method": "vestibular",
+        "relatedProgramIds": []
+      },
+      "edition": {
+        "id": "unicamp-vestibular-unicamp-2027",
+        "processId": "unicamp-vestibular-unicamp",
+        "universityId": "unicamp",
+        "programId": null,
+        "edition": 2027,
+        "name": "Vestibular Unicamp",
+        "typeLabel": "Vestibular próprio",
+        "fee": {
+          "text": "230",
+          "currency": "BRL",
+          "amount": 230,
+          "isFree": false,
+          "variants": [
+            {
+              "amount": 230,
+              "discountPercent": null
+            }
+          ]
+        },
+        "officialSource": null,
+        "schedule": {
+          "registrationStart": {
+            "text": "03/08/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 3,
+                "month": 8,
+                "year": 2026,
+                "iso": "2026-08-03"
+              }
+            ],
+            "approximation": null
+          },
+          "registrationEnd": {
+            "text": "08/09/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 8,
+                "month": 9,
+                "year": 2026,
+                "iso": "2026-09-08"
+              }
+            ],
+            "approximation": null
+          },
+          "exams": {
+            "text": "1ª Fase - 18/10 | 2ª Fase - 29/11 e 30/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 18,
+                "month": 10,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 29,
+                "month": 11,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 30,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "results": {
+            "text": "Convocados 2ª Fase: 23/11 | 1ª Chamada 25/01",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 23,
+                "month": 11,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 25,
+                "month": 1,
+                "year": 2027,
+                "iso": "2027-01-25"
+              }
+            ],
+            "approximation": null
+          }
+        },
+        "sourceRow": 6,
+        "sourceSheet": "Vestibulares",
+        "needsReview": false,
+        "reviewIssueCodes": []
+      },
+      "events": [
+        {
+          "id": "unicamp-vestibular-unicamp-2027-registrationstart-inicio-das-inscricoes",
+          "editionId": "unicamp-vestibular-unicamp-2027",
+          "processId": "unicamp-vestibular-unicamp",
+          "universityId": "unicamp",
+          "programId": null,
+          "type": "registrationStart",
+          "title": "Início das inscrições",
+          "dateSpec": {
+            "text": "03/08/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 3,
+                "month": 8,
+                "year": 2026,
+                "iso": "2026-08-03"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": true
+        },
+        {
+          "id": "unicamp-vestibular-unicamp-2027-registrationend-fim-das-inscricoes",
+          "editionId": "unicamp-vestibular-unicamp-2027",
+          "processId": "unicamp-vestibular-unicamp",
+          "universityId": "unicamp",
+          "programId": null,
+          "type": "registrationEnd",
+          "title": "Fim das inscrições",
+          "dateSpec": {
+            "text": "08/09/2026",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 8,
+                "month": 9,
+                "year": 2026,
+                "iso": "2026-09-08"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": true
+        },
+        {
+          "id": "unicamp-vestibular-unicamp-2027-exams-1-fase",
+          "editionId": "unicamp-vestibular-unicamp-2027",
+          "processId": "unicamp-vestibular-unicamp",
+          "universityId": "unicamp",
+          "programId": null,
+          "type": "exams",
+          "title": "1ª Fase",
+          "dateSpec": {
+            "text": "1ª Fase - 18/10",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 18,
+                "month": 10,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "unicamp-vestibular-unicamp-2027-exams-2-fase",
+          "editionId": "unicamp-vestibular-unicamp-2027",
+          "processId": "unicamp-vestibular-unicamp",
+          "universityId": "unicamp",
+          "programId": null,
+          "type": "exams",
+          "title": "2ª Fase",
+          "dateSpec": {
+            "text": "2ª Fase - 29/11 e 30/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 29,
+                "month": 11,
+                "year": null,
+                "iso": null
+              },
+              {
+                "day": 30,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "unicamp-vestibular-unicamp-2027-results-convocados-2-fase",
+          "editionId": "unicamp-vestibular-unicamp-2027",
+          "processId": "unicamp-vestibular-unicamp",
+          "universityId": "unicamp",
+          "programId": null,
+          "type": "results",
+          "title": "Convocados 2ª Fase",
+          "dateSpec": {
+            "text": "Convocados 2ª Fase: 23/11",
+            "precision": "day-month",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 23,
+                "month": 11,
+                "year": null,
+                "iso": null
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "unicamp-vestibular-unicamp-2027-results-1-chamada",
+          "editionId": "unicamp-vestibular-unicamp-2027",
+          "processId": "unicamp-vestibular-unicamp",
+          "universityId": "unicamp",
+          "programId": null,
+          "type": "results",
+          "title": "1ª Chamada",
+          "dateSpec": {
+            "text": "1ª Chamada 25/01",
+            "precision": "date",
+            "isEstimated": false,
+            "dates": [
+              {
+                "day": 25,
+                "month": 1,
+                "year": 2027,
+                "iso": "2027-01-25"
+              }
+            ],
+            "approximation": null
+          },
+          "calendarEligible": true
+        }
+      ]
+    },
+    {
+      "definition": {
+        "id": "unifesp-vestibular-misto",
+        "universityId": "unifesp",
+        "programId": null,
+        "name": "Vestibular misto",
+        "method": "vestibular",
+        "relatedProgramIds": []
+      },
+      "edition": {
+        "id": "unifesp-vestibular-misto-2026",
+        "processId": "unifesp-vestibular-misto",
+        "universityId": "unifesp",
+        "programId": null,
+        "edition": 2026,
+        "name": "Vestibular misto",
+        "typeLabel": "SISU (Medicina é misto)",
+        "fee": {
+          "text": null,
+          "currency": "BRL",
+          "amount": null,
+          "isFree": null,
+          "variants": []
+        },
+        "officialSource": null,
+        "schedule": {
+          "registrationStart": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "registrationEnd": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "exams": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "results": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          }
+        },
+        "sourceRow": 7,
+        "sourceSheet": "Vestibulares",
+        "needsReview": false,
+        "reviewIssueCodes": []
+      },
+      "events": []
+    },
+    {
+      "definition": {
+        "id": "ufscar-sisu",
+        "universityId": "ufscar",
+        "programId": null,
+        "name": "SiSU",
+        "method": "sisu",
+        "relatedProgramIds": [
+          "sisu"
+        ]
+      },
+      "edition": {
+        "id": "ufscar-sisu-edicao-nao-informada",
+        "processId": "ufscar-sisu",
+        "universityId": "ufscar",
+        "programId": null,
+        "edition": null,
+        "name": "SiSU",
+        "typeLabel": "SISU (ENEM)",
+        "fee": {
+          "text": null,
+          "currency": "BRL",
+          "amount": null,
+          "isFree": null,
+          "variants": []
+        },
+        "officialSource": null,
+        "schedule": {
+          "registrationStart": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "registrationEnd": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "exams": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "results": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          }
+        },
+        "sourceRow": 8,
+        "sourceSheet": "Vestibulares",
+        "needsReview": false,
+        "reviewIssueCodes": []
+      },
+      "events": []
+    },
+    {
+      "definition": {
+        "id": "ufabc-sisu",
+        "universityId": "ufabc",
+        "programId": null,
+        "name": "SiSU",
+        "method": "sisu",
+        "relatedProgramIds": [
+          "sisu"
+        ]
+      },
+      "edition": {
+        "id": "ufabc-sisu-edicao-nao-informada",
+        "processId": "ufabc-sisu",
+        "universityId": "ufabc",
+        "programId": null,
+        "edition": null,
+        "name": "SiSU",
+        "typeLabel": "SISU (ENEM)",
+        "fee": {
+          "text": null,
+          "currency": "BRL",
+          "amount": null,
+          "isFree": null,
+          "variants": []
+        },
+        "officialSource": null,
+        "schedule": {
+          "registrationStart": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "registrationEnd": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "exams": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "results": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          }
+        },
+        "sourceRow": 9,
+        "sourceSheet": "Vestibulares",
+        "needsReview": false,
+        "reviewIssueCodes": []
+      },
+      "events": []
+    },
+    {
+      "definition": {
+        "id": "univesp-vestibular-univesp",
+        "universityId": "univesp",
+        "programId": null,
+        "name": "Vestibular Univesp",
+        "method": "vestibular",
+        "relatedProgramIds": [
+          "provao-paulista"
+        ]
+      },
+      "edition": {
+        "id": "univesp-vestibular-univesp-edicao-nao-informada",
+        "processId": "univesp-vestibular-univesp",
+        "universityId": "univesp",
+        "programId": null,
+        "edition": null,
+        "name": "Vestibular Univesp",
+        "typeLabel": "Provão e vest proprio sem data",
+        "fee": {
+          "text": null,
+          "currency": "BRL",
+          "amount": null,
+          "isFree": null,
+          "variants": []
+        },
+        "officialSource": null,
+        "schedule": {
+          "registrationStart": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "registrationEnd": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "exams": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "results": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          }
+        },
+        "sourceRow": 10,
+        "sourceSheet": "Vestibulares",
+        "needsReview": false,
+        "reviewIssueCodes": []
+      },
+      "events": []
+    },
+    {
+      "definition": {
+        "id": "sisu",
+        "universityId": null,
+        "programId": "sisu",
+        "name": "SISU",
+        "method": "sisu"
+      },
+      "edition": {
+        "id": "sisu-edicao-nao-informada",
+        "processId": "sisu",
+        "universityId": null,
+        "programId": "sisu",
+        "edition": null,
+        "name": "SISU",
+        "typeLabel": null,
+        "fee": {
+          "text": null,
+          "currency": "BRL",
+          "amount": null,
+          "isFree": null,
+          "variants": []
+        },
+        "officialSource": null,
+        "schedule": {
+          "registrationStart": {
+            "text": "Última semana de janeiro",
+            "precision": "estimate",
+            "isEstimated": true,
+            "dates": [],
+            "approximation": {
+              "month": 1,
+              "period": "last-week",
+              "year": 2027
+            }
+          },
+          "registrationEnd": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "exams": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "results": {
+            "text": "Primeira semana de fev",
+            "precision": "estimate",
+            "isEstimated": true,
+            "dates": [],
+            "approximation": {
+              "month": 2,
+              "period": "first-week",
+              "year": null
+            }
+          }
+        },
+        "sourceRow": 11,
+        "sourceSheet": "Vestibulares",
+        "needsReview": false,
+        "reviewIssueCodes": []
+      },
+      "events": [
+        {
+          "id": "sisu-edicao-nao-informada-registrationstart-inicio-das-inscricoes",
+          "editionId": "sisu-edicao-nao-informada",
+          "processId": "sisu",
+          "universityId": null,
+          "programId": "sisu",
+          "type": "registrationStart",
+          "title": "Início das inscrições",
+          "dateSpec": {
+            "text": "Última semana de janeiro",
+            "precision": "estimate",
+            "isEstimated": true,
+            "dates": [],
+            "approximation": {
+              "month": 1,
+              "period": "last-week",
+              "year": 2027
+            }
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "sisu-edicao-nao-informada-results-resultado",
+          "editionId": "sisu-edicao-nao-informada",
+          "processId": "sisu",
+          "universityId": null,
+          "programId": "sisu",
+          "type": "results",
+          "title": "Resultado",
+          "dateSpec": {
+            "text": "Primeira semana de fev",
+            "precision": "estimate",
+            "isEstimated": true,
+            "dates": [],
+            "approximation": {
+              "month": 2,
+              "period": "first-week",
+              "year": null
+            }
+          },
+          "calendarEligible": false
+        }
+      ]
+    },
+    {
+      "definition": {
+        "id": "prouni",
+        "universityId": null,
+        "programId": "prouni",
+        "name": "ProUni",
+        "method": "prouni"
+      },
+      "edition": {
+        "id": "prouni-edicao-nao-informada",
+        "processId": "prouni",
+        "universityId": null,
+        "programId": "prouni",
+        "edition": null,
+        "name": "ProUni",
+        "typeLabel": null,
+        "fee": {
+          "text": null,
+          "currency": "BRL",
+          "amount": null,
+          "isFree": null,
+          "variants": []
+        },
+        "officialSource": null,
+        "schedule": {
+          "registrationStart": {
+            "text": "Última semana de janeiro",
+            "precision": "estimate",
+            "isEstimated": true,
+            "dates": [],
+            "approximation": {
+              "month": 1,
+              "period": "last-week",
+              "year": 2027
+            }
+          },
+          "registrationEnd": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "exams": {
+            "text": null,
+            "precision": "not-provided",
+            "isEstimated": false,
+            "dates": [],
+            "approximation": null
+          },
+          "results": {
+            "text": "Inicio de fevereiro",
+            "precision": "estimate",
+            "isEstimated": true,
+            "dates": [],
+            "approximation": {
+              "month": 2,
+              "period": "beginning",
+              "year": null
+            }
+          }
+        },
+        "sourceRow": 12,
+        "sourceSheet": "Vestibulares",
+        "needsReview": false,
+        "reviewIssueCodes": []
+      },
+      "events": [
+        {
+          "id": "prouni-edicao-nao-informada-registrationstart-inicio-das-inscricoes",
+          "editionId": "prouni-edicao-nao-informada",
+          "processId": "prouni",
+          "universityId": null,
+          "programId": "prouni",
+          "type": "registrationStart",
+          "title": "Início das inscrições",
+          "dateSpec": {
+            "text": "Última semana de janeiro",
+            "precision": "estimate",
+            "isEstimated": true,
+            "dates": [],
+            "approximation": {
+              "month": 1,
+              "period": "last-week",
+              "year": 2027
+            }
+          },
+          "calendarEligible": false
+        },
+        {
+          "id": "prouni-edicao-nao-informada-results-resultado",
+          "editionId": "prouni-edicao-nao-informada",
+          "processId": "prouni",
+          "universityId": null,
+          "programId": "prouni",
+          "type": "results",
+          "title": "Resultado",
+          "dateSpec": {
+            "text": "Inicio de fevereiro",
+            "precision": "estimate",
+            "isEstimated": true,
+            "dates": [],
+            "approximation": {
+              "month": 2,
+              "period": "beginning",
+              "year": null
+            }
+          },
+          "calendarEligible": false
+        }
+      ]
+    }
+  ]
+}

@@ -20,17 +20,39 @@
         </header>
         <h1>Quais datas você quer ver?</h1>
         <p class="dates-intro">Escolha uma universidade, exame ou programa de ingresso.</p>
+        <section class="dates-group" aria-labelledby="general-dates-title">
+            <h2 id="general-dates-title">Exames e programas gerais</h2>
+            <p>Consulte as datas sem precisar escolher uma universidade.</p>
+            <div class="dates-program-links">
+                <a class="dates-program-link" href="./datas.html?programa=enem">
+                    <span class="dates-program-symbol material-symbols-outlined" aria-hidden="true">edit_document</span>
+                    <span>ENEM</span><span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+                </a>
+                <a class="dates-program-link" href="./datas.html?programa=sisu">
+                    <span class="dates-program-symbol material-symbols-outlined" aria-hidden="true">account_balance</span>
+                    <span>Sisu</span><span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+                </a>
+                <a class="dates-program-link" href="./datas.html?programa=prouni">
+                    <span class="dates-program-symbol material-symbols-outlined" aria-hidden="true">school</span>
+                    <span>ProUni</span><span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+                </a>
+                <a class="dates-program-link" href="./datas.html?programa=provao-paulista">
+                    <span class="dates-program-symbol material-symbols-outlined" aria-hidden="true">assignment</span>
+                    <span>Provão Paulista</span><span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+                </a>
+            </div>
+        </section>
         <form id="explore-dates-form">
             <fieldset class="dates-group">
-                <legend>Universidades e exames</legend>
+                <legend>Universidade ou processo geral</legend>
                 <label for="dates-university">Universidade</label>
                 <div class="select-chevron">
                     <select id="dates-university" name="universidade">
-                        <option value="">Escolha uma universidade</option>
+                        <option value="">Exames e programas gerais</option>
                     </select>
                 </div>
 
-                <label for="dates-exam">Exame</label>
+                <label for="dates-exam">Processo seletivo</label>
                 <div class="select-chevron">
                     <select id="dates-exam" name="exame">
                         <option value="">Escolha um exame</option>
@@ -38,21 +60,11 @@
                 </div>
             </fieldset>
 
-            <fieldset class="dates-group">
-                <legend>Programas de ingresso e inclusão</legend>
-                <label class="visually-hidden" for="dates-program">Programa de ingresso</label>
-                <div class="select-chevron">
-                    <select id="dates-program" name="programa">
-                        <option value="">Escolha um programa</option>
-                        <option value="sisu">Sisu</option>
-                        <option value="prouni">ProUni</option>
-                    </select>
-                </div>
-            </fieldset>
+
 
             <aside class="dates-notice" aria-labelledby="dates-notice-title">
                 <h2 id="dates-notice-title">Você decide o que salvar</h2>
-                <p>Ver datas não adiciona eventos automaticamente ao seu calendário.</p>
+                <p>Todas as datas cadastradas já aparecem no calendário. Entre para salvar as que deseja acompanhar.</p>
             </aside>
 
             <p id="dates-status" role="status"></p>
@@ -70,6 +82,7 @@
     <script defer src="../data/mock-data.js"></script>
     <script defer src="../data/catalog.js"></script>
     <script defer src="../data/universities.js"></script>
+    <script defer src="../data/admission-dates.js"></script>
     <script defer src="../scripts/components/bottom-nav.js"></script>
     <script defer src="../scripts/pages/explorar-datas.js"></script>
     <script defer src="../scripts/components/external-links.js"></script>

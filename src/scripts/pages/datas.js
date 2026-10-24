@@ -1,19 +1,21 @@
 (async () => {
   'use strict';
-  if (window.ToDentroUniversitiesReady) await window.ToDentroUniversitiesReady;
+  await window.ToDentroUniversitiesReady;
+  await window.ToDentroAdmissionsReady;
   await window.ToDentroAuth.ready;
+  const catalog = window.ToDentroAdmissionCatalog;
   const params = new URLSearchParams(location.search);
-  const currentYear = Number(new Intl.DateTimeFormat('en-US', { timeZone: 'America/Sao_Paulo', year: 'numeric' }).format(new Date()));
   const university = window.ToDentroUniversities.find(item => item.id === params.get('universidade'));
-  const process = params.get('exame') || params.get('processo') || (university?.id === 'usp' ? 'fuvest' : '');
-  const availableEdition = window.ToDentroAdmissionDates.find(item => item.universityId === university?.id && item.process === process)?.edition;
-  const edition = /^\d{4}$/.test(params.get('edicao') || '') ? Number(params.get('edicao')) : availableEdition || currentYear;
-  const selection = window.ToDentroAdmissionDates.find(item => item.universityId === university?.id && item.process === process && item.edition === edition);
-  const label = university ? `Datas da ${university.acronym}` : 'Datas da seleção';
+  const requested = params.get('programa') || params.get('processo') || params.get('exame');
+  const choices = catalog?.choicesForUniversity(university?.id) || [];
+  const choice = choices.find(item => item.id === requested || item.id === `${university?.id}-${requested}`) || (!requested ? choices[0] : catalog?.choices.find(item => item.id === requested));
+  const selections = (catalog?.selections || []).filter(item => item.choiceId === choice?.id).sort((a,b) => (b.edition || 0) - (a.edition || 0));
+  const selection = params.has('edicao') ? selections.find(item => String(item.edition) === params.get('edicao')) : selections[0];
+  const label = selection?.name || 'Datas da seleção';
   document.title = `${label} | Tô Dentro`;
   document.querySelector('#admission-title').textContent = label;
   document.querySelector('#admission-header').textContent = label;
-  document.querySelector('#admission-context').textContent = `${selection?.name || (process === 'enem' ? 'Enem' : process) || params.get('programa') || 'Seleção'} · Edição ${edition}`;
+  document.querySelector('#admission-context').textContent = [selection?.universityId ? university?.acronym : '', selection?.edition ? `Edição ${selection.edition}` : 'Edição não informada'].filter(Boolean).join(' · ');
   const back = new URL('./explorar-datas.html', location.href);
   if (params.get('from')) {
     const from = new URL(params.get('from'), location.href);
@@ -21,47 +23,57 @@
   }
   document.querySelector('#admission-back').href = back.href;
   if (!selection) { document.querySelector('#admission-empty').hidden = false; return; }
-  document.querySelector('#admission-note').textContent = selection.notice;
-  const source = document.querySelector('#admission-source'); source.href = selection.source; source.hidden = false;
+  document.querySelector('#admission-note').textContent = 'Datas cadastradas na planilha do projeto. Horários não informados. Previsões não representam dias confirmados. Confira o calendário oficial antes de se inscrever.';
+  if (selection.officialSource && !selection.reviewIssueCodes?.includes('source-process-review')) {
+    const source = document.querySelector('#admission-source'); source.href = selection.officialSource; source.hidden = false;
+  }
+  const list = document.querySelector('#admission-dates-list');
+  if (selection.reviewIssueCodes?.includes('source-process-review')) {
+    const note = document.createElement('p'); note.textContent = 'O link de referência desta seleção está em revisão na planilha.'; list.before(note);
+  }
+  if (selection.fee?.text) {
+    const fee = document.createElement('p'); fee.textContent = `Taxa informada: ${selection.fee.text}${selection.fee.isFree ? ' (gratuito)' : ' — valores em reais; confira as condições no edital.'}`; list.before(fee);
+  }
+  document.querySelector('#admission-empty').hidden = selection.events.length > 0;
   const key = window.ToDentroAuth.storageKey('to-dentro-calendar-dates');
-  function read() {
-    const saved = JSON.parse(localStorage.getItem(key) || '[]');
-    if (!Array.isArray(saved)) throw new Error('Invalid calendar');
-    return saved;
-  }
-  function entriesFor(event) {
-    const base = { universityId: selection.universityId, process: selection.process, edition, source: selection.source, official: !selection.isMock, color: 'blue', category: 'vestibular' };
-    const prefix = `${selection.universityId}-${selection.process}-${edition}-${event.legacyId || event.id}`;
-    return [
-      { ...base, id: `${prefix}-inicio`, title: `${event.title}${event.end ? ' · início' : ''}`, date: event.start, time: event.time },
-      ...(event.end ? [{ ...base, id: `${prefix}-fim`, title: `${event.title} · fim`, date: event.end, time: event.endTime }] : []),
-    ];
-  }
-  const format = (date, time) => `${date.split('-').reverse().join('/')}${time ? ` às ${time.replace(':', 'h')}` : ''}`;
+  const read = () => { const saved = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(saved) ? saved : []; };
   for (const event of selection.events) {
     const card = document.createElement('article'); card.className = 'admission-date-card';
     const title = document.createElement('h2'); title.textContent = event.title; card.append(title);
-    const lines = event.end ? [`Início: ${format(event.start, event.time)}`, `Fim: ${format(event.end, event.endTime)}`] : [format(event.start, event.time)];
-    for (const line of lines) { const text = document.createElement('p'); text.textContent = line; card.append(text); }
-    const button = document.createElement('button'); button.type = 'button'; button.dataset.authAction = 'calendar'; button.className = 'button button-yellow';
-    const entries = entriesFor(event);
-    function updateButton() {
-      let added = false;
-      try { const saved = read(); added = window.ToDentroAuth.isAuthenticated() && entries.every(entry => saved.some(item => item.id === entry.id)); } catch { /* Permitir tentativa de salvar. */ }
-      button.disabled = added; button.textContent = added ? 'Adicionado ao meu calendário' : 'Adicionar ao meu calendário';
+    const text = document.createElement('p');
+    text.textContent = event.entries.length ? event.entries.map(entry => entry.date.split('-').reverse().join('/')).join(' e ') : event.dateSpec.text;
+    card.append(text);
+    if (event.entries.some(entry => entry.yearInferred)) {
+      const note = document.createElement('p'); note.textContent = 'Ano definido conforme o ciclo da seleção informado na planilha.'; card.append(note);
     }
-    button.addEventListener('click', () => {
-      if (!window.ToDentroAuth.requireLogin('Entre para adicionar datas ao seu calendário.')) return;
-      try {
-        const saved = read();
-        localStorage.setItem(key, JSON.stringify([...saved, ...entries.filter(entry => !saved.some(item => item.id === entry.id))]));
-        updateButton();
-        document.querySelector('#admission-status').textContent = event.end ? 'Início e fim adicionados ao seu calendário.' : 'Data adicionada ao seu calendário.';
-        const calendar = document.querySelector('#admission-calendar');
-        calendar.href = `./calendario.html?universidade=${selection.universityId}&mes=${event.start.slice(0, 7)}-01`;
-        calendar.hidden = false;
-      } catch { document.querySelector('#admission-status').textContent = 'Não foi possível salvar no navegador. Tente novamente.'; }
-    });
-    updateButton(); card.append(button); document.querySelector('#admission-dates-list').append(card);
+    if (event.needsReview) {
+      const note = document.createElement('p'); note.textContent = 'Datas em revisão: a ordem das fases está inconsistente na planilha.'; card.append(note);
+    }
+    const forecast = catalog.estimates.find(item => item.id === `${selection.id}-${event.id}`);
+    if (forecast) { const note = document.createElement('p'); note.textContent = `Previsão${forecast.year ? ` para ${forecast.year}` : ''} · dia ainda não informado.`; card.append(note); }
+    const firstDate = event.entries[0]?.date || (forecast?.year ? `${forecast.year}-${String(forecast.month).padStart(2,'0')}-01` : null);
+    if (firstDate) {
+      const link = document.createElement('a'); link.className = 'button button-ink'; link.textContent = forecast ? 'Ver previsão no calendário' : 'Ver no calendário';
+      const destination = new URL('./calendario.html', location.href); destination.searchParams.set('processo', selection.choiceId); destination.searchParams.set('mes', `${firstDate.slice(0,7)}-01`);
+      if (selection.universityId) destination.searchParams.set('universidade', selection.universityId);
+      link.href = destination.href; card.append(link);
+    }
+    if (event.entries.length) {
+      const button = document.createElement('button'); button.type = 'button'; button.className = 'button button-yellow'; button.dataset.authAction = 'calendar';
+      function update() {
+        let added = false;
+        try { added = window.ToDentroAuth.isAuthenticated() && event.entries.every(entry => read().some(item => item.id === entry.id)); } catch { /* Salvar continua disponível. */ }
+        button.disabled = added; button.textContent = added ? 'Salvo nos meus lembretes' : 'Salvar nos meus lembretes';
+      }
+      button.addEventListener('click', () => {
+        if (!window.ToDentroAuth.requireLogin('Entre para salvar datas no seu calendário.')) return;
+        try {
+          const saved = read(); localStorage.setItem(key, JSON.stringify([...saved, ...event.entries.filter(entry => !saved.some(item => item.id === entry.id))])); update();
+          document.querySelector('#admission-status').textContent = 'Data salva nos seus lembretes do calendário.';
+        } catch { document.querySelector('#admission-status').textContent = 'Não foi possível salvar no navegador. Tente novamente.'; }
+      });
+      update(); card.append(button);
+    }
+    list.append(card);
   }
 })();

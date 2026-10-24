@@ -67,6 +67,14 @@ service cloud.firestore {
         allow get, list: if true;
         allow create, update, delete: if false;
       }
+      match /admissionEditions/{editionId} {
+        allow get, list: if true;
+        allow write: if false;
+        match /events/{eventId} {
+          allow get, list: if true;
+          allow write: if false;
+        }
+      }
       match /campuses/{campusId} {
         allow get, list: if true;
         allow create, update, delete: if false;
@@ -77,6 +85,19 @@ service cloud.firestore {
             allow get, list: if true;
             allow create, update, delete: if false;
           }
+        }
+      }
+    }
+
+    match /admissionPrograms/{programId} {
+      allow get, list: if true;
+      allow write: if false;
+      match /editions/{editionId} {
+        allow get, list: if true;
+        allow write: if false;
+        match /events/{eventId} {
+          allow get, list: if true;
+          allow write: if false;
         }
       }
     }
